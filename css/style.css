@@ -1,0 +1,158 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+ body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+ 
+
+ html {
+  font-family: 'Catamaran', sans-serif;
+}
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sidenav-trigger {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 450px;
+  line-height: 0;
+  height: 500px;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+
+  #index-banner .section {
+    top: 10%;
+  }
+
+  #img2{
+    height: 100%;
+    width: 50%;
+  }
+
+  .parallax-container {
+    height: 500px;
+  }
+
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+
+  .custom-login-form {
+margin: auto 0 auto 0;
+}
+
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+/*CUSTOM CLASSES*/
+
+/*Colors     https://coolors.co/5c7aff-efcb68-e1efe6-aeb7b3-426b69 */
+
+.custom-text-orange {
+  color: rgb(239, 203, 104);
+}
+
+.custom-orange {
+  background-color: rgb(239, 203, 104);
+}
+
+.custom-text-blue {
+  color: rgb(92, 122, 255);
+}
+
+.custom-blue {
+  background-color: rgb(92, 122, 255);
+}
+
+.custom-text-honeydev {
+  color: rgb(225, 239, 230);
+}
+
+.custom-honeydev {
+  background-color: rgb(225, 239, 230);
+}
+
+.custom-text-gray {
+  color: rgb(174, 183, 179);
+}
+
+.custom-gray {
+  background-color: rgb(174, 183, 179);
+}
+
+.custom-text-green {
+  color: rgb(66, 107, 105);
+}
+
+.custom-green {
+  background-color: rgb(66, 107, 105);
+}
+
+
+
+/*elements*/
+.carousel { 
+  min-height: 650px;
+  }
+.carousel-item {
+  min-height: 400px;
+  top: 50px;
+}
+
+.testimonial {
+  font-family: 'Old Standard TT', serif;
+}
+
+#login-form {
+max-width: 500px;
+
+}
+
+#testimonial-section {
+background-image: url("../img/background-3\ copy.jpg");
+    background-repeat: no-repeat;
+    height: 650px;
+    background-size: cover;
+}
+
+.parallax-container.custom-full-screen {
+  height: 100vh;
+}
