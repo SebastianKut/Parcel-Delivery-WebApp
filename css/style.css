@@ -34,9 +34,8 @@ p {
 }
 
 .parallax-container {
-  min-height: 450px;
+  min-height: 600px;
   line-height: 0;
-  height: 500px;
   color: rgba(255,255,255,.9);
 }
   .parallax-container .section {
@@ -155,4 +154,17 @@ background-image: url("../img/background-3\ copy.jpg");
 
 .parallax-container.custom-full-screen {
   height: 100vh;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 4px;
+  background: #ccc;
+}
+
+/* The progress bar (scroll indicator) */
+#progress-bar {
+  height: 100%;
+  background: #ffd740;
+  width: 0;
 }

@@ -16,11 +16,11 @@
 <body>
 
   <!--Navigation-->
- 
+ <div class="navbar-fixed">
   <nav class="white" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo "><span class="amber-text text-accent-2"><i class="large material-icons">language</i></span>Global</a>
-      <ul class="right hide-on-med-and-down">
+    <div class="nav-wrapper container black-text">
+      <a class="brand-logo" href="#"><span><i class="small material-icons amber-text text-accent-2">language</i></span>Gl<span class="amber-text text-accent-2">o</span>bal</a>
+      <ul class="right hide-on-med-and-down ">
         <li><a href="#">Oferta</a></li>
         <li><a href="#">O nas</a></li>
         <li><a href="#">Rejestracja</a></li>
@@ -28,7 +28,12 @@
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
     </div>
+    <div class="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
   </nav>
+</div>
+
 
 <ul id="nav-mobile" class="sidenav">
   <li><a href="#">OFERTA</a></li>
@@ -47,7 +52,7 @@
         <div class="wrapper center-align">
             <h3>Logowanie</h3>
             <p>Nie masz konta?<p>
-            <a class="btn-small waves-effect amber accent-2 black-text" href="#!">Zarejestruj sie</a>
+            <a class="btn-small waves-effect blue-grey white-text" href="#!">Zarejestruj sie</a>
         </div>
         </div>
         <div class="card-content">
@@ -62,9 +67,6 @@
             </div>
             <a href="#!">Zapomnialem hasla?</a>
             <br><br>
-            <div class="center-align ">
-            <input class="btn-large amber accent-2 black-text waves-effect" type="submit" value="Dalej">
-            </div>
         </form>
         </div>
     
@@ -73,7 +75,9 @@
 
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Zamknij</a>
+      <div class="center-align">
+      <input class="btn amber accent-2 waves-effect" type="submit" value="Dalej">
+    </div>    
     </div>
   </div>
           

@@ -26,3 +26,15 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 });
+
+
+//Custom scripts
+window.addEventListener('scroll', displayProgress);
+
+function displayProgress(){
+    let windowScroll = document.documentElement.scrollTop || document.body.scrollTop; 
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolledPercentage = (windowScroll / height) * 100;
+    document.getElementById('progress-bar').style.width = `${scrolledPercentage}%`;
+}
+
