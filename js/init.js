@@ -28,6 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
   var collapsible = document.querySelectorAll('.collapsible');
   M.Collapsible.init(collapsible, {});
 
+ 
+  var dropdownMenu = document.querySelectorAll('select');
+  M.FormSelect.init(dropdownMenu, {});
+  
+
 });
 
 

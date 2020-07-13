@@ -35,83 +35,150 @@
 </div>
 
 
-<ul id="nav-mobile" class="sidenav sidenav-fixed z-depth-2 page-footer teal darken-4 ">
-    <li><div class="user-view">
-        <a href="#name"><h4 class="white-text">Witaj, Jasio</h4></a>
-        <a href="#email"><span class="email white-text">jasio@gmail.com</span></a>
-      </div></li>
-      <li><div class="divider"></div></li>
-  <li><a href="logout.html" class="modal-trigger white-text"><i class="material-icons right white-text">person</i>WYLOGUJ</a></li>
-  <li><div class="divider"></div></li>
-</ul>
-
-<main>
-  <div id="login-form" class="section container">
-    <div class="modal-content">
-     
-   
-      <div class="card-login-splash">
-        <div class="wrapper center-align">
-            <h3>Zaloz konto</h3>
-        </div>
-        </div>
-        <div class="card-content">
-        <form>
-          <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s6">
-                  <input id="first_name" type="text" class="validate">
-                  <label for="first_name">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">Last Name</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="tel" type="tel" class="validate">
-                  <label for="tel">Numer telefonu</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="email" type="email" class="validate">
-                  <label for="email">Email</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Password</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Password</label>
-                </div>
-              </div>
-              <p class="col s12">
-                <label>
-                  <input type="checkbox" />
-                  <span>Zapoznalem sie z <a href="#">regulaminem</a></span>
-                </label>
-              </p>
-            </form>
-          </div>
-                
-        </form>
+<ul id="nav-mobile" class="sidenav sidenav-fixed z-depth-2 page-footer blue-grey darken-4">
+  <li class="bold waves-effect"><a href="#" class="collapsible-header white-text"><h4>Witaj, Jasio</h4></a>
+    <li class="bold waves-effect"><a href="#" class="collapsible-header grey-text">jasio@yahoo.co.uk</a>  
+  <li><div class="divider grey"></div></li>
+  <li class="bold waves-effect"><a href="#" class="collapsible-header white-text">WYLOGUJ<i class="white-text material-icons chevron">person</i></a>
+    <li><div class="divider grey"></div></li>
+   <ul class="collapsible collapsible-accordion ">
+    <li class="bold waves-effect"><a class="collapsible-header white-text">ZLECENIA<i class="white-text material-icons chevron">chevron_left</i></a>
+      <div class="collapsible-body blue-grey darken-4">
+        <ul>
+          <li><a href="/pages/admin-dashboard" class="waves-effect active white-text">Nowe zlecenie<i class="material-icons white-text">web</i></a></li>
+          <li><a href="/pages/admin-fixed-chart" class="waves-effect white-text">Pokaz wszystkie<i class="material-icons white-text">list</i></a></li>
+          <li><a href="/pages/admin-grid" class="waves-effect white-text">Pokaz oczekujace<i class="material-icons white-text">dashboard</i></a></li>
+          <li><a href="/pages/admin-chat" class="waves-effect white-text">Pokaz zrealizowane<i class="material-icons white-text">chat</i></a></li>
+        </ul>
       </div>
-      
-      <div class="center-align">
-        <input class="btn amber accent-2 waves-effect" type="submit" value="Dalej">
-      </div>    
-      <p class="center-align">Masz konto? <span><a href="login.html">Zaloguj sie</a></span></p>
-    </div>
-  </div>
+    </li>
+   </ul>
+   <li><div class="divider grey"></div></li>
+   <ul class="collapsible collapsible-accordion ">
+    <li class="bold waves-effect"><a class="collapsible-header white-text">KONTO<i class="white-text material-icons chevron">chevron_left</i></a>
+      <div class="collapsible-body blue-grey darken-4">
+        <ul>
+          <li><a href="/pages/admin-dashboard" class="waves-effect active white-text">Zmien haslo<i class="material-icons white-text">web</i></a></li>
+          <li><a href="/pages/admin-fixed-chart" class="waves-effect white-text">Zmien email<i class="material-icons white-text">list</i></a></li>
+          <li><a href="/pages/admin-grid" class="waves-effect white-text">Zrob kupe<i class="material-icons white-text">dashboard</i></a></li>
+          <li><a href="/pages/admin-chat" class="waves-effect white-text">Wez sie do roboty<i class="material-icons white-text">chat</i></a></li>
+        </ul>
+      </div>
+    </li>
+   </ul>
+   <li><div class="divider grey"></div></li>
+</ul> 
+
+
+
   
+  
+ <main>
+          
+      
+            <div class="section center-align">
+              <div class="col l6 s12"><a href="" class="btn"><i class="material-icons left">add_box</i>Nowe zlecenie</a></div>
+            </div>
+  <div class="section container">
+           
+      
+        <div class="card-content container">
+                <form>
+                  <div class="row">
+                    <h5>Dane odbiorcy</h5>
+                </div>
+                  <div class="row">
+                    <form class="col s12">
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <input id="first_name" type="text" class="validate">
+                          <label for="first_name">Imie</label>
+                        </div>
+                        <div class="input-field col s6">
+                          <input id="last_name" type="text" class="validate">
+                          <label for="last_name">Nazwisko</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="tel" type="tel" class="validate">
+                          <label for="tel">Numer telefonu</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="email" type="email" class="validate">
+                          <label for="email">Email</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <h5>Adres dostawy</h5>
+                    </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="street" type="text" class="validate">
+                          <label for="street">Ulica</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="house" type="text" class="validate">
+                          <label for="house">Numer domu</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="apartment" type="text" class="validate">
+                          <label for="apartment">Numer lokalu</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="postcode" type="text" class="validate">
+                          <label for="postcode">Kod pocztowy</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="city" type="text" class="validate">
+                          <label for="city">Miasto</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12 m6">
+                          <select class="icons">
+                            <option value="" disabled selected>Wybierz kraj</option>
+                            <option value="germany" data-icon="img/germany.png">Niemcy</option>
+                            <option value="uk" data-icon="img/uk.png">Wielka Brytania</option>
+                            <option value="france" data-icon="img/france.png">Francja</option>
+                          </select>
+                          <label>Kraj docelowy</label>
+                        </div>
+                      </div>
+                      <p class="col s12">
+                        <label>
+                          <input type="checkbox" />
+                          <span>Zapoznalem sie z <a href="#">regulaminem</a></span>
+                        </label>
+                      </p>
+                    </form>
+                  </div>
+                        
+                </form>
+        </div>
+     
+  </div>
+     
+
+
+      <div class="section center-align">
+        <button class="btn amber accent-2 black-text ßwaves-effect waves-light" type="submit" name="action">ZAMAWIAM
+          <i class="material-icons right">send</i>
+        </button>
+      </div>    
+  
+ 
+ 
 </main>
 
 
