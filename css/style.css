@@ -148,9 +148,9 @@ max-width: 500px;
 
 #testimonial-section {
 background-image: url("../img/background-3\ copy.jpg");
-    background-repeat: no-repeat;
-    height: 650px;
-    background-size: cover;
+background-repeat: no-repeat;
+height: 650px;
+background-size: cover;
 }
 
 .parallax-container.custom-full-screen {
@@ -170,8 +170,14 @@ background-image: url("../img/background-3\ copy.jpg");
   width: 0;
 }
 
+.sidenav.user-nav {
+    background-image: url("../img/background-5\ copy.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
-/*.divider {
-  height: 100px;
-  background-color: transparent;
-}*/
+#user-navbar {
+    background-image: url("../img/background-5\ copy.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
