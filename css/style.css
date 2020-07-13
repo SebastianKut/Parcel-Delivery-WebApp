@@ -160,7 +160,7 @@ background-image: url("../img/background-3\ copy.jpg");
 .progress-bar-container {
   width: 100%;
   height: 4px;
-  background: #ccc;
+  background: transparent;
 }
 
 /* The progress bar (scroll indicator) */
@@ -171,7 +171,7 @@ background-image: url("../img/background-3\ copy.jpg");
 }
 
 
-.divider {
+/*.divider {
   height: 100px;
   background-color: transparent;
-}
+}*/

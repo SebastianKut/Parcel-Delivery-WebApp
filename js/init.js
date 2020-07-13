@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
     indicators: true,
   });
 
+  var collapsible = document.querySelectorAll('.collapsible');
+  M.Collapsible.init(collapsible, {});
+
 });
 
 
