@@ -149,12 +149,12 @@ background-size: cover;
     background-size: cover;
 }
 
-
-.sidenav.main-nav-mobile {
+.sidenav.side-nav-main {
   background-image: url("../img/mobile-nav-03.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 
 
 .custom-margin-left {
