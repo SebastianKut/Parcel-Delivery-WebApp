@@ -7,16 +7,16 @@
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  var sideNav = document.querySelectorAll('.sidenav');
+  let sideNav = document.querySelectorAll('.sidenav');
   M.Sidenav.init(sideNav, {});
 
-  var parallax = document.querySelectorAll('.parallax');  
+  let parallax = document.querySelectorAll('.parallax');  
   M.Parallax.init(parallax, {});
 
-  var modal = document.querySelectorAll('.modal');
+  let modal = document.querySelectorAll('.modal');
   M.Modal.init(modal, {});
 
-  var carousel = document.querySelectorAll('.carousel');
+  let carousel = document.querySelectorAll('.carousel');
   M.Carousel.init(carousel, {
     numVisible: 5,
     shift: 25,
@@ -25,16 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
     indicators: true,
   });
 
-  var collapsible = document.querySelectorAll('.collapsible');
+  let collapsible = document.querySelectorAll('.collapsible');
   M.Collapsible.init(collapsible, {});
 
  
-  var dropdownMenu = document.querySelectorAll('select');
+  let dropdownMenu = document.querySelectorAll('select');
   M.FormSelect.init(dropdownMenu, {});
   
-
-});
-
 
 //Custom scripts
 window.addEventListener('scroll', displayProgress);
@@ -45,4 +42,37 @@ function displayProgress(){
     let scrolledPercentage = (windowScroll / height) * 100;
     document.getElementById('progress-bar').style.width = `${scrolledPercentage}%`;
 }
+
+let addOrderBtn = document.getElementById("add-new-order");
+let addOrderLink = document.getElementById("new-order-menu-link");
+addOrderBtn.addEventListener('click', displayOrderForm);
+addOrderLink.addEventListener('click', displayOrderForm);
+
+function displayOrderForm() {
+document.getElementById("welcome-message").style.display = "none";
+document.getElementById("order-sent").style.display = "none";
+document.getElementById("send-parcel-form").style.display = "block";
+}
+
+let orderSubmitBtn = document.getElementById("order-submit-button");
+orderSubmitBtn.addEventListener('click', orderSent)
+
+function orderSent() {
+document.getElementById("order-sent").style.display = "block";
+document.getElementById("send-parcel-form").style.display = "none";
+}
+
+});
+
+
+//Custom scripts
+// window.addEventListener('scroll', displayProgress);
+
+// function displayProgress(){
+//     let windowScroll = document.documentElement.scrollTop || document.body.scrollTop; 
+//     let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+//     let scrolledPercentage = (windowScroll / height) * 100;
+//     document.getElementById('progress-bar').style.width = `${scrolledPercentage}%`;
+// }
+
 

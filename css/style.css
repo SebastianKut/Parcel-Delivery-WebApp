@@ -42,34 +42,6 @@ p {
     width: 100%;
   }
 
-@media only screen and (max-width : 992px) {
-
-  #index-banner .section {
-    top: 10%;
-  }
-
-  #img2{
-    height: 100%;
-    width: 50%;
-  }
-
-  .parallax-container {
-    height: 500px;
-  }
-
-}
-
-@media only screen and (max-width : 600px) {
-  #index-banner .section {
-    top: 0;
-  }
-
-  .custom-login-form {
-margin: auto 0 auto 0;
-}
-
-
-}
 
 .icon-block {
   padding: 0 15px;
@@ -157,13 +129,14 @@ background-size: cover;
   height: 100vh;
 }
 
+/* The progress bar (scroll indicator) */
+
 .progress-bar-container {
   width: 100%;
   height: 4px;
   background: transparent;
 }
 
-/* The progress bar (scroll indicator) */
 #progress-bar {
   height: 100%;
   background: #ffd740;
@@ -176,8 +149,61 @@ background-size: cover;
     background-size: cover;
 }
 
-#user-navbar {
-    background-image: url("../img/background-5\ copy.jpg");
+
+.sidenav.main-nav-mobile {
+  background-image: url("../img/mobile-nav-03.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+
+.custom-margin-left {
+margin-left: 300px;
+}
+
+#send-parcel-form, #order-sent {
+  display: none;
+}
+
+#logout-message{
+  margin-top: 100px;
+}
+
+
+
+/*MEDIA QUERRIES*/
+@media only screen and (max-width : 992px) {
+
+  #index-banner .section {
+    top: 10%;
+  }
+
+  #img2{
+    height: 100%;
+    width: 50%;
+  }
+
+  .parallax-container {
+    height: 500px;
+  }
+
+  .custom-margin-left {
+    margin-left: 0;
+  }
+
+  #logout-message{
+    margin-top: 0;
+  }
+
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+
+  .custom-login-form {
+margin: auto 0 auto 0;
+}
+
 }

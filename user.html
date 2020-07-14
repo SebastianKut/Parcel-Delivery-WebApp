@@ -15,10 +15,12 @@
 </head>
 <body>
  <!--Navigation-->
+<header>
 
- <div class="navbar-fixed z-depth-1">
+ <!--Navbar--> 
+ <div class="navbar-fixed z-depth-1 ">
   <nav class="white" role="navigation">
-    <div class="nav-wrapper container black-text">
+    <div class="nav-wrapper custom-margin-left black-text">
       <a class="brand-logo center" href="index.html"><span><i class="small material-icons amber-text text-accent-2">language</i></span>Gl<span class="amber-text text-accent-2">o</span>bal</a>
       <ul class="right hide-on-med-and-down ">
         <li><a href="#">Oferta</a></li>
@@ -34,18 +36,18 @@
   </nav>
 </div>
 
-
+<!--Side nav/user panel-->
 <ul id="nav-mobile" class="sidenav sidenav-fixed z-depth-2 page-footer blue-grey darken-4 user-nav">
-  <li class="bold waves-effect"><a href="#" class="collapsible-header amber-text text-accent-2"><h4>Witaj, Jasio</h4></a>
-    <li class="bold waves-effect"><a href="#" class="collapsible-header grey-text">jasio@yahoo.co.uk</a>  
+  <li class="bold waves-effect"><a href="user.html" class="collapsible-header amber-text text-accent-2"><h4>Witaj, Jasio</h4></a></li>
+    <li class="bold waves-effect"><a href="#" class="collapsible-header grey-text">jasio@yahoo.co.uk</a></li>  
   <li><div class="divider grey"></div></li>
-  <li class="bold waves-effect"><a href="#" class="collapsible-header white-text">WYLOGUJ<i class="white-text material-icons chevron">person</i></a>
+  <li class="bold waves-effect"><a href="logout.html" class="collapsible-header white-text">WYLOGUJ<i class="white-text material-icons chevron">person</i></a></li>
     <li><div class="divider grey"></div></li>
    <ul class="collapsible collapsible-accordion ">
     <li class="bold waves-effect"><a class="collapsible-header white-text">ZLECENIA<i class="white-text material-icons chevron">chevron_left</i></a>
       <div class="collapsible-body transparent">
         <ul>
-          <li><a href="/pages/admin-dashboard" class="waves-effect active white-text">Nowe zlecenie<i class="material-icons white-text">web</i></a></li>
+          <li><a id="new-order-menu-link" href="#" class="waves-effect active white-text">Nowe zlecenie<i class="material-icons white-text">web</i></a></li>
           <li><a href="/pages/admin-fixed-chart" class="waves-effect white-text">Pokaz wszystkie<i class="material-icons white-text">list</i></a></li>
           <li><a href="/pages/admin-grid" class="waves-effect white-text">Pokaz oczekujace<i class="material-icons white-text">dashboard</i></a></li>
           <li><a href="/pages/admin-chat" class="waves-effect white-text">Pokaz zrealizowane<i class="material-icons white-text">chat</i></a></li>
@@ -68,20 +70,17 @@
    </ul>
    <li><div class="divider grey"></div></li>
 </ul> 
-
-
+</header>
 
   
-  
- <main>
+ <main class="custom-margin-left">
           
       
-            <div class="section center-align">
-              <div class="col l6 s12"><a href="" class="btn"><i class="material-icons left">add_box</i>Nowe zlecenie</a></div>
-            </div>
-  <div class="section container">
-           
-      
+  <div class="section center-align">
+              <div class="col l6 s12"><a id="add-new-order" href="#!" class="btn"><i class="material-icons left">add_box</i>Nowe zlecenie</a></div>
+  </div>
+
+  <div id="send-parcel-form" class="section">         
         <div class="card-content container">
                 <form>
                   <div class="row">
@@ -167,22 +166,29 @@
                 </form>
         </div>
      
-  </div>
-     
 
 
       <div class="section center-align">
-        <button class="btn amber accent-2 black-text ßwaves-effect waves-light" type="submit" name="action">ZAMAWIAM
+        <button id="order-submit-button" class="btn amber accent-2 black-text waves-effect waves-light" type="submit" name="action">ZAMAWIAM
           <i class="material-icons right">send</i>
         </button>
       </div>    
   
+ </div> 
  
- 
+ <div id="welcome-message" class="section container">
+<h4>Witaj Ziomal,</h4>
+<p class="grey-text">Kliknij w przycisk "NOWE ZLECENIE" aby wyslac paczke, nastepnie wypelnij wszystkie wymagane pola. <br>Uwaga! Nie realizujemy zlecen bez wczesniejszej zaplaty.</p>
+</div>
+
+<div id="order-sent" class="section container">
+  <h4>Twoje zlecenie zostalo wyslane.</h4>
+  <p class="grey-text">Prosimy o dokonanie przelewu w ciagu jednego dnia roboczego</p>
+  </div>
+
+
+
 </main>
-
-
-
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
