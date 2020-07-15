@@ -47,10 +47,10 @@
     <li class="bold waves-effect"><a class="collapsible-header white-text">ZLECENIA<i class="white-text material-icons chevron">chevron_left</i></a>
       <div class="collapsible-body transparent">
         <ul>
-          <li><a id="new-order-menu-link" href="#" class="waves-effect active white-text">Nowe zlecenie<i class="material-icons white-text">web</i></a></li>
-          <li><a href="/pages/admin-fixed-chart" class="waves-effect white-text">Pokaz wszystkie<i class="material-icons white-text">list</i></a></li>
-          <li><a href="/pages/admin-grid" class="waves-effect white-text">Pokaz oczekujace<i class="material-icons white-text">dashboard</i></a></li>
-          <li><a href="/pages/admin-chat" class="waves-effect white-text">Pokaz zrealizowane<i class="material-icons white-text">chat</i></a></li>
+          <li><a id="new-order-menu-link" href="#!" class="waves-effect active white-text">Nowe zlecenie<i class="material-icons white-text">web</i></a></li>
+          <li><a href="user.html" class="waves-effect white-text">Pokaz wszystkie<i class="material-icons white-text">list</i></a></li>
+          <li><a href="user.html" class="waves-effect white-text">Pokaz oczekujace<i class="material-icons white-text">dashboard</i></a></li>
+          <li><a href="user.html" class="waves-effect white-text">Pokaz zrealizowane<i class="material-icons white-text">chat</i></a></li>
         </ul>
       </div>
     </li>
@@ -60,10 +60,10 @@
     <li class="bold waves-effect"><a class="collapsible-header white-text">KONTO<i class="white-text material-icons chevron">chevron_left</i></a>
       <div class="collapsible-body transparent">
         <ul>
-          <li><a href="/pages/admin-dashboard" class="waves-effect active white-text">Zmien haslo<i class="material-icons white-text">web</i></a></li>
-          <li><a href="/pages/admin-fixed-chart" class="waves-effect white-text">Zmien email<i class="material-icons white-text">list</i></a></li>
-          <li><a href="/pages/admin-grid" class="waves-effect white-text">Zrob kupe<i class="material-icons white-text">dashboard</i></a></li>
-          <li><a href="/pages/admin-chat" class="waves-effect white-text">Wez sie do roboty<i class="material-icons white-text">chat</i></a></li>
+          <li><a href="user.html" class="waves-effect active white-text">Zmien haslo<i class="material-icons white-text">web</i></a></li>
+          <li><a href="user.html" class="waves-effect white-text">Zmien email<i class="material-icons white-text">list</i></a></li>
+          <li><a href="user.html" class="waves-effect white-text">Zrob kupe<i class="material-icons white-text">dashboard</i></a></li>
+          <li><a href="user.html" class="waves-effect white-text">Wez sie do roboty<i class="material-icons white-text">chat</i></a></li>
         </ul>
       </div>
     </li>
@@ -83,17 +83,18 @@
   <div id="send-parcel-form" class="section">         
         <div class="card-content container">
                 <form>
-                  <div class="row">
-                    <h5>Dane odbiorcy</h5>
+                  <div class="row valign-wrapper">
+                    <h5 class="col s10 m11">Dane odbiorcy</h5>
+                    <a id="close-form" class="col s2 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
                 </div>
                   <div class="row">
                     <form class="col s12">
                       <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 l6">
                           <input id="first_name" type="text" class="validate">
                           <label for="first_name">Imie</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 l6">
                           <input id="last_name" type="text" class="validate">
                           <label for="last_name">Nazwisko</label>
                         </div>
@@ -154,6 +155,62 @@
                           <label>Kraj docelowy</label>
                         </div>
                       </div>
+                      <div class="row">
+                        <h5>Dane przesylki</h5>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input id="description" type="text" class="validate">
+                        <label for="description">Opis paczki</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12 l3">
+                        <select class="icons">
+                          <option value="" disabled selected>Wybierz z listy</option>
+                          <option value="1">do 1 kg</option>
+                          <option value="2">do 2 kg</option>
+                          <option value="3">do 5 kg</option>
+                          <option value="3">do 10 kg</option>
+                          <option value="3">do 20 kg</option>
+                        </select>
+                        <label>Waga</label>
+                      </div>
+                 
+                   
+                      <div class="range-field col s12 l3">
+                        <label for="height">Wysokosc (w cm)</label>
+                        <input type="range" id="height" min="0" max="100" />
+                      </div>
+                    
+                      <div class="range-field col s12 l3">
+                        <label for="deep">Glebokosc (w cm)</label>
+                        <input type="range" id="deep" min="0" max="100" />
+                      </div>
+                    
+                      <div class="range-field col s12 l3">
+                        <label for="length">Dlugosc (w cm)</label>
+                        <input type="range" id="length" min="0" max="100" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12 l6">
+                        <input id="value" type="text" class="validate">
+                        <label for="value">Wartosc</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12 l6">
+                        <input id="sku-number" type="text" class="validate">
+                        <label for="sku-number">Numer SKU</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <textarea id="comments" class="materialize-textarea"></textarea>
+                        <label for="comments">Uwagi</label>
+                      </div>
+                    </div>
                       <p class="col s12">
                         <label>
                           <input type="checkbox" />

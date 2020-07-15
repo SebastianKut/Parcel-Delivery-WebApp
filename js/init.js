@@ -62,6 +62,15 @@ document.getElementById("order-sent").style.display = "block";
 document.getElementById("send-parcel-form").style.display = "none";
 }
 
+let closeForm = document.getElementById("close-form");
+closeForm.addEventListener('click', closeInputForm) 
+
+function closeInputForm(){
+document.getElementById("send-parcel-form").style.display = "none";
+document.getElementById("welcome-message").style.display = "block";
+}
+
+
 });
 
 
