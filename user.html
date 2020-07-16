@@ -118,7 +118,7 @@
                       <div class="row">
                         <h5>Adres dostawy</h5>
                     </div>
-                    <div id="locationField" class="row">
+                    <!--<div id="locationField" class="row">
                       <div class="col s12">
                         <label for="autocomplete">Wyszukaj adres<span class="asterix">*</span></label>
                         <input id="autocomplete"
@@ -126,56 +126,67 @@
                              onFocus="geolocate()"
                              type="text"
                              required/>
-                       
                       </div>
-                    </div>
+                    </div>-->
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="route" disabled="true" type="text" class="validate" required>
+                          <input id="route" type="text" class="validate" required>
                           <label for="route">Ulica <span class="asterix">*</span></label>
                           <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="street_number" disabled="true" type="text" class="validate" required>
+                          <input id="street_number"  type="text" class="validate" required>
                           <label for="street_number">Numer domu <span class="asterix">*</span></label>
                           <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="apartment" disabled="true" type="number" class="validate" >
+                          <input id="apartment"  type="number" class="validate" >
                           <label for="apartment">Numer mieszkania</label>
                           <span class="helper-text" data-error="Wprowadz numer lub zostaw puste" data-success=""></span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col m2 s4">
-                          <input id="postal_code" disabled="true" type="number" class="validate" required>
+                          <input id="postal_code"  type="number" class="validate" maxlength="2" required>
                           <label for="postal_code">Kod pocztowy <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wprowadz prawidlowy kod pocztowy" data-success=""></span>
+                          <span class="helper-text" data-error="Wprowadz 2-cyfrowy numer" data-success="">XX</span>
+                        </div>
+                        <div class="input-field col m1 s1">
+                          <p class="center-align"><i class="material-icons">remove</i></p>
+                        </div>
+                        <div class="input-field col m2 s4">
+                          <input id="postcode02" type="number" class="validate" maxlength="3" required>
+                          <label for="postcode02"></label>
+                          <span class="helper-text" data-error="Wprowadz 3-cyfrowy numer" data-success="">XXX</span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="locality" disabled="true" type="text" class="validate" required>
+                          <input id="locality"  type="text" class="validate" required>
                           <label for="locality">Miasto <span class="asterix">*</span></label>
                           <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="administrative_area_level_1" disabled="true" type="text" class="validate" required>
+                          <input id="administrative_area_level_1" type="text" class="validate" required>
                           <label for="administrative_area_level_1">Region <span class="asterix">*</span></label>
                           <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12 m6">
-                          <input id="country" disabled="true" type="text" class="validate" required>
-                          <label for="country">Kraj <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+                          <select class="icons validate" required>
+                            <option value="" disabled selected>Wybierz kraj</option>
+                            <option value="germany" data-icon="img/germany.png">Niemcy</option>
+                            <option value="uk" data-icon="img/uk.png">Wielka Brytania</option>
+                            <option value="france" data-icon="img/france.png">Francja</option>
+                          </select>
+                          <label>Kraj docelowy <span class="asterix">*</span></label>
                         </div>
                       </div>
                       <div class="row">
@@ -389,10 +400,11 @@ A strone to maciue zajebista
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <!--GOOGLE PLACES API NOT USED ATM
   <script src="js/places.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTYzfejcPrCYymoHHWsVRPuUEBjoKwmSM&libraries=places&callback=initAutocomplete"
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOURKEY&libraries=places&callback=initAutocomplete"
         async defer></script>
-
+-->
 
   </body>
 </html>
