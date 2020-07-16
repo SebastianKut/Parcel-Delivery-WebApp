@@ -177,6 +177,21 @@ margin-left: 300px;
   display: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.asterix {
+ color: red !important;
+} 
+
+
 /*MEDIA QUERRIES*/
 @media only screen and (max-width : 992px) {
 

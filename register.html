@@ -69,43 +69,49 @@
           <div class="row">
             <form class="col s12">
               <div class="row">
-                <div class="input-field col s6">
-                  <input id="first_name" type="text" class="validate">
-                  <label for="first_name">Imie</label>
+                <div class="input-field col s12 m6">
+                  <input id="first_name" type="text" class="validate" required>
+                  <label for="first_name">Imie <span class="asterix">*</span></label>
+                  <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                 </div>
-                <div class="input-field col s6">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">Nazwisko</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="tel" type="tel" class="validate">
-                  <label for="tel">Numer telefonu</label>
+                <div class="input-field col s12 m6">
+                  <input id="last_name" type="text" class="validate" required>
+                  <label for="last_name">Nazwisko <span class="asterix">*</span></label>
+                  <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="email" type="email" class="validate">
-                  <label for="email">Email</label>
+                  <input id="tel" type="tel" class="validate" required>
+                  <label for="tel">Numer telefonu <span class="asterix">*</span></label>
+                  <span class="helper-text" data-error="Wprowadz poprawny numer" data-success=""></span>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Haslo</label>
+                  <input id="email" type="email" class="validate" required>
+                  <label for="email">Email <span class="asterix">*</span></label>
+                  <span class="helper-text" data-error="Wprowadz poprawny adres email" data-success=""></span>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Powtorz haslo</label>
+                  <input id="password" type="password" class="validate" required>
+                  <label for="password">Haslo <span class="asterix">*</span></label>
+                  <span class="helper-text" data-error="Wprowadz haslo (co najmniej 8 znakow)" data-success=""></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="password" type="password" class="validate" required>
+                  <label for="password">Powtorz haslo <span class="asterix">*</span></label>
+                  <span class="helper-text" data-error="Wprowadz haslo (co najmniej 8 znakow)" data-success=""></span>
                 </div>
               </div>
               <p class="col s12">
                 <label>
                   <input type="checkbox" />
-                  <span>Zapoznalem sie z <a href="#">regulaminem</a></span>
+                  <span>Zapoznalem sie z <a href="#">regulaminem </a><span class="asterix">*</span></span>
                 </label>
               </p>
             </form>

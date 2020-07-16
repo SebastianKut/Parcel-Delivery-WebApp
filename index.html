@@ -81,12 +81,14 @@
         <div class="card-content">
         <form>
             <div class="input-field">
-            <input id="username" type="text" class="validate">
-            <label for="username">Nazwa uzytkownika</label>
+              <input id="username" type="text" class="validate" required>
+              <label for="username">Nazwa uzytkownika</label>
+              <span class="helper-text" data-error="Wprowadz email uzyty przy rejestracji" data-success=""></span>
             </div>
             <div class="input-field">
-            <input id="password" type="password" class="validate">
-            <label for="password">Haslo</label>
+              <input id="password" type="password" class="validate" required>
+              <label for="password">Haslo</label>
+              <span class="helper-text" data-error="Wprowadz poprawne haslo" data-success=""></span>
             </div>
             <a href="#!">Zapomnialem hasla?</a>
             <br><br>

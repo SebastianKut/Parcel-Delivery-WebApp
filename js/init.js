@@ -56,7 +56,7 @@ document.getElementById("send-parcel-form").style.display = "block";
 }
 
 let orderSubmitBtn = document.getElementById("order-submit-button");
-orderSubmitBtn.addEventListener('click', orderSent)
+orderSubmitBtn.addEventListener('submit', orderSent)
 
 function orderSent() {
 document.getElementById("order-sent").style.display = "block";
