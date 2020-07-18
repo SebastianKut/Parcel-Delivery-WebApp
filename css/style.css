@@ -205,6 +205,14 @@ input[type=number] {
   opacity: 1 !important; /* Firefox */
 }
 
+#save-order-changes-admin {
+display: none;
+}
+
+#orders-list-admin {
+display: none;
+}
+
 /*MEDIA QUERRIES*/
 @media only screen and (max-width : 992px) {
 

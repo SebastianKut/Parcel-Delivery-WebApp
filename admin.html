@@ -53,9 +53,7 @@
       <div class="collapsible-body transparent">
         <ul>
           <li><a id="new-order-menu-link" href="#!" class="waves-effect active white-text">Dodaj nowe zlecenie<i class="material-icons white-text">web</i></a></li>
-          <li><a id="show-all-orders-admin" href="#!" class="waves-effect white-text">Wszystkie zlecenia<i class="material-icons white-text">list</i></a></li>
-          <li><a id="show-all-completed-admin" href="#!" class="waves-effect white-text">Zlecenia zrealizowane<i class="material-icons white-text">list</i></a></li>
-          <li><a id="show-all-inprogres-admin" href="#!" class="waves-effect white-text">Zlecenia oczekujace<i class="material-icons white-text">list</i></a></li>
+          <li><a id="show-all-orders-admin" href="#!" class="waves-effect white-text">Pokaz zlecenia<i class="material-icons white-text">list</i></a></li>
         </ul>
       </div>
     </li>
@@ -97,8 +95,8 @@
           </div>
           <div class="row">
 
-            <div class="input-field col s12">
-              <p>W celu dodania zamowienia dla istniejacego uzytkownika wpisz jego email w polu ponizej. <br>
+            <div class="col s12">
+              <p class="grey-text">W celu dodania zamowienia dla istniejacego uzytkownika wpisz jego email w polu ponizej. <br>
               Chcac dodac nowe zamowienie dla uzytkownika nie posiadajacego konta Global wykonaj nastepujace kroki: <br>
               1) Przejdz do sekcji Rejestracja, aby stworzyc nowe konto dla uzytkownika, uzywajac jego adresu Email i domyslnego hasla "1234abcd". <br>
               2) Dodaj nowe zamowienie z poziomu konta uzytkownika. <br>
@@ -319,7 +317,7 @@
           <option value="2">Wg Odbiorcy</option>
       </select>
     
-        <a id="close-table-user" class="col s1 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
+        <a id="close-table-admin" class="col s1 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
     
     </div>
     <div class="row">
@@ -349,7 +347,7 @@
         <td>Helmut Von Joungingen</td>
         <td>Oczekujace</td>
         <td><a href="#">Generuj</td>
-        <td><select>
+        <td><select class="status-change">
           <option value="" disabled selected>Wybierz</option>
           <option value="zrealizowane">Zrealizowane</option>
           <option value="oczekujace">Oczekujace</option>
@@ -364,7 +362,7 @@
         <td>Hildegart Von Schnizel</td>
         <td>Oczekujace</td>
         <td><a href="#">Generuj</td>
-        <td><select>
+        <td><select class="status-change"> 
           <option value="" disabled selected>Wybierz</option>
           <option value="zrealizowane">Zrealizowane</option>
           <option value="oczekujace">Oczekujace</option>
@@ -379,7 +377,7 @@
         <td>Franz</td>
         <td>Oczekujace</td>
         <td><a href="#">Generuj</td>
-        <td><select>
+        <td><select class="status-change">
           <option value="" disabled selected>Wybierz</option>
           <option value="zrealizowane">Zrealizowane</option>
           <option value="oczekujace">Oczekujace</option>
@@ -394,7 +392,7 @@
         <td>Adolf Hitler</td>
         <td>Zrealizowane</td>
         <td><a href="#">Generuj</td>
-        <td><select>
+        <td><select class="status-change">
           <option value="" disabled selected>Wybierz</option>
           <option value="zrealizowane">Zrealizowane</option>
           <option value="oczekujace">Oczekujace</option>
@@ -404,7 +402,7 @@
     </tbody>
   </table>
   <div class="section center-align">
-    <div class="col l6 s12"><a id="save-order-changes-admin" href="#" class="col s12 m2 btn-small disabled">ZAPISZ ZMIANY<i class="material-icons left">done</i> </a></div>
+    <div class="col l6 s12"><a id="save-order-changes-admin" href="#" class="col s12 m2 btn-small">ZAPISZ ZMIANY<i class="material-icons left">done</i> </a></div>
 </div>
 
 </div>
@@ -460,6 +458,14 @@ A strone to maciue zajebista
 
 </div>
 
+<!--Welcome message-->
+<div id="welcome-message" class="section container">
+  <h4>Witaj w panelu Administratora,</h4>
+  <p class="grey-text">Kliknij w przycisk "POKAZ ZLECENIA" aby wyswietlic wszystkie zlecenia. 
+  <br>W celu wyswietlenia zlecen oczekujacych na wyslanie, wybierz "Pokaz oczekujace" z menu "Sortuj zamowienia".
+  <br>Mozesz zmienic status zamowienia w kolumnie "Zmien status". 
+  <br>Zmiana statusu zamowienia na zrealizowane, automatycznie usunie dane zlecenie z raportu dostepnego dla uzytkownika, informujac go tym samym, ze jego zlecenie zostalo zrealizowane.</p>
+  </div>
 
 
 </main>
