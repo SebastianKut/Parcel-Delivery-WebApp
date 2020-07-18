@@ -23,11 +23,16 @@
   <nav class="white" role="navigation">
     <div class="nav-wrapper custom-margin-left black-text">
       <a class="brand-logo center" href="index.html"><span><i class="small material-icons amber-text text-accent-2">language</i></span>Gl<span class="amber-text text-accent-2">o</span>bal</a>
-      <ul class="right hide-on-med-and-down ">
-        <li><a href="#">Oferta</a></li>
-        <li><a href="#">O nas</a></li>
-        <li><a href="register.html">Rejestracja</a></li>
-        <li><a href="logout.html" class=" modal-trigger"><i class="material-icons right">person</i>Wyloguj</a></li>
+      <ul class="right hide-on-med-and-down "> 
+        <li><div class="nav-wrapper">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" class="custom-placeholder" placeholder="Znajdz wg Nazwiska">
+              <label class="label-icon" for="search"><i class="material-icons grey-text">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
     </div>
@@ -39,8 +44,7 @@
 
 <!--Side nav/user panel-->
 <ul id="nav-mobile" class="sidenav sidenav-fixed z-depth-2 page-footer blue-grey darken-4 user-nav">
-  <li class="bold waves-effect"><a href="user.html" class="collapsible-header amber-text text-accent-2"><h4>Witaj, Jasio</h4></a></li>
-    <li class="bold waves-effect"><a href="#" class="collapsible-header grey-text">jasio@yahoo.co.uk</a></li>  
+  <li class="bold waves-effect"><a href="user.html" class="collapsible-header amber-text text-accent-2"><h4>ADMIN</h4></a></li>
   <li><div class="divider grey"></div></li>
   <li class="bold waves-effect"><a href="logout.html" class="collapsible-header white-text">WYLOGUJ<i class="white-text material-icons chevron">person</i></a></li>
     <li><div class="divider grey"></div></li>
@@ -49,7 +53,9 @@
       <div class="collapsible-body transparent">
         <ul>
           <li><a id="new-order-menu-link" href="#!" class="waves-effect active white-text">Dodaj nowe zlecenie<i class="material-icons white-text">web</i></a></li>
-          <li><a id="show-all-orders-user" href="#!" class="waves-effect white-text">Wszystkie zlecenia<i class="material-icons white-text">list</i></a></li>
+          <li><a id="show-all-orders-admin" href="#!" class="waves-effect white-text">Wszystkie zlecenia<i class="material-icons white-text">list</i></a></li>
+          <li><a id="show-all-completed-admin" href="#!" class="waves-effect white-text">Zlecenia zrealizowane<i class="material-icons white-text">list</i></a></li>
+          <li><a id="show-all-inprogres-admin" href="#!" class="waves-effect white-text">Zlecenia oczekujace<i class="material-icons white-text">list</i></a></li>
         </ul>
       </div>
     </li>
@@ -74,22 +80,47 @@
   <!--MAIN SECTION-->
  <main class="custom-margin-left">
           
- <!--Add new order button-->     
+ <!--Show all orders button-->     
   <div class="section center-align">
-              <div class="col l6 s12"><a id="add-new-order" href="#!" class="btn"><i class="material-icons left">add_box</i>Nowe zlecenie</a></div>
+              <div class="col l6 s12"><a id="show-all-orders" href="#!" class="btn"><i class="material-icons left">add_box</i>Pokaz zlecenia</a></div>
   </div>
 
 
- <!--Send new parcel form--> 
+ <!--Add new order form--> 
   <div id="send-parcel-form" class="section">         
         <div class="card-content container">
-          <form class="col s12">
-                  <div class="row valign-wrapper">
-                    <h5 class="col s10 m11">Dane odbiorcy</h5>
-                    <a id="close-form" class="col s2 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
-                </div>
+         
+      <form class="col s12">
+            <div class="row valign-wrapper">
+              <h5 class="col s10 m11">Dodawanie nowego zlecenia dla uzytkownika</h5>
+              <a id="close-form" class="col s2 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
+          </div>
+          <div class="row">
+
+            <div class="input-field col s12">
+              <p>W celu dodania zamowienia dla istniejacego uzytkownika wpisz jego email w polu ponizej. <br>
+              Chcac dodac nowe zamowienie dla uzytkownika nie posiadajacego konta Global wykonaj nastepujace kroki: <br>
+              1) Przejdz do sekcji Rejestracja, aby stworzyc nowe konto dla uzytkownika, uzywajac jego adresu Email i domyslnego hasla "1234abcd". <br>
+              2) Dodaj nowe zamowienie z poziomu konta uzytkownika. <br>
+              3) Pamietaj o podaniu uzytkownikowi hasla uzytego do rejestracji jego konta oraz zalec jak najszybsza zmiane hasla po pierwszym zalogowaniu.</p>
+            </div>
+            
+          </div>
+          <div class="row valign-wrapper">
+            <h5 class="col s12">Nadawca</h5>
+        </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" required>
+              <label for="email">Email uzytkownika <span class="asterix">*</span></label>
+              <span class="helper-text" data-error="Wprowadz poprawny adres email" data-success=""></span>
+            </div>
+          </div>
+          <div class="row valign-wrapper">
+            <h5 class="col s12">Dane odbiorcy</h5>
+          </div>
                   
-                    
+                
                       <div class="row">
                         <div class="input-field col s12 l6">
                           <input id="first_name" type="text" class="validate" required>
@@ -258,7 +289,7 @@
                           <span>Zapoznalem sie z <a href="#">regulaminem </a><span class="asterix">*</span></span>
                         </label>
                       </p>
-                   
+                    
                   
                         
                 </form>
@@ -272,79 +303,115 @@
   
  </div> 
  
- <!--Orders List-->
-<div id="orders-list-user" class="section container">
-  <div class="row">
+ <!--All Orders List-->
+<div id="orders-list-admin" class="section container">
+
     <div class="row valign-wrapper">
 
-      <h5 class="col s8 m10">Twoje zlecenia</h5>
+      <h5 class="col s5 m9 flow-text">Zlecenia klientow</h5>
      
-      <select class="icons input-field col s2 m1">
-          <option value="" disabled selected>Filtruj</option>
-          <option value="1">Wszystkie</option>
-          <option value="2">Zrealizowane</option>
-          <option value="2">Oczekujace</option>
+      <select class="icons input-field col s6 m2 ">
+          <option class="flow-text" value="" disabled selected>Sortuj zamowienia</option>
+          <option value="1">Pokaz wszystkie</option>
+          <option value="1">Pokaz oczekujace</option>
+          <option value="1">Pokaz zrealizowane</option>
+          <option value="2">Wg Klienta</option>
+          <option value="2">Wg Odbiorcy</option>
       </select>
-      <label>Waga</label>
     
-        <a id="close-table-user" class="col s2 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
+        <a id="close-table-user" class="col s1 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
     
     </div>
     <div class="row">
-      <p class="grey-text">Zeby zobaczyc szczegoly zamowienia, kliknij w imie i nazwisko odbiorcy</p>
+      <p class="grey-text s12">Zeby zobaczyc szczegoly zamowienia, kliknij w imie i nazwisko klienta</p>
     </div>
-  </div>
+
   <table class="row highlight responsive-table">
-    <thead>
+    <thead class="z-depth-1">
       <tr>
-          <th>Odbiorca</th>
-          <th>Opis paczki</th>
+          <th>Klient</th>
           <th>Numer SKU</th>
+          <th>Data zlozenia</th>
+          <th>Adres dostawy</th>
+          <th>Odbiorca</th>
           <th>Status zlecenia</th>
+          <th>Plik JSON</th>
+          <th>Zmien status</th>
       </tr>
     </thead>
 
     <tbody>
       <tr>
         <td><a href="#">Alvin Turbopala</a></td>
-        <td>Kupa w pudelku</td>
         <td>045SKU8</td>
+        <td>12/03/2020</td>
+        <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
+        <td>Helmut Von Joungingen</td>
         <td>Oczekujace</td>
+        <td><a href="#">Generuj</td>
+        <td><select>
+          <option value="" disabled selected>Wybierz</option>
+          <option value="zrealizowane">Zrealizowane</option>
+          <option value="oczekujace">Oczekujace</option>
+        </select></td>
+      
       </tr>
       <tr>
         <td><a href="#">Jasko Muzykant</a></td>
-        <td>Fajki</td>
         <td>045SKU8</td>
+        <td>12/03/2020</td>
+        <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
+        <td>Hildegart Von Schnizel</td>
         <td>Oczekujace</td>
+        <td><a href="#">Generuj</td>
+        <td><select>
+          <option value="" disabled selected>Wybierz</option>
+          <option value="zrealizowane">Zrealizowane</option>
+          <option value="oczekujace">Oczekujace</option>
+        </select></td>
+        
       </tr>
         <tr>
           <td><a href="#">Stefa Rozczochrana</a></td>
-          <td>Wazelina</td>
           <td>045SKU8</td>
-          <td>Zrealizowane</td>
+        <td>12/03/2020</td>
+        <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
+        <td>Franz</td>
+        <td>Oczekujace</td>
+        <td><a href="#">Generuj</td>
+        <td><select>
+          <option value="" disabled selected>Wybierz</option>
+          <option value="zrealizowane">Zrealizowane</option>
+          <option value="oczekujace">Oczekujace</option>
+        </select></td>
+       
         </tr>
         <tr>
           <td><a href="#">Mercelina Cichodajka</a></td>
-          <td>Cegla</td>
           <td>045SKU8</td>
-          <td>Oczekujace</td>
+        <td>12/03/2020</td>
+        <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
+        <td>Adolf Hitler</td>
+        <td>Zrealizowane</td>
+        <td><a href="#">Generuj</td>
+        <td><select>
+          <option value="" disabled selected>Wybierz</option>
+          <option value="zrealizowane">Zrealizowane</option>
+          <option value="oczekujace">Oczekujace</option>
+        </select></td>
+        
         </tr>
     </tbody>
   </table>
-
+  <div class="section center-align">
+    <div class="col l6 s12"><a id="save-order-changes-admin" href="#" class="col s12 m2 btn-small disabled">ZAPISZ ZMIANY<i class="material-icons left">done</i> </a></div>
 </div>
 
-<!--Welcome message-->
- <div id="welcome-message" class="section container">
-<h4>Witaj Ziomal,</h4>
-<p class="grey-text">Kliknij w przycisk "NOWE ZLECENIE" aby wyslac paczke, nastepnie wypelnij wszystkie wymagane pola. <br>Uwaga! Nie realizujemy zlecen bez wczesniejszej zaplaty.</p>
 </div>
-
 
 <!--Order sent message-->
 <div id="order-sent" class="section container">
   <h4>Twoje zlecenie zostalo wyslane.</h4>
-  <p class="grey-text">Prosimy o dokonanie przelewu w ciagu jednego dnia roboczego</p>
   </div>
 
 <!--Order details-->
@@ -401,12 +468,7 @@ A strone to maciue zajebista
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/user-module.js"></script>
-  <!--GOOGLE PLACES API NOT USED ATM
-  <script src="js/places.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOURKEY&libraries=places&callback=initAutocomplete"
-        async defer></script>
--->
+  <script src="js/admin-module.js"></script>
 
   </body>
 </html>

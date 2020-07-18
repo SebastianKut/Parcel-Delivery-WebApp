@@ -5,8 +5,10 @@
 //   }); // end of document ready
 // })(jQuery); // end of jQuery name space
 
-
+  //Materialize modules JS
 document.addEventListener('DOMContentLoaded', function() {
+
+
   let sideNav = document.querySelectorAll('.sidenav');
   M.Sidenav.init(sideNav, {});
 
@@ -31,9 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
  
   let dropdownMenu = document.querySelectorAll('select');
   M.FormSelect.init(dropdownMenu, {});
-  
 
-//Custom scripts
+//Custom scripts shared 
 window.addEventListener('scroll', displayProgress);
 
 function displayProgress(){
@@ -43,61 +44,7 @@ function displayProgress(){
     document.getElementById('progress-bar').style.width = `${scrolledPercentage}%`;
 }
 
-let addOrderBtn = document.getElementById("add-new-order");
-let addOrderLink = document.getElementById("new-order-menu-link");
-addOrderBtn.addEventListener('click', displayOrderForm);
-addOrderLink.addEventListener('click', displayOrderForm);
 
-function displayOrderForm() {
-document.getElementById("welcome-message").style.display = "none";
-document.getElementById("order-sent").style.display = "none";
-document.getElementById("orders-list-user").style.display = "none";
-document.getElementById("send-parcel-form").style.display = "block";
-}
-
-let orderSubmitBtn = document.getElementById("order-submit-button");
-orderSubmitBtn.addEventListener('submit', orderSent)
-
-function orderSent() {
-document.getElementById("order-sent").style.display = "block";
-document.getElementById("send-parcel-form").style.display = "none";
-document.getElementById("orders-list-user").style.display = "none";
-document.getElementById("welcome-message").style.display = "none";
-}
-
-let closeForm = document.getElementById("close-form");
-closeForm.addEventListener('click', closeAllContent) 
-
-function closeAllContent(){
-document.getElementById("order-sent").style.display = "none";
-document.getElementById("orders-list-user").style.display = "none";
-document.getElementById("send-parcel-form").style.display = "none";
-document.getElementById("welcome-message").style.display = "block";
-}
-
-let showAllOrdersLink = document.getElementById("show-all-orders-user");
-showAllOrdersLink.addEventListener('click', showAllOrders);
-
-function showAllOrders() {
-document.getElementById("order-sent").style.display = "none";
-document.getElementById("send-parcel-form").style.display = "none";
-document.getElementById("welcome-message").style.display = "none";
-document.getElementById("orders-list-user").style.display = "block";
-}
-
-let closeAllOrdersBtn = document.getElementById("close-table-user");
-closeAllOrdersBtn.addEventListener('click', closeAllContent); 
 });
-
-
-//Custom scripts
-// window.addEventListener('scroll', displayProgress);
-
-// function displayProgress(){
-//     let windowScroll = document.documentElement.scrollTop || document.body.scrollTop; 
-//     let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-//     let scrolledPercentage = (windowScroll / height) * 100;
-//     document.getElementById('progress-bar').style.width = `${scrolledPercentage}%`;
-// }
 
 

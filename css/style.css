@@ -18,6 +18,7 @@ main {
 
  html {
   font-family: 'Catamaran', sans-serif;
+  scroll-behavior: smooth;
 }
 
 nav ul a,
@@ -162,10 +163,10 @@ margin-left: 300px;
 }
 
 #send-parcel-form, #order-sent {
-  display: none;
+  display: none; 
 }
 
-#logout-message{
+#logout-message {
   margin-top: 100px;
 }
 
@@ -191,6 +192,18 @@ input[type=number] {
  color: red !important;
 } 
 
+.custom-td-width {
+  max-width: 125px;
+}
+
+.custom-select-width {
+  max-width: 75px;
+}
+
+.custom-placeholder::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(160, 160, 160);
+  opacity: 1 !important; /* Firefox */
+}
 
 /*MEDIA QUERRIES*/
 @media only screen and (max-width : 992px) {
