@@ -98,7 +98,7 @@
             <div class="col s12">
               <p class="grey-text">W celu dodania zamowienia dla istniejacego uzytkownika wpisz jego email w polu ponizej. <br>
               Chcac dodac nowe zamowienie dla uzytkownika nie posiadajacego konta Global wykonaj nastepujace kroki: <br>
-              1) Przejdz do sekcji Rejestracja, aby stworzyc nowe konto dla uzytkownika, uzywajac jego adresu Email i domyslnego hasla "1234abcd". <br>
+              1) Przejdz do sekcji <a href="register.html" target="_blank">Rejestracja</a>, aby stworzyc nowe konto dla uzytkownika, uzywajac jego adresu Email i domyslnego hasla "1234abcd". <br>
               2) Dodaj nowe zamowienie z poziomu konta uzytkownika. <br>
               3) Pamietaj o podaniu uzytkownikowi hasla uzytego do rejestracji jego konta oraz zalec jak najszybsza zmiane hasla po pierwszym zalogowaniu.</p>
             </div>
@@ -109,8 +109,8 @@
         </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="email" type="email" class="validate" required>
-              <label for="email">Email uzytkownika <span class="asterix">*</span></label>
+              <input id="sender-email" type="email" class="validate" required>
+              <label for="sender-email">Email uzytkownika <span class="asterix">*</span></label>
               <span class="helper-text" data-error="Wprowadz poprawny adres email" data-success=""></span>
             </div>
           </div>
@@ -308,20 +308,24 @@
 
       <h5 class="col s5 m9 flow-text">Zlecenia klientow</h5>
      
-      <select class="icons input-field col s6 m2 ">
+      <select id="sort-orders" class="icons input-field col s6 m2 ">
           <option class="flow-text" value="" disabled selected>Sortuj zamowienia</option>
-          <option value="1">Pokaz wszystkie</option>
-          <option value="1">Pokaz oczekujace</option>
-          <option value="1">Pokaz zrealizowane</option>
-          <option value="2">Wg Klienta</option>
-          <option value="2">Wg Odbiorcy</option>
+          <option value="all">Pokaz wszystkie</option>
+          <option value="oczekujace">Pokaz oczekujace</option>
+          <option value="zrealizowane">Pokaz zrealizowane</option>
+          <option value="sender">Wg Klienta</option>
+          <option value="receiver">Wg Odbiorcy</option>
       </select>
     
         <a id="close-table-admin" class="col s1 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
     
     </div>
     <div class="row">
-      <p class="grey-text s12">Zeby zobaczyc szczegoly zamowienia, kliknij w imie i nazwisko klienta</p>
+      <p class="grey-text s12">Zeby zobaczyc szczegoly zamowienia, kliknij w imie i nazwisko klienta.
+        <br>W celu wyswietlenia zlecen oczekujacych na wyslanie, wybierz "Pokaz oczekujace" z menu "Sortuj zamowienia".
+        <br>Mozesz zmienic status zamowienia w kolumnie "Zmien status". 
+        <br>Zmiana statusu zamowienia na zrealizowane, automatycznie usunie dane zlecenie z raportu dostepnego dla uzytkownika, informujac go tym samym, ze jego zlecenie zostalo zrealizowane
+      </p>
     </div>
 
   <table class="row highlight responsive-table">
@@ -335,12 +339,13 @@
           <th>Status zlecenia</th>
           <th>Plik JSON</th>
           <th>Zmien status</th>
+          <th>Usun zlecenie</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr>
-        <td><a href="#">Alvin Turbopala</a></td>
+      <tr class="order-wrapper">
+        <td><a href="#">Turbopala Alvin </a></td>
         <td>045SKU8</td>
         <td>12/03/2020</td>
         <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
@@ -352,10 +357,13 @@
           <option value="zrealizowane">Zrealizowane</option>
           <option value="oczekujace">Oczekujace</option>
         </select></td>
+        <td class="center-align"><label>
+          <input type="checkbox" /><span></span>
+        </label></td>
       
       </tr>
-      <tr>
-        <td><a href="#">Jasko Muzykant</a></td>
+      <tr class="order-wrapper">
+        <td><a href="#">Muzykant Jasko</a></td>
         <td>045SKU8</td>
         <td>12/03/2020</td>
         <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
@@ -367,10 +375,13 @@
           <option value="zrealizowane">Zrealizowane</option>
           <option value="oczekujace">Oczekujace</option>
         </select></td>
+        <td class="center-align"><label>
+          <input type="checkbox" /><span></span>
+        </label></td>
         
       </tr>
-        <tr>
-          <td><a href="#">Stefa Rozczochrana</a></td>
+        <tr class="order-wrapper">
+          <td><a href="#">Rozczochrana Stefa</a></td>
           <td>045SKU8</td>
         <td>12/03/2020</td>
         <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
@@ -382,10 +393,13 @@
           <option value="zrealizowane">Zrealizowane</option>
           <option value="oczekujace">Oczekujace</option>
         </select></td>
+        <td class="center-align"><label>
+          <input type="checkbox" /><span></span>
+        </label></td>
        
         </tr>
-        <tr>
-          <td><a href="#">Mercelina Cichodajka</a></td>
+        <tr class="order-wrapper">
+          <td><a href="#">Cichodajka Marcelina</a></td>
           <td>045SKU8</td>
         <td>12/03/2020</td>
         <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
@@ -397,6 +411,9 @@
           <option value="zrealizowane">Zrealizowane</option>
           <option value="oczekujace">Oczekujace</option>
         </select></td>
+        <td class="center-align"><label>
+          <input type="checkbox" /><span></span>
+        </label></td>
         
         </tr>
     </tbody>
@@ -462,9 +479,7 @@ A strone to maciue zajebista
 <div id="welcome-message" class="section container">
   <h4>Witaj w panelu Administratora,</h4>
   <p class="grey-text">Kliknij w przycisk "POKAZ ZLECENIA" aby wyswietlic wszystkie zlecenia. 
-  <br>W celu wyswietlenia zlecen oczekujacych na wyslanie, wybierz "Pokaz oczekujace" z menu "Sortuj zamowienia".
-  <br>Mozesz zmienic status zamowienia w kolumnie "Zmien status". 
-  <br>Zmiana statusu zamowienia na zrealizowane, automatycznie usunie dane zlecenie z raportu dostepnego dla uzytkownika, informujac go tym samym, ze jego zlecenie zostalo zrealizowane.</p>
+  </p>
   </div>
 
 
