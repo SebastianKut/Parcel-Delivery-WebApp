@@ -279,11 +279,11 @@
 
       <h5 class="col s8 m10">Twoje zlecenia</h5>
      
-      <select class="icons input-field col s2 m1">
+      <select id="sort-orders" class="icons input-field col s2 m1">
           <option value="" disabled selected>Filtruj</option>
-          <option value="1">Wszystkie</option>
-          <option value="2">Zrealizowane</option>
-          <option value="2">Oczekujace</option>
+          <option value="all">Wszystkie</option>
+          <option value="zrealizowane">Zrealizowane</option>
+          <option value="oczekujace">Oczekujace</option>
       </select>
       <label>Waga</label>
     
@@ -305,25 +305,25 @@
     </thead>
 
     <tbody>
-      <tr>
+      <tr class="order-wrapper">
         <td><a href="#">Alvin Turbopala</a></td>
         <td>Kupa w pudelku</td>
         <td>045SKU8</td>
         <td>Oczekujace</td>
       </tr>
-      <tr>
+      <tr class="order-wrapper">
         <td><a href="#">Jasko Muzykant</a></td>
         <td>Fajki</td>
         <td>045SKU8</td>
         <td>Oczekujace</td>
       </tr>
-        <tr>
+        <tr class="order-wrapper">
           <td><a href="#">Stefa Rozczochrana</a></td>
           <td>Wazelina</td>
           <td>045SKU8</td>
           <td>Zrealizowane</td>
         </tr>
-        <tr>
+        <tr class="order-wrapper">
           <td><a href="#">Mercelina Cichodajka</a></td>
           <td>Cegla</td>
           <td>045SKU8</td>

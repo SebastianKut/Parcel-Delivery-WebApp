@@ -1,12 +1,19 @@
 //Admin panel related
 document.addEventListener('DOMContentLoaded', function() {
 
-// enable save button when status of the order changes
+// enable save button when status of the order changes or delete checkbox checked
 Array.from(document.getElementsByClassName('status-change')).forEach(item => {
-    item.addEventListener('change', function() {
-        document.getElementById('save-order-changes-admin').style.display = 'inline-block';
-    })
+    item.addEventListener('change', displaySaveBtn);
 });
+Array.from(document.getElementsByClassName('delete-order-check')).forEach(item => {
+    item.addEventListener('change', displaySaveBtn);
+});
+    
+//display save changes button    
+function displaySaveBtn() {
+    document.getElementById('save-order-changes-admin').style.display = 'inline-block';
+};
+
 
 // close orders window
 let closeAllOrdersBtn = document.getElementById("close-table-admin");
@@ -50,12 +57,10 @@ function displayOrderForm() {
 //sort orders according to option selected
 let sortOrderList = document.getElementById('sort-orders');
 sortOrderList.addEventListener('change', filterItems);
-
-
 function filterItems(event){
     let searchedOrder = event.target.value;
     let allOrders = document.getElementsByClassName('order-wrapper');
-    console.log();
+    console.log(allOrders[1].children[4].textContent);
 
     // helper function to compare senders 
     function compareSenders(a, b) {
@@ -63,10 +68,10 @@ function filterItems(event){
         if (b.firstElementChild.firstElementChild.textContent > a.firstElementChild.firstElementChild.textContent) return -1;
         return 0;
       } 
-// helper function to compare receivers
+    // helper function to compare receivers
     function compareReceivers(a, b) {
-        if (a > b) return 1;
-        if (b > a) return -1;
+        if (a.children[4].textContent > b.children[4].textContent) return 1;
+        if (b.children[4].textContent > a.children[4].textContent) return -1;
         return 0;
     } 
 
@@ -96,7 +101,6 @@ function filterItems(event){
             //     order.style.display = 'none';    
             // });
            let sortedByName = Array.from(allOrders).sort(compareSenders);
-           console.log(sortedByName);
            sortedByName.forEach(order => {
             order.style.display = 'table-row';
            })
@@ -110,7 +114,6 @@ function filterItems(event){
             //     order.style.display = 'none';    
             // });
            let sortedByName = Array.from(allOrders).sort(compareReceivers);
-           console.log(sortedByName);
            sortedByName.forEach(order => {
             order.style.display = 'table-row';
            })
@@ -119,8 +122,22 @@ function filterItems(event){
 
 }
 
+//find orders by clients name
+let searchBox = document.getElementById('search-box');
+searchBox.addEventListener('keyup', fliterByName);
+function fliterByName(event) {
+    let searchedName = event.target.value;
+    let allOrders = document.getElementsByClassName('order-wrapper');
+    console.log(allOrders[1].children[4].textContent);
+    Array.from(allOrders).forEach(order => {
+        if (order.firstElementChild.firstElementChild.textContent.toLowerCase().includes(searchedName.toLowerCase())){
+            order.style.display = 'table-row';
+        } else {
+            order.style.display = 'none';
+        }
+    })
 
-
+}
 
 
 });
