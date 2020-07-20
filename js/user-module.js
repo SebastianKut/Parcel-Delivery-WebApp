@@ -1,5 +1,26 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+
+ //FIREBASE CONFIG SECTION---------------------------------------------   
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyDIJQcRxb84MOyNIKVf7huKfabj5U_rlzQ",
+    authDomain: "global-trending-aefeb.firebaseapp.com",
+    databaseURL: "https://global-trending-aefeb.firebaseio.com",
+    projectId: "global-trending-aefeb",
+    storageBucket: "global-trending-aefeb.appspot.com",
+    messagingSenderId: "745521956381",
+    appId: "1:745521956381:web:5bab28159b00bd9bb9a8f4",
+    measurementId: "G-F9HFLJHB0Z"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  //Initialize Firestore and Reference orders collection
+var db = firebase.firestore();
+var ordersReference = db.collection('orders');
+//------------------------------------------------------------------------
+
 //CUSTOM SCRIPTS
 //User panel related
 
@@ -15,15 +36,94 @@ document.getElementById("orders-list-user").style.display = "none";
 document.getElementById("send-parcel-form").style.display = "block";
 }
 
-let orderSubmitBtn = document.getElementById("order-submit-button");
-orderSubmitBtn.addEventListener('submit', orderSent)
-//show order sent confirmation
-function orderSent() {
-document.getElementById("order-sent").style.display = "block";
-document.getElementById("send-parcel-form").style.display = "none";
-document.getElementById("orders-list-user").style.display = "none";
-document.getElementById("welcome-message").style.display = "none";
+//Listen to order submission and order submission function
+let orderSubmitForm = document.getElementById("submitOrderForm");
+orderSubmitForm.addEventListener('submit', formSubmission)
+function formSubmission(e){
+        submitForm(e); 
+//submission of form data to Cloud Firestore
+        function submitForm(event){
+            event.preventDefault();
+        
+            // Get values
+            var firstName = getInputVal('first-name');
+            var lastName = getInputVal('last-name');
+            var tel = getInputVal('tel');
+            var email = getInputVal('email');
+            var street = getInputVal('route');
+            var streetNumber = getInputVal('street-number');
+            var apartment = getInputVal('apartment');
+            var postCode = getInputVal('postal-code');
+            var town = getInputVal('locality');
+            var region = getInputVal('administrative-area-level-1');  
+            var deliveryCountry = getInputVal('deliver-to-country');
+            var description = getInputVal('description');
+            var weight = getInputVal('weight');
+            var height =getInputVal('height');
+            var depth = getInputVal('depth');           
+            var length = getInputVal('length');
+            var monetaryValue = getInputVal('money-value');
+            var sku = getInputVal('sku-number');
+            var comments = getInputVal('comments');
+            var termsAccepted = getInputVal('accept-terms');
+            
+// Save order to firestore
+        saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted);
+        
+        }
+
+// Function to get values from the form
+            function getInputVal(id){
+                return document.getElementById(id).value;
+            }
+  
+//hide and show relevant DOM elements after form submission
+        function orderSent() {
+        document.getElementById("order-sent").style.display = "block";
+        document.getElementById("send-parcel-form").style.display = "none";
+        document.getElementById("orders-list-user").style.display = "none";
+        document.getElementById("welcome-message").style.display = "none";
+        };
+
+// Save order to firestore Orders Collection
+            function saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted){
+                ordersReference.add({
+                    firstName: firstName,
+                    lastName: lastName,
+                    tel: tel,
+                    email: email,
+                    street: street,
+                    streetNumber: streetNumber,
+                    apartment: apartment,
+                    postCode: postCode,
+                    town: town,
+                    region: region,
+                    deliveryCountry: deliveryCountry,
+                    description: description,
+                    weight: weight,
+                    height: height,
+                    depth: depth,
+                    length: length,
+                    monetaryValue: monetaryValue,
+                    sku: sku,
+                    comments: comments,
+                    termsAccepted: termsAccepted
+                })
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                    // Clear form
+                    document.getElementById('submitOrderForm').reset();
+                    //Show user a message that form was send
+                    orderSent();
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
+            }     
+
+
 }
+
 
 let closeForm = document.getElementById("close-form");
 closeForm.addEventListener('click', closeAllContent) 
