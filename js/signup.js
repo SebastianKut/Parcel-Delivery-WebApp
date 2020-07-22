@@ -22,6 +22,15 @@ const auth = firebase.auth();
 
 //------------------------------------------------------------------------
 
+//TRACK AUTHENTICATION STATUS
+auth.onAuthStateChanged(user => {
+  if (user) {
+    window.location.replace('user.html');
+  } else {
+    console.log('user logged out');
+  }
+})
+
 
 //SIGN UP USER
 
@@ -44,6 +53,9 @@ function signUpUser(event) {
         signUpForm.reset();
         document.getElementById('register-confirmation').style.display = "block";
         document.getElementById('register-container').style.display = "none";
+      })
+      .catch(function(error){
+      alert(`Error trying to signup: ${error.code}`);
 
       });
 

@@ -22,6 +22,20 @@ const auth = firebase.auth();
 
 //------------------------------------------------------------------------
 
+//TRACK AUTHENTICATION STATUS
+auth.onAuthStateChanged(function(user) {
+   
+
+    //Figure out how not to redirect when user is logged in on index.html
+   if (user) {
+        console.log('user logged in');
+        window.location.replace('user.html');
+    } else {
+    console.log('user logged out');
+    }
+});
+
+
 
 //LOGIN USER
 

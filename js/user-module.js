@@ -177,6 +177,16 @@ function filterItems(event){
 
 }
 
+//TRACK AUTHENTICATION STATUS
+auth.onAuthStateChanged(user => {
+    if (user) {
+      console.log('user logged in: ', user);
+    } else {
+      console.log('user logged out');
+      window.location.replace('index.html');
+    }
+  })
+
 //LOG OUT FROM FIREBASE
 
 const logoutNav = document.getElementById('logout-navbar');
