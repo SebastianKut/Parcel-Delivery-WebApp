@@ -1,3 +1,5 @@
+//DOM MANIPULATION AND FIRESTORE (DATABASE) SCRPITS FOR USER PANEL
+
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -8,17 +10,18 @@ var firebaseConfig = {
     authDomain: "global-trending-aefeb.firebaseapp.com",
     databaseURL: "https://global-trending-aefeb.firebaseio.com",
     projectId: "global-trending-aefeb",
-    storageBucket: "global-trending-aefeb.appspot.com",
-    messagingSenderId: "745521956381",
     appId: "1:745521956381:web:5bab28159b00bd9bb9a8f4",
-    measurementId: "G-F9HFLJHB0Z"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
   //Initialize Firestore and Reference orders collection
-var db = firebase.firestore();
-var ordersReference = db.collection('orders');
+const db = firebase.firestore();
+let ordersReference = db.collection('orders');
+
+//initialize firebase auth
+const auth = firebase.auth(); 
+
 //------------------------------------------------------------------------
 
 //CUSTOM SCRIPTS
@@ -36,7 +39,7 @@ document.getElementById("orders-list-user").style.display = "none";
 document.getElementById("send-parcel-form").style.display = "block";
 }
 
-//Listen to order submission and order submission function
+//ORDER FORM SUBMISSION
 let orderSubmitForm = document.getElementById("submitOrderForm");
 orderSubmitForm.addEventListener('submit', formSubmission)
 function formSubmission(e){
@@ -173,6 +176,26 @@ function filterItems(event){
     };     
 
 }
+
+//LOG OUT FROM FIREBASE
+
+const logoutNav = document.getElementById('logout-navbar');
+const logoutSidenav = document.getElementById('logout-sidenav');
+
+logoutNav.addEventListener('click', logOutUser); 
+logoutSidenav.addEventListener('click', logOutUser);
+
+function logOutUser(event) {
+    event.preventDefault();
+    auth.signOut().then(() => {
+        console.log('user signed out');
+        //navigate to logout page without ability to use browser back button
+        window.location.replace('logout.html');
+      });
+};
+
+
+
 
 
 });

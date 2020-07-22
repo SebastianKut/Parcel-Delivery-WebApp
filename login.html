@@ -56,7 +56,7 @@
 
 <main>
 
-  <div id="login-form" class="section container">
+  <div id="login-container" class="section container">
     <div class="modal-content">
      
    
@@ -66,10 +66,10 @@
         </div>
         </div>
         <div class="card-content">
-        <form>
+        <form id="login-form">
             <div class="input-field">
-            <input id="username" type="text" class="validate" required>
-            <label for="username">Nazwa uzytkownika <span class="asterix">*</span></label>
+            <input id="email" type="email" class="validate" required>
+            <label for="email">Email<span class="asterix">*</span></label>
             <span class="helper-text" data-error="Wprowadz email uzyty przy rejestracji" data-success=""></span>
             </div>
             <div class="input-field">
@@ -85,12 +85,13 @@
                 <span>Zapamietaj mnie</span>
               </label>
             </p>
+            <div class="center-align">
+              <input class="btn amber accent-2 waves-effect" type="submit" value="Dalej">
+            </div>    
         </form>
       </div>
       
-      <div class="center-align">
-        <input class="btn amber accent-2 waves-effect" type="submit" value="Dalej">
-      </div>    
+      
       <p class="center-align">Nie masz konta? <span><a href="register.html">Zarejestruj sie</a></span></p>
     </div>
   </div>
@@ -153,6 +154,7 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
-<script src="js/user-module.js"></script>
+<script src="js/login.js"></script>
+
   </body>
 </html>

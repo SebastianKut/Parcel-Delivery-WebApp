@@ -1,3 +1,6 @@
+//MATERIALIZE COMPONENTS INITIALIZATION AND CUSTOM DOM MANIPULATION SCRIPTS COMMON FOR ALL PAGES 
+
+
 // (function($){
 //   $(function(){
 //     $('.carousel').carousel();

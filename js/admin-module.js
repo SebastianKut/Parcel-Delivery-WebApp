@@ -1,5 +1,31 @@
+//DOM MANIPULATION AND FIRESTORE (DATABASE) SCRPITS FOR ADMIN PANEL
+
+
 //Admin panel related
 document.addEventListener('DOMContentLoaded', function() {
+
+//FIREBASE CONFIG SECTION---------------------------------------------   
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyDIJQcRxb84MOyNIKVf7huKfabj5U_rlzQ",
+    authDomain: "global-trending-aefeb.firebaseapp.com",
+    databaseURL: "https://global-trending-aefeb.firebaseio.com",
+    projectId: "global-trending-aefeb",
+    appId: "1:745521956381:web:5bab28159b00bd9bb9a8f4",
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  //Initialize Firestore and Reference orders collection
+const db = firebase.firestore();
+let ordersReference = db.collection('orders');
+
+//initialize firebase auth
+const auth = firebase.auth(); 
+
+//------------------------------------------------------------------------
+
+
 
 // enable save button when status of the order changes or delete checkbox checked
 Array.from(document.getElementsByClassName('status-change')).forEach(item => {

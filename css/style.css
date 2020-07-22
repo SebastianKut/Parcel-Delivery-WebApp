@@ -114,7 +114,7 @@ footer.page-footer {
   font-family: 'Old Standard TT', serif;
 }
 
-#login-form {
+#modal-login, #login-container, #register-container {
 max-width: 500px;
 
 }
@@ -211,6 +211,10 @@ display: none;
 
 #orders-list-admin {
 display: none;
+}
+
+#register-confirmation {
+  display: none;
 }
 
 /*MEDIA QUERRIES*/
