@@ -36,6 +36,7 @@ function displayOrderForm() {
 document.getElementById("welcome-message").style.display = "none";
 document.getElementById("order-sent").style.display = "none";
 document.getElementById("orders-list-user").style.display = "none";
+document.querySelector(".order-details").style.display = "none";
 document.getElementById("send-parcel-form").style.display = "block";
 }
 
@@ -135,7 +136,8 @@ function closeAllContent(){
 document.getElementById("order-sent").style.display = "none";
 document.getElementById("orders-list-user").style.display = "none";
 document.getElementById("send-parcel-form").style.display = "none";
-document.getElementById("welcome-message").style.display = "block";
+document.getElementById("welcome-message").style.display = "none";
+document.querySelector(".order-details").style.display = "none";
 }
 
 let showAllOrdersLink = document.getElementById("show-all-orders-user");
@@ -145,6 +147,7 @@ function showAllOrders() {
 document.getElementById("order-sent").style.display = "none";
 document.getElementById("send-parcel-form").style.display = "none";
 document.getElementById("welcome-message").style.display = "none";
+document.querySelector(".order-details").style.display = "none";
 document.getElementById("orders-list-user").style.display = "block";
 }
 
@@ -215,12 +218,14 @@ event.target.nextElementSibling.click();
 //click close order details button
 document.getElementById('close-table-user').click();
 //remove order-details class to make order visible
-document.getElementById(event.target.nextElementSibling.getAttribute('href').substring(1)).classList.remove('order-details');
+document.getElementById(event.target.nextElementSibling.getAttribute('href').substring(1)).style.display = 'block';
 }
 
-//Hide order details when powrot button is clicked
-//forEach button add event listener click
-//add order details class to the Parent 
+//Hide order details when go back button is clicked
+let goBackButton = document.querySelectorAll(".go-back-btn");
+goBackButton.forEach(button =>{
+    button.addEventListener('click', showAllOrders)
+})
 
 
 //when creating orders list and details create id for each order detail that equals i then next one i++
