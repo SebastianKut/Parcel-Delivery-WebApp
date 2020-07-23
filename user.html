@@ -292,33 +292,38 @@
           <th>Opis paczki</th>
           <th>Numer SKU</th>
           <th>Status zlecenia</th>
+          <th>Szczegoly zlecenia</th>
       </tr>
     </thead>
 
     <tbody>
       <tr class="order-wrapper">
-        <td><a href="#">Alvin Turbopala</a></td>
+        <td>Alvin Turbopala</td>
         <td>Kupa w pudelku</td>
         <td>045SKU8</td>
         <td>Oczekujace</td>
+        <td><button class="order-details-button">Pokaz</button><a href="#1"></a></td>
       </tr>
       <tr class="order-wrapper">
-        <td><a href="#">Jasko Muzykant</a></td>
+        <td>Jasko Muzykant</td>
         <td>Fajki</td>
         <td>045SKU8</td>
         <td>Oczekujace</td>
+        <td><button>Pokaz</button><a href="#2"></a></td>
       </tr>
         <tr class="order-wrapper">
-          <td><a href="#">Stefa Rozczochrana</a></td>
+          <td>Stefa Rozczochrana</td>
           <td>Wazelina</td>
           <td>045SKU8</td>
           <td>Zrealizowane</td>
+          <td><button>Pokaz</button><a href="#3"></a></td>
         </tr>
         <tr class="order-wrapper">
-          <td><a href="#">Mercelina Cichodajka</a></td>
+          <td>Mercelina Cichodajka</td>
           <td>Cegla</td>
           <td>045SKU8</td>
           <td>Oczekujace</td>
+          <td><button>Pokaz</button><a href="#4"></a></td>
         </tr>
     </tbody>
   </table>
@@ -339,12 +344,12 @@
   </div>
 
 <!--Order details-->
-<div id="order-details" class="section container">
+<div id="1" class="section container order-details">
 
 <div class="row">
   <div class="row valign-wrapper">
     <h5 class="col s8 m10">Szczegoly zamowienia</h5>
-    <a id="go-back-user" href="#" class="col s4 m2 btn-small">POWROT<i class="material-icons left">navigate_before</i> </a>
+    <button class="col s4 m2 btn-small">POWROT<i class="material-icons left">navigate_before</i> </button>
   </div>
 </div>
 <div class="row">
@@ -398,9 +403,8 @@ A strone to maciue zajebista
 
 <!---------------------------------------------------------------------------------->
 
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="js/main.js"></script>
   <script src="js/user-module.js"></script>
   <!--GOOGLE PLACES API NOT USED ATM
   <script src="js/places.js"></script>

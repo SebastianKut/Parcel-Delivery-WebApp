@@ -1,4 +1,4 @@
-//FIREBASE USER AUTHENTICATION SCRIPTS LOGIN.HTML SPECIFIC
+//FIREBASE USER AUTHENTICATION SCRIPTS 
 
 
 //FIREBASE CONFIG SECTION---------------------------------------------   
@@ -23,42 +23,41 @@ const auth = firebase.auth();
 //------------------------------------------------------------------------
 
 //TRACK AUTHENTICATION STATUS
-auth.onAuthStateChanged(function(user) {
-   
-
-    //Figure out how not to redirect when user is logged in on index.html
-   if (user) {
-        console.log('user logged in');
-    } else {
+auth.onAuthStateChanged(user => {
+  if (user) {
+    console.log('user logged in');
+  } else {
     console.log('user logged out');
-    }
-});
+  }
+})
 
 
+//SIGN UP USER
 
-//LOGIN USER
+const signUpForm = document.getElementById('signup-form');
+signUpForm.addEventListener('submit', signUpUser);
 
-const loginForm = document.getElementById('login-form');
-loginForm.addEventListener('submit', loginUser);
-
-function loginUser(event) {
+function signUpUser(event) {
     event.preventDefault();
 
     //get user info
-    const email = loginForm['email'].value;
-    const password = loginForm['password'].value;
+    const email = signUpForm['email'].value;
+    const password = signUpForm['password'].value;
     console.log(email, password);
 
+    //create user account
 
-    auth.signInWithEmailAndPassword(email, password).then(function(cred) {
-      console.log(cred.user);
-      // close the signup modal & reset form
-      loginForm.reset();
-      window.location.replace('user.html');
-    })
-    .catch(function (error) {
-      alert('Nieprawidlowe haslo lub email');
-      console.error("Error trying to log in: ", error);
-    });
+    auth.createUserWithEmailAndPassword(email, password).then(function(cred) {
+        console.log(cred.user);
+        // open confirmation message and reset register form
+        signUpForm.reset();
+        document.getElementById('register-confirmation').style.display = "block";
+        document.getElementById('register-container').style.display = "none";
+      })
+      .catch(function(error){
+      alert(`Error trying to signup: ${error.code}`);
+
+      });
 
 };
+

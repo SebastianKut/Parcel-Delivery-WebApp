@@ -183,7 +183,6 @@ auth.onAuthStateChanged(user => {
       console.log('user logged in: ', user);
     } else {
       console.log('user logged out');
-      window.location.replace('index.html');
     }
   })
 
@@ -198,14 +197,35 @@ logoutSidenav.addEventListener('click', logOutUser);
 function logOutUser(event) {
     event.preventDefault();
     auth.signOut().then(() => {
-        console.log('user signed out');
         //navigate to logout page without ability to use browser back button
         window.location.replace('logout.html');
       });
 };
 
 
-
-
-
+//Show order details when order details button is clicked
+let orderDetailsBtn = document.querySelectorAll('.order-details-button');//querry selector all allows to use array methods
+orderDetailsBtn.forEach(button => {
+    button.addEventListener('click', showOrderDetails)
 });
+
+function showOrderDetails(event) {
+//click link to the order details
+event.target.nextElementSibling.click();
+//click close order details button
+document.getElementById('close-table-user').click();
+//remove order-details class to make order visible
+document.getElementById(event.target.nextElementSibling.getAttribute('href').substring(1)).classList.remove('order-details');
+}
+
+//Hide order details when powrot button is clicked
+//forEach button add event listener click
+//add order details class to the Parent 
+
+
+//when creating orders list and details create id for each order detail that equals i then next one i++
+//href to an order will be #i
+
+
+
+})

@@ -1,14 +1,6 @@
-//MATERIALIZE COMPONENTS INITIALIZATION AND CUSTOM DOM MANIPULATION SCRIPTS COMMON FOR ALL PAGES 
-
-
-// (function($){
-//   $(function(){
-//     $('.carousel').carousel();
-    
-//   }); // end of document ready
-// })(jQuery); // end of jQuery name space
-
-  //Materialize modules JS
+//JS SCRIPTS FOR ALL PAGES AND MATERIALIZE FUNCTIONS INITIALIZATION
+ 
+ //Materialize modules JS initialization
 document.addEventListener('DOMContentLoaded', function() {
 
 

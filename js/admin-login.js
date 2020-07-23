@@ -1,5 +1,3 @@
-//FIREBASE USER AUTHENTICATION SCRIPTS
-
 
 //FIREBASE CONFIG SECTION---------------------------------------------   
 // Your web app's Firebase configuration
@@ -23,41 +21,42 @@ const auth = firebase.auth();
 //------------------------------------------------------------------------
 
 //TRACK AUTHENTICATION STATUS
-auth.onAuthStateChanged(user => {
-  if (user) {
-    window.location.replace('user.html');
-  } else {
+auth.onAuthStateChanged(function(user) {
+   
+
+    //Figure out how not to redirect when user is logged in on index.html
+   if (user) {
+        console.log('user logged in');
+    } else {
     console.log('user logged out');
-  }
-})
+    }
+});
 
 
-//SIGN UP USER
 
-const signUpForm = document.getElementById('signup-form');
-signUpForm.addEventListener('submit', signUpUser);
+//LOGIN USER
 
-function signUpUser(event) {
+const loginForm = document.getElementById('login-form');
+loginForm.addEventListener('submit', loginUser);
+
+function loginUser(event) {
     event.preventDefault();
 
     //get user info
-    const email = signUpForm['email'].value;
-    const password = signUpForm['password'].value;
+    const email = loginForm['email'].value;
+    const password = loginForm['password'].value;
     console.log(email, password);
 
-    //create user account
 
-    auth.createUserWithEmailAndPassword(email, password).then(function(cred) {
-        console.log(cred.user);
-        // open confirmation message and reset register form
-        signUpForm.reset();
-        document.getElementById('register-confirmation').style.display = "block";
-        document.getElementById('register-container').style.display = "none";
-      })
-      .catch(function(error){
-      alert(`Error trying to signup: ${error.code}`);
-
-      });
+    auth.signInWithEmailAndPassword(email, password).then(function(cred) {
+      console.log(cred.user);
+      // close the signup modal & reset form
+      loginForm.reset();
+      window.location.replace('user.html');
+    })
+    .catch(function (error) {
+      alert('Nieprawidlowe haslo lub email');
+      console.error("Error trying to log in: ", error);
+    });
 
 };
-
