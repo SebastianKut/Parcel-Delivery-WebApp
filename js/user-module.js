@@ -24,6 +24,94 @@ const auth = firebase.auth();
 
 //------------------------------------------------------------------------
 
+//FIRESTORE FUNCTIONS
+
+
+
+//SETUP ORDERS LIST AND ORDERS DETAILS
+
+//get data snapashot of orders collection from database
+db.collection('orders').get().then(snapshot => {
+    setupOrders(snapshot.docs);
+    manipulateOrders();
+  });
+
+//set up orders list within tables body
+let tableBody = document.getElementById('orders-table');
+let orderDetailsContent = document.getElementById('order-details-section');
+
+
+let setupOrders = function(data) {
+let tableContent = "";
+let orderContent = "";
+let i = 1;
+data.forEach(doc => {
+    let order = doc.data();
+    //create table rows and append to table body
+    let tr =`
+    <tr class="order-wrapper">
+        <td>${order.lastName} ${order.firstName}</td>
+        <td>${order.description}</td>
+        <td>${order.sku}</td>
+        <td>${order.status}</td>
+        <td><button class="indigo accent-2 btn-small order-details-button">Pokaz</button><a href="#${i}"></a></td>
+      </tr>
+    `; 
+    tableContent += tr;
+
+    //create order details and append to the DOM
+    let individualOrder =`
+    <div id="${i}" class="section container order-details">
+        <div class="row">
+        <div class="row valign-wrapper">
+            <h5 class="col s8 m10">Szczegoly zamowienia</h5>
+            <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">POWROT<i class="material-icons left">navigate_before</i> </button>
+        </div>
+        </div>
+        <div class="row">
+        <h6>Odbiorca</h6>
+        <p class="grey-text">${order.firstName} ${order.lastName}<br>
+        ${order.tel}<br>
+        ${order.email}<br>  
+        </p>
+        </div>
+        <div class="row">
+        <h6>Adres dostawy</h6>
+        <p class="grey-text">${order.street} ${order.streetNumber} / ${order.apartment}<br>
+            ${order.postCode} ${order.town}<br>
+            ${order.deliveryCountry}
+        </p>
+        </div>
+        <div class="row">
+        <h6>Przesylka</h6>
+        <p class="grey-text">Opis: ${order.description}<br>
+        Numer zlecenia: <br>
+        Numer SKU: ${order.sku}
+        </p>
+        </div>
+        <div class="row">
+        <h6>Uwagi</h6>
+        <p class="grey-text">${order.comments}</p>
+        </div>
+        <div class="row">
+        <h6>Status</h6>
+        <p class="grey-text">
+            ${order.status}
+        </p>
+        </div>
+    </div>
+    `; 
+    orderContent += individualOrder;
+//increment i for the next order
+    i++;
+});
+
+tableBody.innerHTML = tableContent;
+orderDetailsContent.innerHTML = orderContent;
+
+
+}
+
 //CUSTOM SCRIPTS
 //User panel related
 
@@ -111,7 +199,8 @@ function formSubmission(e){
                     monetaryValue: monetaryValue,
                     sku: sku,
                     comments: comments,
-                    termsAccepted: termsAccepted
+                    termsAccepted: termsAccepted,
+                    status: 'oczekujace'
                 })
                 .then(function(docRef) {
                     console.log("Document written with ID: ", docRef.id);
@@ -137,7 +226,8 @@ document.getElementById("order-sent").style.display = "none";
 document.getElementById("orders-list-user").style.display = "none";
 document.getElementById("send-parcel-form").style.display = "none";
 document.getElementById("welcome-message").style.display = "none";
-document.querySelector(".order-details").style.display = "none";
+document.querySelectorAll(".order-details").forEach(order => {
+    order.style.display = "none"});
 }
 
 let showAllOrdersLink = document.getElementById("show-all-orders-user");
@@ -147,7 +237,8 @@ function showAllOrders() {
 document.getElementById("order-sent").style.display = "none";
 document.getElementById("send-parcel-form").style.display = "none";
 document.getElementById("welcome-message").style.display = "none";
-document.querySelector(".order-details").style.display = "none";
+document.querySelectorAll(".order-details").forEach(order => {
+    order.style.display = "none"});
 document.getElementById("orders-list-user").style.display = "block";
 }
 
@@ -205,6 +296,9 @@ function logOutUser(event) {
       });
 };
 
+//MANIPULATE ORDERS REPORT
+
+function manipulateOrders(){ 
 
 //Show order details when order details button is clicked
 let orderDetailsBtn = document.querySelectorAll('.order-details-button');//querry selector all allows to use array methods
@@ -212,25 +306,22 @@ orderDetailsBtn.forEach(button => {
     button.addEventListener('click', showOrderDetails)
 });
 
-function showOrderDetails(event) {
-//click link to the order details
-event.target.nextElementSibling.click();
-//click close order details button
-document.getElementById('close-table-user').click();
-//remove order-details class to make order visible
-document.getElementById(event.target.nextElementSibling.getAttribute('href').substring(1)).style.display = 'block';
-}
+        function showOrderDetails(event) {
+        //click link to the order details
+        event.target.nextElementSibling.click();
+        //click close order details button
+        document.getElementById('close-table-user').click();
+        //remove order-details class to make order visible
+        document.getElementById(event.target.nextElementSibling.getAttribute('href').substring(1)).style.display = 'block';
+        console.log('button clicked');
+        }
 
 //Hide order details when go back button is clicked
 let goBackButton = document.querySelectorAll(".go-back-btn");
-goBackButton.forEach(button =>{
-    button.addEventListener('click', showAllOrders)
-})
+        goBackButton.forEach(button =>{
+            button.addEventListener('click', showAllOrders)
+        })
 
-
-//when creating orders list and details create id for each order detail that equals i then next one i++
-//href to an order will be #i
-
-
+}
 
 })
