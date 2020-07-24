@@ -26,15 +26,25 @@ const auth = firebase.auth();
 
 //FIRESTORE FUNCTIONS
 
-
+//TRACK AUTHENTICATION STATUS
+auth.onAuthStateChanged(user => {
+    if (user) {
+      console.log('user logged in: ', user);
+        //get data snapashot of orders collection from database
+        db.collection('orders').get().then(snapshot => {
+            setupOrders(snapshot.docs);
+            manipulateOrders();
+        })
+    } else {
+      console.log('user logged out');
+      setupOrders([]);
+      window.location.replace('index.html');
+    }
+  });
 
 //SETUP ORDERS LIST AND ORDERS DETAILS
 
-//get data snapashot of orders collection from database
-db.collection('orders').get().then(snapshot => {
-    setupOrders(snapshot.docs);
-    manipulateOrders();
-  });
+
 
 //set up orders list within tables body
 let tableBody = document.getElementById('orders-table');
@@ -271,14 +281,7 @@ function filterItems(event){
 
 }
 
-//TRACK AUTHENTICATION STATUS
-auth.onAuthStateChanged(user => {
-    if (user) {
-      console.log('user logged in: ', user);
-    } else {
-      console.log('user logged out');
-    }
-  })
+
 
 //LOG OUT FROM FIREBASE
 
