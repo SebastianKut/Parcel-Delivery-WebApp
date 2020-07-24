@@ -34,8 +34,7 @@ auth.onAuthStateChanged(user => {
         document.querySelector('#user-content').style.display = 'flex';
         //get data snapashot of orders collection from database
         db.collection('orders').get().then(snapshot => {
-            //functions that has to run when data was fetched from DB otherwise JS will throw various
-            //errors
+            //functions that has to run when data was fetched from DB otherwise JS will throw various errors
             setupOrders(snapshot.docs);
             manipulateOrders();
         })
@@ -44,7 +43,7 @@ auth.onAuthStateChanged(user => {
       //pass empty array to setup orders function
       setupOrders([]);
       //redirect to index.html
-     window.location.replace('index.html');
+     // window.location.replace('index.html');
     }
   });
 

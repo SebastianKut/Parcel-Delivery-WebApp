@@ -29,8 +29,13 @@ auth.onAuthStateChanged(function(user) {
     //Figure out how not to redirect when user is logged in on index.html
    if (user) {
         console.log('user logged in');
+        //setup relevant Nav and SideNav links
+        setupUI(user);
+
     } else {
     console.log('user logged out');
+      //invoke setupUI without parameter
+      setupUI();
     }
 });
 
@@ -62,3 +67,33 @@ function loginUser(event) {
     });
 
 };
+
+
+//LOG OUT FROM FIREBASE
+
+const logoutNav = document.getElementById('logout-navbar');
+const logoutSidenav = document.getElementById('logout-sidenav');
+
+logoutNav.addEventListener('click', logOutUser); 
+logoutSidenav.addEventListener('click', logOutUser);
+
+function logOutUser(event) {
+    event.preventDefault();
+    auth.signOut().then(() => {
+        //navigate to logout page without ability to use browser back button
+        window.location.replace('logout.html');
+      });
+};
+
+//SETUP NAV LINKS
+
+function setupUI(user) {
+if (user) {
+document.querySelectorAll(".logged-in").forEach(item => {item.style.display = 'block'});
+document.querySelectorAll(".logged-out").forEach(item => {item.style.display = 'none'});
+} else {
+  document.querySelectorAll(".logged-in").forEach(item => {item.style.display = 'none'});
+  document.querySelectorAll(".logged-out").forEach(item => {item.style.display = 'block'});
+}
+
+}

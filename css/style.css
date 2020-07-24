@@ -217,6 +217,14 @@ display: none;
   display: none;
 }
 
+#user-content {
+  display: none;
+}
+
+.logged-in, .logged-out {
+  display: none;
+}
+
 /*MEDIA QUERRIES*/
 @media only screen and (max-width : 992px) {
 
