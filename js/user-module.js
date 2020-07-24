@@ -30,20 +30,25 @@ const auth = firebase.auth();
 auth.onAuthStateChanged(user => {
     if (user) {
       console.log('user logged in: ', user);
+        // change show-content class to visible from default hidden
+        document.querySelector('#user-content').style.display = 'flex';
         //get data snapashot of orders collection from database
         db.collection('orders').get().then(snapshot => {
+            //functions that has to run when data was fetched from DB otherwise JS will throw various
+            //errors
             setupOrders(snapshot.docs);
             manipulateOrders();
         })
     } else {
       console.log('user logged out');
+      //pass empty array to setup orders function
       setupOrders([]);
-      window.location.replace('index.html');
+      //redirect to index.html
+     window.location.replace('index.html');
     }
   });
 
 //SETUP ORDERS LIST AND ORDERS DETAILS
-
 
 
 //set up orders list within tables body
@@ -328,3 +333,4 @@ let goBackButton = document.querySelectorAll(".go-back-btn");
 }
 
 })
+
