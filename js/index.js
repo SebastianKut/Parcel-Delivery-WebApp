@@ -31,11 +31,15 @@ auth.onAuthStateChanged(function(user) {
         console.log('user logged in');
         //setup relevant Nav and SideNav links
         setupUI(user);
+        //change what send parcel button does (directs to user panel)
+        disableLoginModal(user);
 
     } else {
     console.log('user logged out');
       //invoke setupUI without parameter
       setupUI();
+       //change what send parcel button does (triggers modal to log in)
+      disableLoginModal();
     }
 });
 
@@ -96,4 +100,16 @@ document.querySelectorAll(".logged-out").forEach(item => {item.style.display = '
   document.querySelectorAll(".logged-out").forEach(item => {item.style.display = 'block'});
 }
 
+}
+
+
+//DISABLE LOGIN MODAL AND GO STRAIGHT TO USERS PANEL WHEN USER IS LOGGED IN
+
+function disableLoginModal(user) {
+  let sendBtn =  document.getElementById('send-parcel-button');
+  if (user) {
+    sendBtn.setAttribute('href', 'user.html');
+  } else {
+    sendBtn.setAttribute('href', '#modal-login');
+  }
 }

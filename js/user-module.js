@@ -32,6 +32,8 @@ auth.onAuthStateChanged(user => {
       console.log('user logged in: ', user);
         // change show-content class to visible from default hidden
         document.querySelector('#user-content').style.display = 'flex';
+        //display user email address
+        displayEmail(user);
         //get data snapashot of orders collection from database
         db.collection('orders').get().then(snapshot => {
             //functions that has to run when data was fetched from DB otherwise JS will throw various errors
@@ -43,7 +45,7 @@ auth.onAuthStateChanged(user => {
       //pass empty array to setup orders function
       setupOrders([]);
       //redirect to index.html
-     // window.location.replace('index.html');
+      window.location.replace('logout.html');
     }
   });
 
@@ -333,3 +335,12 @@ let goBackButton = document.querySelectorAll(".go-back-btn");
 
 })
 
+//DISPLAY USER EMAIL
+function displayEmail(user) {
+    let userInfo = document.getElementById('user-info');
+    let html =`
+    <li class="bold waves-effect"><i class="material-icons left amber-text text-accent-2 medium">laptop_mac</i></li>
+  <li><p class="teal-text">${user.email}</p></li>
+    `;
+    userInfo.innerHTML = html;
+}
