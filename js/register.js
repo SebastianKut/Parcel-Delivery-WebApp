@@ -41,22 +41,36 @@ function signUpUser(event) {
     event.preventDefault();
 
     //get user info
+    
+    //neccesary for email and pswd auth
     const email = signUpForm['email'].value;
     const password = signUpForm['password'].value;
-    console.log(email, password);
+    //other user info that will be stored in users collection in our firestore
+    const firstName = signUpForm['first_name'].value;
+    const lastName = signUpForm['last_name'].value;
+    const tel = signUpForm['tel'].value;
+
 
     //create user account
 
     auth.createUserWithEmailAndPassword(email, password).then(function(cred) {
-        console.log(cred.user);
-        // open confirmation message and reset register form
-        signUpForm.reset();
-        document.getElementById('register-confirmation').style.display = "block";
-        document.getElementById('register-container').style.display = "none";
+        //add user info to users collection
+        return db.collection('users').doc(cred.user.uid).set({
+          firstName: firstName,
+          lastName: lastName,
+          tel: tel
+        });
+      })
+      .then (function(){
+      // open confirmation message and reset register form
+      signUpForm.reset();
+      document.getElementById('register-confirmation').style.display = "block";
+      document.getElementById('register-container').style.display = "none";
+      //redirect to user panel after 5 seconds
+      setTimeout(function() {window.location.replace('user.html')}, 5000);
       })
       .catch(function(error){
-      alert(`Error trying to signup: ${error.code}`);
-
+      alert(`Error trying to signup: ${error.message}`);
       });
 
 };

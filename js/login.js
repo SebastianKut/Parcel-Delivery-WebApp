@@ -57,8 +57,8 @@ function loginUser(event) {
       window.location.replace('user.html');
     })
     .catch(function (error) {
-      alert('Nieprawidlowe haslo lub email');
-      console.error("Error trying to log in: ", error);
+      alert(error.message);
+      console.log("Error trying to log in: ", error.message);
     });
 
 };

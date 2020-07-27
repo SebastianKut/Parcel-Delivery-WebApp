@@ -333,7 +333,6 @@ let goBackButton = document.querySelectorAll(".go-back-btn");
 
 }
 
-})
 
 //DISPLAY USER EMAIL
 function displayEmail(user) {
@@ -344,3 +343,10 @@ function displayEmail(user) {
     `;
     userInfo.innerHTML = html;
 }
+
+
+
+
+
+})
+
