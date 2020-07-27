@@ -47,8 +47,8 @@ auth.onAuthStateChanged(user => {
 
     } else {
       console.log('user logged out');
-      //pass empty array to setup orders function
-      setupOrders([]);
+      //pass empty array and object to setup orders function so it executes rest of the code if no user
+      setupOrders([], {});
       //redirect to index.html
       window.location.replace('logout.html');
     }
@@ -153,7 +153,8 @@ function displayOrderForm() {
 document.getElementById("welcome-message").style.display = "none";
 document.getElementById("order-sent").style.display = "none";
 document.getElementById("orders-list-user").style.display = "none";
-document.querySelector(".order-details").style.display = "none";
+document.querySelectorAll(".order-details").forEach(order => {
+    order.style.display = "none"});
 document.getElementById("send-parcel-form").style.display = "block";
 }
 

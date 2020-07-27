@@ -52,11 +52,11 @@ function loginUser(event) {
 
     auth.signInWithEmailAndPassword(email, password)
     .then(function(cred) {
-      // close the signup modal & reset form
-      loginForm.reset();
       //direct to user or admin page - not safe, shouldnt be executed on the client
     //but node.js functions for firebase require billing account 
       directToPage(cred.user);
+      //reset form
+      loginForm.reset();
     })
     .catch(function (error) {
       alert(error.message);
