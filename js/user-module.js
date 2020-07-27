@@ -26,10 +26,13 @@ const auth = firebase.auth();
 
 //FIRESTORE FUNCTIONS
 
+
+
 //TRACK AUTHENTICATION STATUS
 auth.onAuthStateChanged(user => {
     if (user) {
-      console.log('user logged in: ', user);
+      console.log('user logged in: ', user.uid);
+        orderSubmissionScope(user);
         // change show-content class to visible from default hidden
         document.querySelector('#user-content').style.display = 'flex';
         //display user email address
@@ -37,9 +40,11 @@ auth.onAuthStateChanged(user => {
         //get data snapashot of orders collection from database
         db.collection('orders').get().then(snapshot => {
             //functions that has to run when data was fetched from DB otherwise JS will throw various errors
-            setupOrders(snapshot.docs);
+            setupOrders(snapshot.docs, user);
             manipulateOrders();
-        })
+        });
+       
+
     } else {
       console.log('user logged out');
       //pass empty array to setup orders function
@@ -49,6 +54,8 @@ auth.onAuthStateChanged(user => {
     }
   });
 
+  
+
 //SETUP ORDERS LIST AND ORDERS DETAILS
 
 
@@ -57,12 +64,16 @@ let tableBody = document.getElementById('orders-table');
 let orderDetailsContent = document.getElementById('order-details-section');
 
 
-let setupOrders = function(data) {
+let setupOrders = function(data, user) {
+let userId = user.uid;
 let tableContent = "";
 let orderContent = "";
 let i = 1;
 data.forEach(doc => {
+    
     let order = doc.data();
+    //only if userId is the same as userId stored in the order so only users that created those orders can view them
+    if (userId === order.userId) {
     //create table rows and append to table body
     let tr =`
     <tr class="order-wrapper">
@@ -120,6 +131,8 @@ data.forEach(doc => {
     orderContent += individualOrder;
 //increment i for the next order
     i++;
+
+};
 });
 
 tableBody.innerHTML = tableContent;
@@ -145,6 +158,9 @@ document.getElementById("send-parcel-form").style.display = "block";
 }
 
 //ORDER FORM SUBMISSION
+//enclosing form submission function in the scope passing user so we can get userId to add to order
+function orderSubmissionScope(user) {
+let userId = user.uid;    
 let orderSubmitForm = document.getElementById("submitOrderForm");
 orderSubmitForm.addEventListener('submit', formSubmission)
 function formSubmission(e){
@@ -153,7 +169,7 @@ function formSubmission(e){
         function submitForm(event){
             event.preventDefault();
         
-            // Get values
+            // Get values from Submit Form
             var firstName = getInputVal('first-name');
             var lastName = getInputVal('last-name');
             var tel = getInputVal('tel');
@@ -174,9 +190,11 @@ function formSubmission(e){
             var sku = getInputVal('sku-number');
             var comments = getInputVal('comments');
             var termsAccepted = getInputVal('accept-terms');
+    
+            
             
 // Save order to firestore
-        saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted);
+        saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, userId);
         
         }
 
@@ -194,7 +212,7 @@ function formSubmission(e){
         };
 
 // Save order to firestore Orders Collection
-            function saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted){
+            function saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, userId){
                 ordersReference.add({
                     firstName: firstName,
                     lastName: lastName,
@@ -216,7 +234,8 @@ function formSubmission(e){
                     sku: sku,
                     comments: comments,
                     termsAccepted: termsAccepted,
-                    status: 'oczekujace'
+                    status: 'oczekujace',
+                    userId: userId
                 })
                 .then(function(docRef) {
                     console.log("Document written with ID: ", docRef.id);
@@ -233,6 +252,7 @@ function formSubmission(e){
 
 }
 
+}
 
 let closeForm = document.getElementById("close-form");
 closeForm.addEventListener('click', closeAllContent) 

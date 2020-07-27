@@ -49,6 +49,10 @@ function signUpUser(event) {
     const firstName = signUpForm['first_name'].value;
     const lastName = signUpForm['last_name'].value;
     const tel = signUpForm['tel'].value;
+    //this isnt safe but its done for presentation purposes as firebase-admin requires
+    //billing account, normally function that makes user an admin would be stored and invoked on
+    //server side
+    const NotAdmin = false;
 
 
     //create user account
@@ -58,7 +62,8 @@ function signUpUser(event) {
         return db.collection('users').doc(cred.user.uid).set({
           firstName: firstName,
           lastName: lastName,
-          tel: tel
+          tel: tel,
+          isAdmin: NotAdmin
         });
       })
       .then (function(){

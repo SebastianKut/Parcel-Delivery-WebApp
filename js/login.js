@@ -15,8 +15,8 @@ var firebaseConfig = {
 
   //Initialize Firestore and Reference orders collection
 const db = firebase.firestore();
-let ordersReference = db.collection('orders');
-
+const ordersReference = db.collection('orders');
+const usersReference = db.collection('users');
 //initialize firebase auth
 const auth = firebase.auth(); 
 
@@ -24,13 +24,13 @@ const auth = firebase.auth();
 
 //TRACK AUTHENTICATION STATUS
 auth.onAuthStateChanged(function(user) {
-   
 
-    //Figure out how not to redirect when user is logged in on index.html
    if (user) {
-        console.log('user logged in');
+    console.log('user logged in');
+        
     } else {
-    console.log('user logged out');
+        console.log('user logged out');
+       
     }
 });
 
@@ -50,11 +50,13 @@ function loginUser(event) {
     console.log(email, password);
 
 
-    auth.signInWithEmailAndPassword(email, password).then(function(cred) {
-      console.log(cred.user);
+    auth.signInWithEmailAndPassword(email, password)
+    .then(function(cred) {
       // close the signup modal & reset form
       loginForm.reset();
-      window.location.replace('user.html');
+      //direct to user or admin page - not safe, shouldnt be executed on the client
+    //but node.js functions for firebase require billing account 
+      directToPage(cred.user);
     })
     .catch(function (error) {
       alert(error.message);
@@ -62,3 +64,21 @@ function loginUser(event) {
     });
 
 };
+
+
+//function to redirect depending if user isAdmin
+function directToPage(user) {
+  const userId = user.uid;
+  db.collection('users').get().then(function(snapshot) {
+      //loop through users collection and find document that matches userID then check if 
+      //user isAdmin    
+      snapshot.docs.forEach(function(doc) {
+        if(doc.id == userId && doc.data().isAdmin == true) {
+          window.location.replace('admin.html');
+        } 
+        else if(doc.id == userId && doc.data().isAdmin == false) {
+          window.location.replace('user.html');
+        }
+      })
+  })
+}

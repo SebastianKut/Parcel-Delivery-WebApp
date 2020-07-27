@@ -31,7 +31,7 @@ auth.onAuthStateChanged(function(user) {
         console.log('user logged in');
         //setup relevant Nav and SideNav links
         setupUI(user);
-        //change what send parcel button does (directs to user panel)
+        //change what send parcel button does (directs to user panel and doesnt check if user isAdmin, because admins will not use this button)
         disableLoginModal(user);
 
     } else {
@@ -63,7 +63,8 @@ function loginUser(event) {
       console.log(cred.user);
       // close the signup modal & reset form
       loginForm.reset();
-      window.location.replace('user.html');
+      // direct to page depending on isAdmin value
+      directToPage(cred.user);
     })
     .catch(function (error) {
       alert('Nieprawidlowe haslo lub email');
@@ -71,6 +72,23 @@ function loginUser(event) {
     });
 
 };
+
+//function to redirect depending if user isAdmin
+function directToPage(user) {
+  const userId = user.uid;
+  db.collection('users').get().then(function(snapshot) {
+      //loop through users collection and find document that matches userID then check if 
+      //user isAdmin    
+      snapshot.docs.forEach(function(doc) {
+        if(doc.id == userId && doc.data().isAdmin == true) {
+          window.location.replace('admin.html');
+        } 
+        else if(doc.id == userId && doc.data().isAdmin == false) {
+          window.location.replace('user.html');
+        }
+      })
+  })
+}
 
 
 //LOG OUT FROM FIREBASE
