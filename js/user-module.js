@@ -49,7 +49,7 @@ auth.onAuthStateChanged(user => {
       console.log('user logged out');
       //pass empty array and object to setup orders function so it executes rest of the code if no user
       setupOrders([], {});
-      //redirect to index.html
+      //redirect to logout.html
       window.location.replace('logout.html');
     }
   });
@@ -355,12 +355,14 @@ let goBackButton = document.querySelectorAll(".go-back-btn");
 }
 
 
-//DISPLAY USER EMAIL
+//DISPLAY USER EMAIL AND UNIQUE ID
 function displayEmail(user) {
     let userInfo = document.getElementById('user-info');
     let html =`
     <li class="bold waves-effect"><i class="material-icons left amber-text text-accent-2 medium">laptop_mac</i></li>
   <li><p class="teal-text">${user.email}</p></li>
+  <li><p class="teal-text">UNIKALNY NR ID:</p></li>
+  <li><p class="teal-text">${user.uid}</p></li>
     `;
     userInfo.innerHTML = html;
 }

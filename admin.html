@@ -14,7 +14,7 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
 </head>
-<body>
+<body id="admin-content">
  <!--Navigation-->
 <header>
 
@@ -88,7 +88,7 @@
   <div id="send-parcel-form" class="section">         
         <div class="card-content container">
          
-      <form class="col s12">
+      <form id="submitOrderForm" class="col s12">
             <div class="row valign-wrapper">
               <h5 class="col s10 m11">Dodawanie nowego zlecenia dla uzytkownika</h5>
               <a id="close-form" class="col s2 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
@@ -109,9 +109,9 @@
         </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="sender-email" type="email" class="validate" required>
-              <label for="sender-email">Email uzytkownika <span class="asterix">*</span></label>
-              <span class="helper-text" data-error="Wprowadz poprawny adres email" data-success=""></span>
+              <input id="sender-id" type="text" class="validate" required>
+              <label for="sender-id">Id uzytkownika global <span class="asterix">*</span></label>
+              <span class="helper-text" data-error="Wprowadz numer ID nadawcy (klienta global)" data-success=""></span>
             </div>
           </div>
           <div class="row valign-wrapper">
@@ -121,12 +121,12 @@
                 
                       <div class="row">
                         <div class="input-field col s12 l6">
-                          <input id="first_name" type="text" class="validate" required>
+                          <input id="first-name" type="text" class="validate" required>
                           <label for="first_name">Imie <span class="asterix">*</span></label>
                           <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                         </div>
                         <div class="input-field col s12 l6">
-                          <input id="last_name" type="text" class="validate" required>
+                          <input id="last-name" type="text" class="validate" required>
                           <label for="last_name">Nazwisko <span class="asterix">*</span></label>
                           <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                         </div>
@@ -167,8 +167,8 @@
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="street_number"  type="text" class="validate" required>
-                          <label for="street_number">Numer domu <span class="asterix">*</span></label>
+                          <input id="street-number"  type="text" class="validate" required>
+                          <label for="street-number">Numer domu <span class="asterix">*</span></label>
                           <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                         </div>
                       </div>
@@ -181,19 +181,11 @@
                       </div>
                       <div class="row">
                         <div class="input-field col m2 s4">
-                          <input id="postal_code"  type="number" class="validate" maxlength="2" required>
-                          <label for="postal_code">Kod pocztowy <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wprowadz 2-cyfrowy numer" data-success="">XX</span>
+                          <input id="postal-code"  type="text" class="validate" maxlength="6" required>
+                          <label for="postal-code">Kod pocztowy <span class="asterix">*</span></label>
+                          <span class="helper-text" data-error="Wprowadz 5-cyfrowy numer w formacie 00-000" data-success=""></span>
                         </div>
-                        <div class="input-field col m1 s1">
-                          <p class="center-align"><i class="material-icons">remove</i></p>
-                        </div>
-                        <div class="input-field col m2 s4">
-                          <input id="postcode02" type="number" class="validate" maxlength="3" required>
-                          <label for="postcode02"></label>
-                          <span class="helper-text" data-error="Wprowadz 3-cyfrowy numer" data-success="">XXX</span>
-                        </div>
-                      </div>
+                      </div>  
                       <div class="row">
                         <div class="input-field col s12">
                           <input id="locality"  type="text" class="validate" required>
@@ -203,20 +195,20 @@
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="administrative_area_level_1" type="text" class="validate" required>
-                          <label for="administrative_area_level_1">Region <span class="asterix">*</span></label>
+                          <input id="administrative-area-level-1" type="text" class="validate" required>
+                          <label for="administrative-area-level-1">Region <span class="asterix">*</span></label>
                           <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12 m6">
-                          <select class="icons validate" required>
+                          <select id="deliver-to-country" class="icons validate" required>
                             <option value="" disabled selected>Wybierz kraj</option>
                             <option value="germany" data-icon="img/germany.png">Niemcy</option>
                             <option value="uk" data-icon="img/uk.png">Wielka Brytania</option>
                             <option value="france" data-icon="img/france.png">Francja</option>
                           </select>
-                          <label>Kraj docelowy <span class="asterix">*</span></label>
+                          <label for="deliver-to-country">Kraj docelowy <span class="asterix">*</span></label>
                         </div>
                       </div>
                       <div class="row">
@@ -230,7 +222,7 @@
                     </div>
                     <div class="row">
                       <div class="input-field col s12 l3">
-                        <select class="icons validate" required>
+                        <select id="weight" class="icons validate" required>
                           <option value="" disabled selected>Wybierz z listy</option>
                           <option value="1">do 1 kg</option>
                           <option value="2">do 2 kg</option>
@@ -238,7 +230,7 @@
                           <option value="3">do 10 kg</option>
                           <option value="3">do 20 kg</option>
                         </select>
-                        <label>Waga <span class="asterix">*</span></label>
+                        <label for="weight">Waga <span class="asterix">*</span></label>
                         <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                       </div>
                  
@@ -250,8 +242,8 @@
                       </div>
                     
                       <div class="range-field col s12 l3">
-                        <label for="deep">Glebokosc (w cm) <span class="asterix">*</span></label>
-                        <input type="range" id="deep" min="0" max="100" class="validate" required/>
+                        <label for="depth">Glebokosc (w cm) <span class="asterix">*</span></label>
+                        <input type="range" id="depth" min="0" max="100" class="validate" required/>
                         <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
                       </div>
                     
@@ -263,8 +255,8 @@
                     </div>
                     <div class="row">
                       <div class="input-field col s12 l6">
-                        <input id="value" type="text" class="validate" required>
-                        <label for="value">Wartosc (PLN) <span class="asterix">*</span></label>
+                        <input id="money-value" type="text" class="validate" required>
+                        <label for="money-value">Wartosc (PLN) <span class="asterix">*</span></label>
                         <span class="helper-text" data-error="Wprowadz wartosc bez nazwy waluty" data-success=""></span>
                       </div>
                     </div>
@@ -283,21 +275,15 @@
                     </div>
                       <p class="col s12">
                         <label>
-                          <input type="checkbox" required/>
+                          <input id="accept-terms" type="checkbox" required/>
                           <span>Zapoznalem sie z <a href="#">regulaminem </a><span class="asterix">*</span></span>
                         </label>
                       </p>
-                    
-                  
-                        
+                      <div class="section center-align">
+                        <button id="order-submit-button" class="btn amber accent-2 black-text waves-effect validate" type="submit">ZAMAWIAM</button>
+                      </div>           
                 </form>
         </div>
-     
-
-
-      <div class="section center-align">
-        <input id="order-submit-button" class="btn amber accent-2 waves-effect validate" type="submit" method="post" value="ZAMAWIAM">
-      </div>    
   
  </div> 
  

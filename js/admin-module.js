@@ -25,7 +25,141 @@ const auth = firebase.auth();
 
 //------------------------------------------------------------------------
 
+//TRACK AUTHENTICATION STATUS
+auth.onAuthStateChanged(user => {
+    if (user) {
+      console.log('user logged in: ', user.uid);
+      //if admin then display page if not redirect
+        checkAdminRights(user);
+       
 
+    } else {
+      console.log('user logged out');
+      //if not logged in redirect
+      window.location.replace('logout.html');
+    }
+  });
+
+  
+//CHECK IF USER IS ADMIN
+function checkAdminRights(user) {
+    const userId = user.uid;
+    db.collection('users').get().then(function(snapshot) {
+        //loop through users collection and find document that matches userID then check if 
+        //user isAdmin    
+        snapshot.docs.forEach(function(doc) {
+          if(doc.id == userId && doc.data().isAdmin == true) {
+              //show admin content
+            document.querySelector('#admin-content').style.display = 'flex';
+          } 
+          else if(doc.id == userId && doc.data().isAdmin == false) {
+              //redirect to user panel
+            window.location.replace('user.html');
+          }
+        })
+    })
+  }
+
+//ORDER FORM SUBMISSION FOR ADMIN
+
+    let orderSubmitForm = document.getElementById("submitOrderForm");
+    orderSubmitForm.addEventListener('submit', formSubmission)
+    function formSubmission(e){
+            submitForm(e); 
+    //submission of form data to Cloud Firestore
+            function submitForm(event){
+                event.preventDefault();
+            
+                // Get values from Submit Form
+                var firstName = getInputVal('first-name');
+                var lastName = getInputVal('last-name');
+                var tel = getInputVal('tel');
+                var email = getInputVal('email');
+                var street = getInputVal('route');
+                var streetNumber = getInputVal('street-number');
+                var apartment = getInputVal('apartment');
+                var postCode = getInputVal('postal-code');
+                var town = getInputVal('locality');
+                var region = getInputVal('administrative-area-level-1');  
+                var deliveryCountry = getInputVal('deliver-to-country');
+                var description = getInputVal('description');
+                var weight = getInputVal('weight');
+                var height =getInputVal('height');
+                var depth = getInputVal('depth');           
+                var length = getInputVal('length');
+                var monetaryValue = getInputVal('money-value');
+                var sku = getInputVal('sku-number');
+                var comments = getInputVal('comments');
+                var termsAccepted = getInputVal('accept-terms');
+                //get user Id from the email address of the client to save the order as his    
+                var senderId = getInputVal('sender-id');
+                
+    // Save order to firestore
+            saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, senderId);
+            
+            }
+    
+    // Function to get values from the form
+                function getInputVal(id){
+                    return document.getElementById(id).value;
+                }
+      
+    //hide and show relevant DOM elements after form submission
+            function orderSent() {
+            document.getElementById("order-sent").style.display = "block";
+            document.getElementById("send-parcel-form").style.display = "none";
+            document.getElementById("orders-list-user").style.display = "none";
+            document.getElementById("welcome-message").style.display = "none";
+            };
+    
+    // Save order to firestore Orders Collection
+                function saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, userId){
+                    ordersReference.add({
+                        firstName: firstName,
+                        lastName: lastName,
+                        tel: tel,
+                        email: email,
+                        street: street,
+                        streetNumber: streetNumber,
+                        apartment: apartment,
+                        postCode: postCode,
+                        town: town,
+                        region: region,
+                        deliveryCountry: deliveryCountry,
+                        description: description,
+                        weight: weight,
+                        height: height,
+                        depth: depth,
+                        length: length,
+                        monetaryValue: monetaryValue,
+                        sku: sku,
+                        comments: comments,
+                        termsAccepted: termsAccepted,
+                        status: 'oczekujace',
+                        userId: userId
+                    })
+                    .then(function(docRef) {
+                        console.log("Document written with ID: ", docRef.id);
+                        // Clear form
+                        document.getElementById('submitOrderForm').reset();
+                        //Show user a message that form was send
+                        orderSent();
+                    })
+                    .catch(function(error) {
+                        console.error("Error adding document: ", error);
+                    });
+                }     
+    
+    
+    }
+    
+
+
+
+
+
+//-------------------------------------------------------------------------------------------
+//ADMIN PANEL FUNCTIONALITY AND BEHAVIOUR
 
 // enable save button when status of the order changes or delete checkbox checked
 Array.from(document.getElementsByClassName('status-change')).forEach(item => {
@@ -164,6 +298,6 @@ function fliterByName(event) {
     })
 
 }
-
+//-------------------------------------------------------------------------------------------
 
 });

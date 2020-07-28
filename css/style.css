@@ -217,7 +217,7 @@ display: none;
   display: none;
 }
 
-#user-content {
+#user-content, #admin-content {
   display: none;
 }
 

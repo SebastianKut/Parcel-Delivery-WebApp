@@ -116,9 +116,34 @@ document.querySelectorAll(".logged-out").forEach(item => {item.style.display = '
 } else {
   document.querySelectorAll(".logged-in").forEach(item => {item.style.display = 'none'});
   document.querySelectorAll(".logged-out").forEach(item => {item.style.display = 'block'});
-}
+};
+// if (checkIfAdmin(user)) {
+//   document.querySelectorAll(".admin").forEach(item => {item.style.display = 'block'});
+// } else {
+//   document.querySelectorAll(".admin").forEach(item => {item.style.display = 'none'});
+// }
 
 }
+
+// //CHECK IF USER IS ADMIN
+// function checkIfAdmin(user) {
+//   let userIsAdmin;
+//   const userId = user.uid;
+//   db.collection('users').get().then(function(snapshot) {
+//       //loop through users collection and find document that matches userID then check if 
+//       //user isAdmin    
+//       snapshot.docs.forEach(function(doc) {
+//         if(doc.id == userId && doc.data().isAdmin == true) {
+//           userIsAdmin = true;
+//         } 
+//         else if(doc.id == userId && doc.data().isAdmin == false) {
+//           userIsAdmin = false;
+//         }
+//       }).then(function(userIsAdmin){
+//         return userIsAdmin;
+//       })
+//   })
+// }
 
 
 //DISABLE LOGIN MODAL AND GO STRAIGHT TO USERS PANEL WHEN USER IS LOGGED IN
