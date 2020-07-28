@@ -63,7 +63,8 @@ function signUpUser(event) {
           firstName: firstName,
           lastName: lastName,
           tel: tel,
-          isAdmin: NotAdmin
+          isAdmin: NotAdmin,
+          userId: cred.user.uid
         });
       })
       .then (function(){

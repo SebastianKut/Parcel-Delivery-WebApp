@@ -18,7 +18,7 @@ var firebaseConfig = {
 
   //Initialize Firestore and Reference orders collection
 const db = firebase.firestore();
-let ordersReference = db.collection('orders');
+
 
 //initialize firebase auth
 const auth = firebase.auth(); 
@@ -31,7 +31,9 @@ auth.onAuthStateChanged(user => {
       console.log('user logged in: ', user.uid);
       //if admin then display page if not redirect
         checkAdminRights(user);
-       
+        db.collection('users').get().then(function(snapshot) {
+            console.log(snapshot.docs[0]);
+        })
 
     } else {
       console.log('user logged out');
@@ -40,17 +42,25 @@ auth.onAuthStateChanged(user => {
     }
   });
 
-  
-//CHECK IF USER IS ADMIN
+ //-----------------------------------------------------------------------------------
+
+//CHECK IF USER IS ADMIN, DISPLAY ADMIN PAGE CONTENT AND SETUP ORDERS LIST
 function checkAdminRights(user) {
     const userId = user.uid;
     db.collection('users').get().then(function(snapshot) {
         //loop through users collection and find document that matches userID then check if 
-        //user isAdmin    
-        snapshot.docs.forEach(function(doc) {
+        //user isAdmin   
+        const usersCollection = snapshot.docs; 
+        usersCollection.forEach(function(doc) {
+            //if Admin show page content, setup orders list and order details
           if(doc.id == userId && doc.data().isAdmin == true) {
               //show admin content
             document.querySelector('#admin-content').style.display = 'flex';
+            //setup orders list and order details
+            db.collection('orders').get().then(function(snapshot) {
+               const ordersCollection = snapshot.docs;
+               setupAdminOrders(ordersCollection, usersCollection);
+            })
           } 
           else if(doc.id == userId && doc.data().isAdmin == false) {
               //redirect to user panel
@@ -59,6 +69,64 @@ function checkAdminRights(user) {
         })
     })
   }
+
+  //----------------------------------------------------------------------------------
+//SETUP ORDERS LIST AND ORDERS DETAILS
+//set up orders list within tables body
+let tableBody = document.getElementById('orders-table');
+//let orderDetailsContent = document.getElementById('order-details-section');
+
+
+let setupAdminOrders = function(ordersData, usersData) {
+
+    let tableContent = "";
+    //let orderContent = "";
+    let i = 1;
+    ordersData.forEach(ordersDoc => {
+        
+        let order = ordersDoc.data();
+        let userIdFromOrder = order.userId;
+        //with every iteration through orders collection itterate through users collection to find matching user id
+        usersData.forEach(userDoc => {
+            let user = userDoc.data();
+            let userIdFromUser = user.userId;
+            //when userId matches set up table row with correct sender and reciver etc
+            if (userIdFromOrder === userIdFromUser) {
+                //setup table row with order
+                let tr =`
+                <tr class="order-wrapper">
+                <td>${user.firstName} ${user.lastName}</td>
+                <td>${order.sku}</td>
+                <td></td>
+                <td class="truncate custom-td-width">ul.${order.street} ${order.streetNumber} / ${order.apartment}</td>
+                <td>${order.firstName} ${order.lastName}</td>
+                <td>${order.status}</td>
+                <td><a href="#">Generuj</td>
+                <td><select class="status-change">
+                <option value="" disabled selected>Wybierz</option>
+                <option value="zrealizowane">Zrealizowane</option>
+                <option value="oczekujace">Oczekujace</option>
+                </select></td>
+                <td class="center-align"><label>
+                  <input class="delete-order-check" type="checkbox" /><span></span>
+                </label></td>
+              
+              </tr>
+                `; 
+                tableContent += tr;
+
+                //set up order details
+            }
+        })
+    i++;    
+    })    
+tableBody.innerHTML = tableContent;    
+
+}
+
+
+
+//---------------------------------------------------------------------------------
 
 //ORDER FORM SUBMISSION FOR ADMIN
 
@@ -182,7 +250,7 @@ function closeAllContent(){
     document.getElementById("order-sent").style.display = "none";
     document.getElementById("orders-list-admin").style.display = "none";
     document.getElementById("send-parcel-form").style.display = "none";
-    document.getElementById("order-details").style.display = "none";
+    document.getElementById("order-details-section").style.display = "none";
     document.getElementById('save-order-changes-admin').style.display = "none";
     document.getElementById("welcome-message").style.display = "block";
     }
@@ -196,7 +264,7 @@ function showAllOrders(){
     document.getElementById("order-sent").style.display = "none";
     document.getElementById("orders-list-admin").style.display = "block";
     document.getElementById("send-parcel-form").style.display = "none";
-    document.getElementById("order-details").style.display = "none";
+    document.getElementById("order-details-section").style.display = "none";
     document.getElementById('save-order-changes-admin').style.display = "none";
     document.getElementById("welcome-message").style.display = "none";
 }
@@ -209,7 +277,7 @@ function displayOrderForm() {
     document.getElementById("order-sent").style.display = "none";
     document.getElementById("orders-list-admin").style.display = "none";
     document.getElementById("send-parcel-form").style.display = "block";
-    document.getElementById("order-details").style.display = "none";
+    document.getElementById("order-details-section").style.display = "none";
     document.getElementById('save-order-changes-admin').style.display = "none";
     document.getElementById("welcome-message").style.display = "none";
     }
