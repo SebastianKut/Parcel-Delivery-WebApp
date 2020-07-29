@@ -38,7 +38,7 @@ auth.onAuthStateChanged(user => {
         //display user email address
         displayEmail(user);
         //get data snapashot of orders collection from database
-        db.collection('orders').get().then(snapshot => {
+        db.collection('orders').orderBy('dateCreated').get().then(snapshot => {
             //functions that has to run when data was fetched from DB otherwise JS will throw various errors
             setupOrders(snapshot.docs, user);
             manipulateOrders();
@@ -78,6 +78,7 @@ data.forEach(doc => {
     let tr =`
     <tr class="order-wrapper">
         <td>${order.lastName} ${order.firstName}</td>
+        <td>${order.dateCreated.toDate().toString().slice(4,15)}</td>
         <td>${order.description}</td>
         <td>${order.sku}</td>
         <td>${order.status}</td>
@@ -111,8 +112,8 @@ data.forEach(doc => {
         </div>
         <div class="row">
         <h6>Przesylka</h6>
-        <p class="grey-text">Opis: ${order.description}<br>
-        Numer zlecenia: <br>
+        <p class="grey-text">Data zlecenia: ${order.dateCreated.toDate().toString().slice(4,15)}<br>
+        Opis: ${order.description}<br>
         Numer SKU: ${order.sku}
         </p>
         </div>

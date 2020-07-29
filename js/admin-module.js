@@ -55,7 +55,7 @@ function checkAdminRights(user) {
               //show admin content
             document.querySelector('#admin-content').style.display = 'flex';
             //setup orders list and order details
-            db.collection('orders').get().then(function(snapshot) {
+            db.collection('orders').orderBy('dateCreated').get().then(function(snapshot) {
                const ordersCollection = snapshot.docs;
                setupAdminOrders(ordersCollection, usersCollection);
                //trigger functionalies to manipulate orders
@@ -98,7 +98,7 @@ let setupAdminOrders = function(ordersData, usersData) {
                 <tr class="order-wrapper">
                 <td>${user.firstName} ${user.lastName}</td>
                 <td>${order.sku}</td>
-                <td>${order.dateCreated}</td>
+                <td>${order.dateCreated.toDate().toString().slice(4,15)}</td>
                 <td class="truncate custom-td-width">ul.${order.street} ${order.streetNumber} / ${order.apartment}</td>
                 <td>${order.firstName} ${order.lastName}</td>
                 <td>${order.status}</td>
@@ -130,7 +130,7 @@ let setupAdminOrders = function(ordersData, usersData) {
                     <p class="grey-text">${user.firstName} ${user.lastName}<br>
                     ${user.tel}<br>
                     ${user.email}<br>
-                    Data zlozenia: ${order.dateCreated}  
+                    Data zlozenia: ${order.dateCreated.toDate().toString().slice(0,24)} 
                     </p>
                     </div>
                     <div class="row">
@@ -181,6 +181,9 @@ orderDetailsContent.innerHTML = orderContent;
 //After dynamically creating DOM elements innitialize Materialize dropdown menu that I am using in the
 //orders table (it will not work otherwise)
 M.FormSelect.init(document.querySelectorAll('select'), {});
+
+//Listen for changes like status change and delete and unable save button
+enableSaveChangesBtn();
 
 }
 
@@ -288,7 +291,18 @@ M.FormSelect.init(document.querySelectorAll('select'), {});
     }
     
 
+//LOG OUT FROM FIREBASE
 
+const logoutSidenav = document.getElementById('logout-sidenav');
+logoutSidenav.addEventListener('click', logOutUser);
+
+function logOutUser(event) {
+    event.preventDefault();
+    auth.signOut().then(() => {
+        //navigate to logout page without ability to use browser back button
+        window.location.replace('logout.html');
+      });
+};
 
 
 
@@ -328,13 +342,14 @@ function manipulateOrders(){
 
 
 // enable save button when status of the order changes or delete checkbox checked
-Array.from(document.getElementsByClassName('status-change')).forEach(item => {
-    item.addEventListener('change', displaySaveBtn);
-});
-Array.from(document.getElementsByClassName('delete-order-check')).forEach(item => {
-    item.addEventListener('change', displaySaveBtn);
-});
-    
+function enableSaveChangesBtn() {
+    Array.from(document.getElementsByClassName('status-change')).forEach(item => {
+        item.addEventListener('change', displaySaveBtn);
+    });
+    Array.from(document.getElementsByClassName('delete-order-check')).forEach(item => {
+        item.addEventListener('change', displaySaveBtn);
+    });
+}    
 //display save changes button    
 function displaySaveBtn() {
     document.getElementById('save-order-changes-admin').style.display = 'inline-block';
@@ -392,17 +407,17 @@ function filterItems(event){
     console.log(allOrders[1].children[4].textContent);
 
     // helper function to compare senders 
-    function compareSenders(a, b) {
-        if (a.firstElementChild.firstElementChild.textContent > b.firstElementChild.firstElementChild.textContent) return 1;
-        if (b.firstElementChild.firstElementChild.textContent > a.firstElementChild.firstElementChild.textContent) return -1;
-        return 0;
-      } 
-    // helper function to compare receivers
-    function compareReceivers(a, b) {
-        if (a.children[4].textContent > b.children[4].textContent) return 1;
-        if (b.children[4].textContent > a.children[4].textContent) return -1;
-        return 0;
-    } 
+    // function compareSenders(a, b) {
+    //     if (a.firstElementChild.firstElementChild.textContent > b.firstElementChild.firstElementChild.textContent) return 1;
+    //     if (b.firstElementChild.firstElementChild.textContent > a.firstElementChild.firstElementChild.textContent) return -1;
+    //     return 0;
+    //   } 
+    // // helper function to compare receivers
+    // function compareReceivers(a, b) {
+    //     if (a.children[4].textContent > b.children[4].textContent) return 1;
+    //     if (b.children[4].textContent > a.children[4].textContent) return -1;
+    //     return 0;
+    // } 
 
         //show all
         if (searchedOrder === 'all') {
@@ -421,33 +436,6 @@ function filterItems(event){
                 };
             });
         };     
-
-        //sort by sender name
-        if (searchedOrder === 'sender') {
-            //may have to first display none otherwise they will display as they are even when the array is sorted
-            //it doesnt work atm because the list is hardcoded in html, should work when created dynamically
-            // Array.from(allOrders).forEach(order =>{
-            //     order.style.display = 'none';    
-            // });
-           let sortedByName = Array.from(allOrders).sort(compareSenders);
-           sortedByName.forEach(order => {
-            order.style.display = 'table-row';
-           })
-        }
-
-        //sort by receiver name
-        if (searchedOrder === 'receiver') {
-            //may have to first display none otherwise they will display as they are even when the array is sorted
-            //it doesnt work atm because the list is hardcoded in html, should work when created dynamically
-            // Array.from(allOrders).forEach(order =>{
-            //     order.style.display = 'none';    
-            // });
-           let sortedByName = Array.from(allOrders).sort(compareReceivers);
-           sortedByName.forEach(order => {
-            order.style.display = 'table-row';
-           })
-        }
-
 
 }
 
@@ -472,8 +460,12 @@ function fliterByName(event) {
 let resetSearchboxBtn = document.getElementById('reset-search-box');
 resetSearchboxBtn.addEventListener('click', clearSearchBox);
 function clearSearchBox() {
-    document.getElementById('search-box').reset();
-   
+    //reset input btn
+    searchBox.reset();
+    //display all orders again
+    document.querySelectorAll('.order-wrapper').forEach(order => {
+        order.style.display = 'table-row';
+    })
 }
 //-------------------------------------------------------------------------------------------
 
