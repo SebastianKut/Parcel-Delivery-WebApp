@@ -304,7 +304,7 @@ function filterItems(event){
 
     if (searchedOrder === 'oczekujace' || searchedOrder === 'zrealizowane') {
         Array.from(allOrders).forEach(order => {
-            if (order.children[3].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
+            if (order.children[4].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
                 order.style.display = 'table-row';
             } else {
                 order.style.display = 'none';
