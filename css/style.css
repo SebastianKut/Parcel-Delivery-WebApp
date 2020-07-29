@@ -224,6 +224,10 @@ display: none;
   display: none;
 }
 
+.custom-td {
+  min-width: 100px;
+}
+
 /*MEDIA QUERRIES*/
 @media only screen and (max-width : 992px) {
 

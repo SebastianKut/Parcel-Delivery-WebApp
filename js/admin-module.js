@@ -31,9 +31,7 @@ auth.onAuthStateChanged(user => {
       console.log('user logged in: ', user.uid);
       //if admin then display page if not redirect
         checkAdminRights(user);
-        db.collection('users').get().then(function(snapshot) {
-            console.log(snapshot.docs[0]);
-        })
+        
 
     } else {
       console.log('user logged out');
@@ -60,6 +58,9 @@ function checkAdminRights(user) {
             db.collection('orders').get().then(function(snapshot) {
                const ordersCollection = snapshot.docs;
                setupAdminOrders(ordersCollection, usersCollection);
+               //trigger functionalies to manipulate orders
+               manipulateOrders();
+              
             })
           } 
           else if(doc.id == userId && doc.data().isAdmin == false) {
@@ -74,13 +75,13 @@ function checkAdminRights(user) {
 //SETUP ORDERS LIST AND ORDERS DETAILS
 //set up orders list within tables body
 let tableBody = document.getElementById('orders-table');
-//let orderDetailsContent = document.getElementById('order-details-section');
+let orderDetailsContent = document.getElementById('order-details-section');
 
 
 let setupAdminOrders = function(ordersData, usersData) {
 
     let tableContent = "";
-    //let orderContent = "";
+    let orderContent = "";
     let i = 1;
     ordersData.forEach(ordersDoc => {
         
@@ -102,7 +103,7 @@ let setupAdminOrders = function(ordersData, usersData) {
                 <td>${order.firstName} ${order.lastName}</td>
                 <td>${order.status}</td>
                 <td><a href="#">Generuj</td>
-                <td><select class="status-change">
+                <td class="custom-td"><select class="status-change" >
                 <option value="" disabled selected>Wybierz</option>
                 <option value="zrealizowane">Zrealizowane</option>
                 <option value="oczekujace">Oczekujace</option>
@@ -110,17 +111,75 @@ let setupAdminOrders = function(ordersData, usersData) {
                 <td class="center-align"><label>
                   <input class="delete-order-check" type="checkbox" /><span></span>
                 </label></td>
-              
+                <td><button class="indigo accent-2 btn-small order-details-button">Pokaz</button><a href="#${i}"></a></td>
               </tr>
                 `; 
                 tableContent += tr;
 
                 //set up order details
+                let individualOrder =`
+                <div id="${i}" class="section container order-details">
+                    <div class="row">
+                    <div class="row valign-wrapper">
+                        <h5 class="col s8 m10">Szczegoly zamowienia</h5>
+                        <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">POWROT<i class="material-icons left">navigate_before</i> </button>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <h6>Nadawca</h6>
+                    <p class="grey-text">${user.firstName} ${user.lastName}<br>
+                    ${user.tel}<br>
+                    ${user.email}<br>  
+                    </p>
+                    </div>
+                    <div class="row">
+                    <h6>Odbiorca</h6>
+                    <p class="grey-text">${order.firstName} ${order.lastName}<br>
+                    ${order.tel}<br>
+                    ${order.email}<br>  
+                    </p>
+                    </div>
+                    <div class="row">
+                    <h6>Adres dostawy</h6>
+                    <p class="grey-text">${order.street} ${order.streetNumber} / ${order.apartment}<br>
+                        ${order.postCode} ${order.town}<br>
+                        ${order.deliveryCountry}
+                    </p>
+                    </div>
+                    <div class="row">
+                    <h6>Przesylka</h6>
+                    <p class="grey-text">Opis: ${order.description}<br>
+                    Numer zlecenia: <br>
+                    Numer SKU: ${order.sku}
+                    </p>
+                    </div>
+                    <div class="row">
+                    <h6>Uwagi</h6>
+                    <p class="grey-text">${order.comments}</p>
+                    </div>
+                    <div class="row">
+                    <h6>Status</h6>
+                    <p class="grey-text">
+                        ${order.status}
+                    </p>
+                    </div>
+                </div>
+                `; 
+                orderContent += individualOrder;
+
+
+
             }
         })
+    //increment i to be used as href between order from the list and this order details    
     i++;    
     })    
 tableBody.innerHTML = tableContent;    
+orderDetailsContent.innerHTML = orderContent;
+
+//After dynamically creating DOM elements innitialize Materialize dropdown menu that I am using in the
+//orders table (it will not work otherwise)
+M.FormSelect.init(document.querySelectorAll('select'), {});
 
 }
 
@@ -228,6 +287,38 @@ tableBody.innerHTML = tableContent;
 
 //-------------------------------------------------------------------------------------------
 //ADMIN PANEL FUNCTIONALITY AND BEHAVIOUR
+
+//MANIPULATE ORDERS REPORT
+
+function manipulateOrders(){ 
+
+    //Show order details when order details button is clicked
+    let orderDetailsBtn = document.querySelectorAll('.order-details-button');//querry selector all allows to use array methods
+    orderDetailsBtn.forEach(button => {
+        button.addEventListener('click', showOrderDetails)
+    });
+    
+            function showOrderDetails(event) {
+            //click link to the order details
+            event.target.nextElementSibling.click();
+            //click close order details button
+            document.getElementById('close-table-admin').click();
+            //remove order-details class to make order visible
+            document.getElementById(event.target.nextElementSibling.getAttribute('href').substring(1)).style.display = 'block';
+            console.log('button clicked');
+            }
+    
+    //Hide order details when go back button is clicked
+    let goBackButton = document.querySelectorAll(".go-back-btn");
+            goBackButton.forEach(button =>{
+                button.addEventListener('click', showAllOrders)
+            })
+    
+    }
+
+
+
+
 
 // enable save button when status of the order changes or delete checkbox checked
 Array.from(document.getElementsByClassName('status-change')).forEach(item => {

@@ -64,7 +64,8 @@ function signUpUser(event) {
           lastName: lastName,
           tel: tel,
           isAdmin: NotAdmin,
-          userId: cred.user.uid
+          userId: cred.user.uid,
+          email: cred.user.email
         });
       })
       .then (function(){
