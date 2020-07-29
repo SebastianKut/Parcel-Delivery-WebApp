@@ -85,33 +85,34 @@ let setupAdminOrders = function(ordersData, usersData) {
     let i = 1;
     ordersData.forEach(ordersDoc => {
         
+        let orderId = ordersDoc.id;
         let order = ordersDoc.data();
         let userIdFromOrder = order.userId;
         //with every iteration through orders collection itterate through users collection to find matching user id
-        usersData.forEach(userDoc => {
-            let user = userDoc.data();
-            let userIdFromUser = user.userId;
+        usersData.forEach(usersDoc => {
+            let user = usersDoc.data();
+            let userIdFromUser = usersDoc.id;
             //when userId matches set up table row with correct sender and reciver etc
             if (userIdFromOrder === userIdFromUser) {
                 //setup table row with order
                 let tr =`
-                <tr class="order-wrapper">
-                <td>${user.firstName} ${user.lastName}</td>
-                <td>${order.sku}</td>
-                <td>${order.dateCreated.toDate().toString().slice(4,15)}</td>
-                <td class="truncate custom-td-width">ul.${order.street} ${order.streetNumber} / ${order.apartment}</td>
-                <td>${order.firstName} ${order.lastName}</td>
-                <td>${order.status}</td>
-                <td><a href="#">Generuj</td>
-                <td class="custom-td"><select class="status-change" >
-                <option value="" disabled selected>Wybierz</option>
-                <option value="zrealizowane">Zrealizowane</option>
-                <option value="oczekujace">Oczekujace</option>
-                </select></td>
-                <td class="center-align"><label>
-                  <input class="delete-order-check" type="checkbox" /><span></span>
-                </label></td>
-                <td><button class="indigo accent-2 btn-small order-details-button">Pokaz</button><a href="#${i}"></a></td>
+                <tr id="${orderId}" class="order-wrapper">
+                    <td>${user.firstName} ${user.lastName}</td>
+                    <td>${order.sku}</td>
+                    <td>${order.dateCreated.toDate().toString().slice(4,15)}</td>
+                    <td class="truncate custom-td-width">ul.${order.street} ${order.streetNumber} / ${order.apartment}</td>
+                    <td>${order.firstName} ${order.lastName}</td>
+                    <td>${order.status}</td>
+                    <td><a href="#">Generuj</td>
+                    <td class="custom-td"><select class="status-change">
+                    <option value=${order.status} disabled selected>Wybierz</option>
+                    <option value="zrealizowane">Zrealizowane</option>
+                    <option value="oczekujace">Oczekujace</option>
+                    </select></td>
+                    <td class="center-align"><label>
+                    <input class="delete-order-check" type="checkbox" /><span></span>
+                    </label></td>
+                    <td><button class="indigo accent-2 btn-small order-details-button">Pokaz</button><a href="#${i}"></a></td>
               </tr>
                 `; 
                 tableContent += tr;
@@ -290,6 +291,57 @@ enableSaveChangesBtn();
     
     }
     
+//---------------------------------------------------------------------------------
+//SAVE CHANGES TO DATABASE
+let saveChangesBtn = document.getElementById('save-order-changes-admin');
+saveChangesBtn.addEventListener('click', saveChangesToDatabase);
+
+function saveChangesToDatabase() {
+    deleteOrder();
+    changeOrderStatus();
+    saveChangesBtn.style.display = 'none';
+    alert('Zmiany zapisane pomyslnie');
+
+}
+
+
+//delete order from database
+function deleteOrder() {
+    document.querySelectorAll('.delete-order-check').forEach(checkbox => {
+        if (checkbox.checked) {
+            let orderToBeDeleted = checkbox.parentElement.parentElement.parentElement.getAttribute('id');
+            console.log(orderToBeDeleted);
+            db.collection("orders").doc(orderToBeDeleted).delete().then(function() {
+                console.log("Document successfully deleted!");
+            }).catch(function(error) {
+                console.error("Error removing document: ", error.message);
+            });
+        }
+    }) 
+}
+
+//change order status in the database
+function changeOrderStatus() {
+    //create batch of operations to be commited to database
+    let batch = db.batch();
+    let ordersRef = db.collection('orders');
+
+    document.querySelectorAll('.status-change').forEach(selectElement => {
+        //get value of each order status from select element
+        let status = selectElement.options[selectElement.selectedIndex].value;
+        //get of an order to be updated that is stored as tabe row id for that order
+        let orderToBeUpdated = selectElement.parentElement.parentElement.parentElement.getAttribute('id');
+        //define operation we want to execute and save it to the batch like this "batch.update(collection.doc('name'), {key: value}"   
+        batch.update(ordersRef.doc(orderToBeUpdated), {'status': status});
+    })
+
+   // Commit the batch
+     batch.commit().then(function () {
+         console.log("Document successfully updated!");
+     });  
+}
+
+//---------------------------------------------------------------------------------
 
 //LOG OUT FROM FIREBASE
 
