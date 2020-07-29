@@ -26,11 +26,11 @@
       <a class="brand-logo center" href="index.html"><span><i class="small material-icons amber-text text-accent-2">language</i></span>Gl<span class="amber-text text-accent-2">o</span>bal</a>
       <ul class="right hide-on-med-and-down "> 
         <li><div class="nav-wrapper">
-          <form>
+          <form id="search-box">
             <div class="input-field">
-              <input id="search-box" type="search" class="custom-placeholder" placeholder="Znajdz wg Nazwiska">
+              <input id="search-box-input" type="search" class="custom-placeholder" placeholder="Znajdz wg Nazwiska">
               <label class="label-icon" for="search-box"><i class="material-icons grey-text">search</i></label>
-              <i class="material-icons">close</i>
+              <i id="reset-search-box" class="material-icons">close</i>
             </div>
           </form>
         </div></li>
@@ -300,8 +300,8 @@
           <option value="all">Pokaz wszystkie</option>
           <option value="oczekujace">Pokaz oczekujace</option>
           <option value="zrealizowane">Pokaz zrealizowane</option>
-          <option value="sender">Wg Klienta</option>
-          <option value="receiver">Wg Odbiorcy</option>
+         <!-- <option value="sender">Wg Klienta</option>
+          <option value="receiver">Wg Odbiorcy</option> -->
       </select>
     
         <a id="close-table-admin" class="col s1 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>

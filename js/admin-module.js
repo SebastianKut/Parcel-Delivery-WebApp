@@ -98,7 +98,7 @@ let setupAdminOrders = function(ordersData, usersData) {
                 <tr class="order-wrapper">
                 <td>${user.firstName} ${user.lastName}</td>
                 <td>${order.sku}</td>
-                <td></td>
+                <td>${order.dateCreated}</td>
                 <td class="truncate custom-td-width">ul.${order.street} ${order.streetNumber} / ${order.apartment}</td>
                 <td>${order.firstName} ${order.lastName}</td>
                 <td>${order.status}</td>
@@ -129,7 +129,8 @@ let setupAdminOrders = function(ordersData, usersData) {
                     <h6>Nadawca</h6>
                     <p class="grey-text">${user.firstName} ${user.lastName}<br>
                     ${user.tel}<br>
-                    ${user.email}<br>  
+                    ${user.email}<br>
+                    Data zlozenia: ${order.dateCreated}  
                     </p>
                     </div>
                     <div class="row">
@@ -220,9 +221,12 @@ M.FormSelect.init(document.querySelectorAll('select'), {});
                 var termsAccepted = getInputVal('accept-terms');
                 //get user Id from the email address of the client to save the order as his    
                 var senderId = getInputVal('sender-id');
+                var dateCreated = firebase.firestore.FieldValue.serverTimestamp();
                 
     // Save order to firestore
-            saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, senderId);
+            saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, 
+                deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, 
+                senderId, dateCreated);
             
             }
     
@@ -240,7 +244,9 @@ M.FormSelect.init(document.querySelectorAll('select'), {});
             };
     
     // Save order to firestore Orders Collection
-                function saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, userId){
+                function saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, 
+                    deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, 
+                    userId, dateCreated){
                     ordersReference.add({
                         firstName: firstName,
                         lastName: lastName,
@@ -263,7 +269,8 @@ M.FormSelect.init(document.querySelectorAll('select'), {});
                         comments: comments,
                         termsAccepted: termsAccepted,
                         status: 'oczekujace',
-                        userId: userId
+                        userId: userId,
+                        dateCreated: dateCreated
                     })
                     .then(function(docRef) {
                         console.log("Document written with ID: ", docRef.id);
@@ -341,9 +348,10 @@ function closeAllContent(){
     document.getElementById("order-sent").style.display = "none";
     document.getElementById("orders-list-admin").style.display = "none";
     document.getElementById("send-parcel-form").style.display = "none";
-    document.getElementById("order-details-section").style.display = "none";
     document.getElementById('save-order-changes-admin').style.display = "none";
-    document.getElementById("welcome-message").style.display = "block";
+    document.getElementById("welcome-message").style.display = "none";
+    document.querySelectorAll(".order-details").forEach(order => {
+        order.style.display = "none"});
     }
 
 //open all orders report on show-all-orders btn click 
@@ -355,9 +363,10 @@ function showAllOrders(){
     document.getElementById("order-sent").style.display = "none";
     document.getElementById("orders-list-admin").style.display = "block";
     document.getElementById("send-parcel-form").style.display = "none";
-    document.getElementById("order-details-section").style.display = "none";
     document.getElementById('save-order-changes-admin').style.display = "none";
     document.getElementById("welcome-message").style.display = "none";
+    document.querySelectorAll(".order-details").forEach(order => {
+        order.style.display = "none"});
 }
 //display new order from menu and close it
 let addOrderLink = document.getElementById("new-order-menu-link");
@@ -368,9 +377,10 @@ function displayOrderForm() {
     document.getElementById("order-sent").style.display = "none";
     document.getElementById("orders-list-admin").style.display = "none";
     document.getElementById("send-parcel-form").style.display = "block";
-    document.getElementById("order-details-section").style.display = "none";
     document.getElementById('save-order-changes-admin').style.display = "none";
     document.getElementById("welcome-message").style.display = "none";
+    document.querySelectorAll(".order-details").forEach(order => {
+        order.style.display = "none"});
     }
 
 //sort orders according to option selected
@@ -449,13 +459,21 @@ function fliterByName(event) {
     let allOrders = document.getElementsByClassName('order-wrapper');
     console.log(allOrders[1].children[4].textContent);
     Array.from(allOrders).forEach(order => {
-        if (order.firstElementChild.firstElementChild.textContent.toLowerCase().includes(searchedName.toLowerCase())){
+        if (order.firstElementChild.textContent.toLowerCase().includes(searchedName.toLowerCase())){
             order.style.display = 'table-row';
         } else {
             order.style.display = 'none';
         }
     })
 
+}
+
+//reset search box input field
+let resetSearchboxBtn = document.getElementById('reset-search-box');
+resetSearchboxBtn.addEventListener('click', clearSearchBox);
+function clearSearchBox() {
+    document.getElementById('search-box').reset();
+   
 }
 //-------------------------------------------------------------------------------------------
 

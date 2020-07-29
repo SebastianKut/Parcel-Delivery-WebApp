@@ -191,11 +191,13 @@ function formSubmission(e){
             var sku = getInputVal('sku-number');
             var comments = getInputVal('comments');
             var termsAccepted = getInputVal('accept-terms');
-    
+            var dateCreated = firebase.firestore.FieldValue.serverTimestamp();
             
             
 // Save order to firestore
-        saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, userId);
+        saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, 
+            deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, 
+            userId, dateCreated);
         
         }
 
@@ -213,7 +215,9 @@ function formSubmission(e){
         };
 
 // Save order to firestore Orders Collection
-            function saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, termsAccepted, userId){
+            function saveOrder(firstName, lastName, tel, email, street, streetNumber, apartment, postCode, town, 
+                region, deliveryCountry, description, weight, height, depth,length, monetaryValue, sku, comments, 
+                termsAccepted, userId, dateCreated){
                 ordersReference.add({
                     firstName: firstName,
                     lastName: lastName,
@@ -236,7 +240,8 @@ function formSubmission(e){
                     comments: comments,
                     termsAccepted: termsAccepted,
                     status: 'oczekujace',
-                    userId: userId
+                    userId: userId,
+                    dateCreated: dateCreated
                 })
                 .then(function(docRef) {
                     console.log("Document written with ID: ", docRef.id);
