@@ -54,8 +54,9 @@ function checkAdminRights(user) {
           if(doc.id == userId && doc.data().isAdmin == true) {
               //show admin content
             document.querySelector('#admin-content').style.display = 'flex';
-            //setup orders list and order details
-            db.collection('orders').orderBy('dateCreated').get().then(function(snapshot) {
+            //setup realtime listener to database so everytime theres a change to database it reflects in the DOM
+            //then setup orders list and order details 
+            db.collection('orders').orderBy('dateCreated').onSnapshot(function(snapshot) {
                const ordersCollection = snapshot.docs;
                setupAdminOrders(ordersCollection, usersCollection);
                //trigger functionalies to manipulate orders
@@ -296,49 +297,47 @@ enableSaveChangesBtn();
 let saveChangesBtn = document.getElementById('save-order-changes-admin');
 saveChangesBtn.addEventListener('click', saveChangesToDatabase);
 
+
+//change order status in the database
 function saveChangesToDatabase() {
-    deleteOrder();
-    changeOrderStatus();
-    saveChangesBtn.style.display = 'none';
-    alert('Zmiany zapisane pomyslnie');
+    //create seperate batches of operations to be commited to database
+    //so we do not try to add update and delete operation on the same order
+    let deleteBatch = db.batch();
+    let updateBatch = db.batch();
+    let ordersRef = db.collection('orders');
 
-}
-
-
-//delete order from database
-function deleteOrder() {
+    //check all checkboxes for orders to be seleted and add delete operations to deleteBatch
     document.querySelectorAll('.delete-order-check').forEach(checkbox => {
         if (checkbox.checked) {
             let orderToBeDeleted = checkbox.parentElement.parentElement.parentElement.getAttribute('id');
-            console.log(orderToBeDeleted);
-            db.collection("orders").doc(orderToBeDeleted).delete().then(function() {
-                console.log("Document successfully deleted!");
-            }).catch(function(error) {
-                console.error("Error removing document: ", error.message);
-            });
+            //add order delete to the batch
+            deleteBatch.delete(ordersRef.doc(orderToBeDeleted));
         }
-    }) 
-}
+    }); 
 
-//change order status in the database
-function changeOrderStatus() {
-    //create batch of operations to be commited to database
-    let batch = db.batch();
-    let ordersRef = db.collection('orders');
+    //FIRST Commit delete batch to firestore database
+    deleteBatch.commit().then(function() {
+        console.log("Document(s) successfully deleted!");
+        //Because we have onSnapshot function changing DOM structure everytime theres a change to database
+        //theres no need for getting snapshot again to make sure deleted DOM elements are no longer checked for status change.
+        //Next check all orders statuses and add update operation to commit batch
+        document.querySelectorAll('.status-change').forEach(selectElement => {
+            //get value of each order status from select element
+            let status = selectElement.options[selectElement.selectedIndex].value;
+            //get of an order to be updated that is stored as tabe row id for that order
+            let orderToBeUpdated = selectElement.parentElement.parentElement.parentElement.getAttribute('id');
+            //define operation we want to execute and save it to the batch like this "batch.update(collection.doc('name'), {key: value}"   
+            updateBatch.update(ordersRef.doc(orderToBeUpdated), {'status': status});
+        })
 
-    document.querySelectorAll('.status-change').forEach(selectElement => {
-        //get value of each order status from select element
-        let status = selectElement.options[selectElement.selectedIndex].value;
-        //get of an order to be updated that is stored as tabe row id for that order
-        let orderToBeUpdated = selectElement.parentElement.parentElement.parentElement.getAttribute('id');
-        //define operation we want to execute and save it to the batch like this "batch.update(collection.doc('name'), {key: value}"   
-        batch.update(ordersRef.doc(orderToBeUpdated), {'status': status});
-    })
-
-   // Commit the batch
-     batch.commit().then(function () {
-         console.log("Document successfully updated!");
-     });  
+        //SECOND Commit update batch to firestore
+        updateBatch.commit().then(function() {
+            console.log("Document(s) successfully updated!");
+            saveChangesBtn.style.display = 'none';
+            alert('Zmiany zapisane pomyslnie');
+        })
+       
+    });   
 }
 
 //---------------------------------------------------------------------------------
