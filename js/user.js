@@ -38,7 +38,7 @@ auth.onAuthStateChanged(user => {
         //display user email address
         displayEmail(user);
         //get data snapashot of orders collection from database
-        db.collection('orders').orderBy('dateCreated').get().then(snapshot => {
+        db.collection('orders').orderBy('dateCreated').onSnapshot(snapshot => {
             //functions that has to run when data was fetched from DB otherwise JS will throw various errors
             setupOrders(snapshot.docs, user);
             manipulateOrders();
@@ -82,6 +82,7 @@ data.forEach(doc => {
         <td>${order.description}</td>
         <td>${order.sku}</td>
         <td>${order.status}</td>
+        <td>${order.trackingNumber}</td>
         <td><button class="indigo accent-2 btn-small order-details-button">Pokaz</button><a href="#${i}"></a></td>
       </tr>
     `; 
@@ -114,7 +115,7 @@ data.forEach(doc => {
         <h6>Przesylka</h6>
         <p class="grey-text">Data zlecenia: ${order.dateCreated.toDate().toString().slice(4,15)}<br>
         Opis: ${order.description}<br>
-        Numer SKU: ${order.sku}
+        Numer SKU: ${order.sku}<br>
         </p>
         </div>
         <div class="row">
@@ -124,8 +125,10 @@ data.forEach(doc => {
         <div class="row">
         <h6>Status</h6>
         <p class="grey-text">
-            ${order.status}
+            ${order.status}<br>
+            Numer do sledzenia przesylki: ${order.trackingNumber}
         </p>
+
         </div>
     </div>
     `; 
@@ -242,7 +245,8 @@ function formSubmission(e){
                     termsAccepted: termsAccepted,
                     status: 'oczekujace',
                     userId: userId,
-                    dateCreated: dateCreated
+                    dateCreated: dateCreated,
+                    trackingNumber: ''
                 })
                 .then(function(docRef) {
                     console.log("Document written with ID: ", docRef.id);

@@ -18,7 +18,7 @@ var firebaseConfig = {
 
   //Initialize Firestore and Reference orders collection
 const db = firebase.firestore();
-
+const ordersReference = db.collection('orders');
 
 //initialize firebase auth
 const auth = firebase.auth(); 
@@ -104,12 +104,12 @@ let setupAdminOrders = function(ordersData, usersData) {
                     <td class="truncate custom-td-width">ul.${order.street} ${order.streetNumber} / ${order.apartment}</td>
                     <td>${order.firstName} ${order.lastName}</td>
                     <td>${order.status}</td>
-                    <td><a href="#">Generuj</td>
                     <td class="custom-td"><select class="status-change">
                     <option value=${order.status} disabled selected>Wybierz</option>
                     <option value="zrealizowane">Zrealizowane</option>
                     <option value="oczekujace">Oczekujace</option>
                     </select></td>
+                    <td><input disabled type="text" placeholder="${order.trackingNumber}" ><span style="display: none;">${order.trackingNumber}</span></td>
                     <td class="center-align"><label>
                     <input class="delete-order-check" type="checkbox" /><span></span>
                     </label></td>
@@ -120,50 +120,53 @@ let setupAdminOrders = function(ordersData, usersData) {
 
                 //set up order details
                 let individualOrder =`
-                <div id="${i}" class="section container order-details">
+                <div id="${i}" class="section container order-details ">
                     <div class="row">
                     <div class="row valign-wrapper">
                         <h5 class="col s8 m10">Szczegoly zamowienia</h5>
                         <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">POWROT<i class="material-icons left">navigate_before</i> </button>
                     </div>
                     </div>
-                    <div class="row">
+                    <div class="row center-align">
                     <h6>Nadawca</h6>
-                    <p class="grey-text">${user.firstName} ${user.lastName}<br>
-                    ${user.tel}<br>
-                    ${user.email}<br>
-                    Data zlozenia: ${order.dateCreated.toDate().toString().slice(0,24)} 
+                    <p class="grey-text"><span class="blue-grey-text text-darken-2">Imie i Nazwisko:</span> ${user.firstName} ${user.lastName}<br>
+                    <span class="blue-grey-text text-darken-2">Numer Id:</span> ${user.userId}<br>
+                    <span class="blue-grey-text text-darken-2">Numer tel:</span> ${user.tel}<br>
+                    <span class="blue-grey-text text-darken-2">Email:</span> ${user.email}<br>
+                    <span class="blue-grey-text text-darken-2">Data zlozenia:</span> ${order.dateCreated.toDate().toString().slice(0,24)} 
                     </p>
                     </div>
-                    <div class="row">
+                    <div class="row center-align">
                     <h6>Odbiorca</h6>
-                    <p class="grey-text">${order.firstName} ${order.lastName}<br>
-                    ${order.tel}<br>
-                    ${order.email}<br>  
+                    <p class="grey-text "><span class="blue-grey-text text-darken-2">Imie i Nazwisko:</span> ${order.firstName} ${order.lastName}<br>
+                    <span class="blue-grey-text text-darken-2">Numer tel:</span> ${order.tel}<br>
+                    <span class="blue-grey-text text-darken-2">Email:</span> ${order.email}<br>  
                     </p>
                     </div>
-                    <div class="row">
+                    <div class="row center-align">
                     <h6>Adres dostawy</h6>
-                    <p class="grey-text">${order.street} ${order.streetNumber} / ${order.apartment}<br>
-                        ${order.postCode} ${order.town}<br>
-                        ${order.deliveryCountry}
+                    <p class="grey-text "><span class="blue-grey-text text-darken-2">Ulica:</span> ${order.street} ${order.streetNumber} / ${order.apartment}<br>
+                    <span class="blue-grey-text text-darken-2">Kod pocztowy:</span> ${order.postCode}<br> 
+                    <span class="blue-grey-text text-darken-2">Miasto:</span> ${order.town}<br>
+                    <span class="blue-grey-text text-darken-2">Kraj dostarczenia:</span> ${order.deliveryCountry}
                     </p>
                     </div>
-                    <div class="row">
+                    <div class="row center-align">
                     <h6>Przesylka</h6>
-                    <p class="grey-text">Opis: ${order.description}<br>
-                    Numer zlecenia: <br>
-                    Numer SKU: ${order.sku}
+                    <p class="grey-text "><span class="blue-grey-text text-darken-2">Opis:</span> ${order.description}<br>
+                    <span class="blue-grey-text text-darken-2">Numer zlecenia:</span> <br>
+                    <span class="blue-grey-text text-darken-2">Numer SKU:</span> ${order.sku}<br>
                     </p>
                     </div>
-                    <div class="row">
+                    <div class="row center-align">
                     <h6>Uwagi</h6>
                     <p class="grey-text">${order.comments}</p>
                     </div>
-                    <div class="row">
-                    <h6>Status</h6>
+                    <div class="row center-align">
+                    <h6>Zlecenie</h6>
                     <p class="grey-text">
-                        ${order.status}
+                    <span class="blue-grey-text text-darken-2">Status:</span> ${order.status}<br>
+                    <span class="blue-grey-text text-darken-2">Numer do sledzenia przesylki:</span> ${order.trackingNumber}    
                     </p>
                     </div>
                 </div>
@@ -244,7 +247,7 @@ enableSaveChangesBtn();
             function orderSent() {
             document.getElementById("order-sent").style.display = "block";
             document.getElementById("send-parcel-form").style.display = "none";
-            document.getElementById("orders-list-user").style.display = "none";
+            document.getElementById("orders-list-admin").style.display = "none";
             document.getElementById("welcome-message").style.display = "none";
             };
     
@@ -275,7 +278,8 @@ enableSaveChangesBtn();
                         termsAccepted: termsAccepted,
                         status: 'oczekujace',
                         userId: userId,
-                        dateCreated: dateCreated
+                        dateCreated: dateCreated,
+                        trackingNumber: ''
                     })
                     .then(function(docRef) {
                         console.log("Document written with ID: ", docRef.id);
@@ -324,10 +328,24 @@ function saveChangesToDatabase() {
         document.querySelectorAll('.status-change').forEach(selectElement => {
             //get value of each order status from select element
             let status = selectElement.options[selectElement.selectedIndex].value;
-            //get of an order to be updated that is stored as tabe row id for that order
+            //get tracking number of an order that admin added
+            let trackingNumber = selectElement.parentElement.parentElement.nextElementSibling.firstElementChild;
+            //get id of an order to be updated that is stored as tabe row id for that order
             let orderToBeUpdated = selectElement.parentElement.parentElement.parentElement.getAttribute('id');
-            //define operation we want to execute and save it to the batch like this "batch.update(collection.doc('name'), {key: value}"   
+            //update order status
             updateBatch.update(ordersRef.doc(orderToBeUpdated), {'status': status});
+
+            //if status value is "oczekujace" tracking number has to be updated to empty string in the database
+            if (status === 'oczekujace') {
+                updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': ''});
+            }
+
+            
+            //only if tracking number is empty string update tracking number so that we do not overwrite existing numbers
+            if(trackingNumber.nextElementSibling.innerHTML =='') {
+                updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': trackingNumber.value}); 
+            }
+
         })
 
         //SECOND Commit update batch to firestore
@@ -392,18 +410,21 @@ function manipulateOrders(){
 
 
 
-// enable save button when status of the order changes or delete checkbox checked
+// add event listener to enable save button when status of the order changes or delete checkbox checked
 function enableSaveChangesBtn() {
     Array.from(document.getElementsByClassName('status-change')).forEach(item => {
-        item.addEventListener('change', displaySaveBtn);
+        item.addEventListener('change', reactToChanges);
     });
     Array.from(document.getElementsByClassName('delete-order-check')).forEach(item => {
-        item.addEventListener('change', displaySaveBtn);
+        item.addEventListener('change', reactToChanges);
     });
 }    
-//display save changes button    
-function displaySaveBtn() {
+//react to changes admin triggered in orders list  
+function reactToChanges(event) {
+    //display save changes btn
     document.getElementById('save-order-changes-admin').style.display = 'inline-block';
+    //enable trackin number input field
+    event.target.parentElement.parentElement.nextElementSibling.firstElementChild.disabled = false;
 };
 
 
