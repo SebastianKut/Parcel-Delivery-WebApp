@@ -106,9 +106,10 @@
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="tel" type="tel" class="validate" required>
-                          <label for="tel">Numer telefonu <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wprowadz poprawny numer" data-success=""></span>
+                          <input id="tel" type="tel" class="validate" pattern="^(\+\d{1,3}[- ]?)?\d{9,10}$" title="country code with + and 9 or 10 digit number" required>
+                          <small>Format: +48 123456789</small>
+                          <label for="tel">Numer telefonu komorkowego <span class="asterix">*</span></label>
+                          <span class="helper-text" data-error="Wprowadz poprawny numer z kodem kraju poprzedzonym znakiem +" data-success=""></span>
                         </div>
                       </div>
                       <div class="row">
@@ -154,9 +155,10 @@
                       </div>
                       <div class="row">
                         <div class="input-field col m2 s4">
-                          <input id="postal-code"  type="text" class="validate" maxlength="6" required>
+                          <input id="postal-code"  type="text" class="validate" minlength="5" maxlength="7" required>
+                          <small>Wprowadz kod bez spacji</small>
                           <label for="postal-code">Kod pocztowy <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wprowadz 5-cyfrowy numer w formacie 00-000" data-success=""></span>
+                          <span class="helper-text" data-error="Wprowadz prawidlowy kod pocztowy kraju docelowego" data-success=""></span>
                         </div>
                       </div>
                       <div class="row">
