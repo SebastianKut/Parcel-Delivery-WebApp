@@ -54,13 +54,14 @@ function checkAdminRights(user) {
           if(doc.id == userId && doc.data().isAdmin == true) {
               //show admin content
             document.querySelector('#admin-content').style.display = 'flex';
-            //setup realtime listener to database so everytime theres a change to database it reflects in the DOM
+            //get snapshot of a database
             //then setup orders list and order details 
-            db.collection('orders').orderBy('dateCreated').onSnapshot(function(snapshot) {
+            db.collection('orders').orderBy('dateCreated').get().then(function(snapshot) {
                const ordersCollection = snapshot.docs;
-               setupAdminOrders(ordersCollection, usersCollection);
+               //setup html with orders dynamically from snapshot
+              setupAdminOrders(ordersCollection, usersCollection);
                //trigger functionalies to manipulate orders
-               manipulateOrders();
+              manipulateOrders();
               
             })
           } 
@@ -352,7 +353,9 @@ function saveChangesToDatabase() {
         updateBatch.commit().then(function() {
             console.log("Document(s) successfully updated!");
             saveChangesBtn.style.display = 'none';
-            alert('Zmiany zapisane pomyslnie');
+            if (confirm("Zmiany zapisane pomyslnie. Wcisnij \"OK\" aby odswiezyc okno przegladarki")){
+                window.location.reload();
+            }
         })
        
     });   

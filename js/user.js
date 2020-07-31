@@ -38,7 +38,7 @@ auth.onAuthStateChanged(user => {
         //display user email address
         displayEmail(user);
         //get data snapashot of orders collection from database
-        db.collection('orders').orderBy('dateCreated').onSnapshot(snapshot => {
+        db.collection('orders').orderBy('dateCreated').get().then(snapshot => {
             //functions that has to run when data was fetched from DB otherwise JS will throw various errors
             setupOrders(snapshot.docs, user);
             manipulateOrders();
@@ -97,40 +97,40 @@ data.forEach(doc => {
             <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">POWROT<i class="material-icons left">navigate_before</i> </button>
         </div>
         </div>
-        <div class="row">
-        <h6>Odbiorca</h6>
-        <p class="grey-text">${order.firstName} ${order.lastName}<br>
-        ${order.tel}<br>
-        ${order.email}<br>  
-        </p>
-        </div>
-        <div class="row">
-        <h6>Adres dostawy</h6>
-        <p class="grey-text">${order.street} ${order.streetNumber} / ${order.apartment}<br>
-            ${order.postCode} ${order.town}<br>
-            ${order.deliveryCountry}
-        </p>
-        </div>
-        <div class="row">
-        <h6>Przesylka</h6>
-        <p class="grey-text">Data zlecenia: ${order.dateCreated.toDate().toString().slice(4,15)}<br>
-        Opis: ${order.description}<br>
-        Numer SKU: ${order.sku}<br>
-        </p>
-        </div>
-        <div class="row">
-        <h6>Uwagi</h6>
-        <p class="grey-text">${order.comments}</p>
-        </div>
-        <div class="row">
-        <h6>Status</h6>
-        <p class="grey-text">
-            ${order.status}<br>
-            Numer do sledzenia przesylki: ${order.trackingNumber}
-        </p>
-
-        </div>
-    </div>
+        <div class="row center-align">
+                    <h6>Odbiorca</h6>
+                    <p class="grey-text "><span class="blue-grey-text text-darken-2">Imie i Nazwisko:</span> ${order.firstName} ${order.lastName}<br>
+                    <span class="blue-grey-text text-darken-2">Numer tel:</span> ${order.tel}<br>
+                    <span class="blue-grey-text text-darken-2">Email:</span> ${order.email}<br>  
+                    </p>
+                    </div>
+                    <div class="row center-align">
+                    <h6>Adres dostawy</h6>
+                    <p class="grey-text "><span class="blue-grey-text text-darken-2">Ulica:</span> ${order.street} ${order.streetNumber} / ${order.apartment}<br>
+                    <span class="blue-grey-text text-darken-2">Kod pocztowy:</span> ${order.postCode}<br> 
+                    <span class="blue-grey-text text-darken-2">Miasto:</span> ${order.town}<br>
+                    <span class="blue-grey-text text-darken-2">Kraj dostarczenia:</span> ${order.deliveryCountry}
+                    </p>
+                    </div>
+                    <div class="row center-align">
+                    <h6>Przesylka</h6>
+                    <p class="grey-text "><span class="blue-grey-text text-darken-2">Opis:</span> ${order.description}<br>
+                    <span class="blue-grey-text text-darken-2">Numer zlecenia:</span> <br>
+                    <span class="blue-grey-text text-darken-2">Numer SKU:</span> ${order.sku}<br>
+                    </p>
+                    </div>
+                    <div class="row center-align">
+                    <h6>Uwagi</h6>
+                    <p class="grey-text">${order.comments}</p>
+                    </div>
+                    <div class="row center-align">
+                    <h6>Zlecenie</h6>
+                    <p class="grey-text">
+                    <span class="blue-grey-text text-darken-2">Status:</span> ${order.status}<br>
+                    <span class="blue-grey-text text-darken-2">Numer do sledzenia przesylki:</span> ${order.trackingNumber}    
+                    </p>
+                    </div>
+                </div>
     `; 
     orderContent += individualOrder;
 //increment i for the next order
