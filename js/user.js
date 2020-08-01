@@ -216,6 +216,9 @@ function formSubmission(e){
         document.getElementById("send-parcel-form").style.display = "none";
         document.getElementById("orders-list-user").style.display = "none";
         document.getElementById("welcome-message").style.display = "none";
+        setTimeout(function(){
+            window.location.reload();
+        }, 5000)
         };
 
 // Save order to firestore Orders Collection
@@ -368,13 +371,19 @@ let goBackButton = document.querySelectorAll(".go-back-btn");
 //DISPLAY USER EMAIL AND UNIQUE ID
 function displayEmail(user) {
     let userInfo = document.getElementById('user-info');
-    let html =`
-    <li class="bold waves-effect"><i class="material-icons left amber-text text-accent-2 medium">laptop_mac</i></li>
-  <li><p class="teal-text">${user.email}</p></li>
-  <li><p class="teal-text">UNIKALNY NR ID:</p></li>
-  <li><p class="teal-text">${user.uid}</p></li>
+    let userInfoModal = document.getElementById('userInfoContent');
+    let userInfoHtml =`
+    <li class="bold waves-effect"><i class="material-icons left amber-text text-accent-2 medium">verified_user</i></li>
+    <h5>WITAMY W GLOBAL</h5>
+    <li><p class="teal-text">${user.email}</p></li>
     `;
-    userInfo.innerHTML = html;
+    let userInfoModalHtml = `
+    <h4 class="center-align">Informacje o koncie</h4>
+    <p class="teal-text"><span class="grey-text">Zalogowany jako: </span>${user.email}</p>
+    <p class="teal-text"><span class="grey-text">Unikalne ID: </span>${user.uid}</p>
+    `;
+    userInfo.innerHTML = userInfoHtml;
+    userInfoModal.innerHTML = userInfoModalHtml
 }
 
 

@@ -250,6 +250,9 @@ enableSaveChangesBtn();
             document.getElementById("send-parcel-form").style.display = "none";
             document.getElementById("orders-list-admin").style.display = "none";
             document.getElementById("welcome-message").style.display = "none";
+            setTimeout(function(){
+                window.location.reload();
+            }, 5000)
             };
     
     // Save order to firestore Orders Collection
@@ -481,18 +484,8 @@ function filterItems(event){
     let allOrders = document.getElementsByClassName('order-wrapper');
     console.log(allOrders[1].children[4].textContent);
 
-    // helper function to compare senders 
-    // function compareSenders(a, b) {
-    //     if (a.firstElementChild.firstElementChild.textContent > b.firstElementChild.firstElementChild.textContent) return 1;
-    //     if (b.firstElementChild.firstElementChild.textContent > a.firstElementChild.firstElementChild.textContent) return -1;
-    //     return 0;
-    //   } 
-    // // helper function to compare receivers
-    // function compareReceivers(a, b) {
-    //     if (a.children[4].textContent > b.children[4].textContent) return 1;
-    //     if (b.children[4].textContent > a.children[4].textContent) return -1;
-    //     return 0;
-    // } 
+    //On big screens display table row
+    if (window.innerWidth > 992) {
 
         //show all
         if (searchedOrder === 'all') {
@@ -504,14 +497,39 @@ function filterItems(event){
         //filter by inprogress and completed
         if (searchedOrder === 'oczekujace' || searchedOrder === 'zrealizowane') {
             Array.from(allOrders).forEach(order => {
+            
                 if (order.children[5].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
                     order.style.display = 'table-row';
                 } else {
                     order.style.display = 'none';
                 };
+            
+            });
+        };   
+        
+    //On mobile screens display inline-block because of responsive table
+    } else {
+
+        //show all
+        if (searchedOrder === 'all') {
+            Array.from(allOrders).forEach(order => {
+                console.log(searchedOrder);
+                order.style.display = 'inline-block';
+            })
+        } 
+        //filter by inprogress and completed
+        if (searchedOrder === 'oczekujace' || searchedOrder === 'zrealizowane') {
+            Array.from(allOrders).forEach(order => {
+            
+                if (order.children[5].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
+                    order.style.display = 'inline-block';
+                } else {
+                    order.style.display = 'none';
+                };
+            
             });
         };     
-
+    }
 }
 
 //find orders by clients name

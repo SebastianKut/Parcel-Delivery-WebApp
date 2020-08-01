@@ -63,8 +63,7 @@
         <ul>
           <li><a href="user.html" class="waves-effect active white-text">Zmien haslo<i class="material-icons white-text">web</i></a></li>
           <li><a href="user.html" class="waves-effect white-text">Zmien email<i class="material-icons white-text">list</i></a></li>
-          <li><a href="user.html" class="waves-effect white-text">Zrob kupe<i class="material-icons white-text">dashboard</i></a></li>
-          <li><a href="user.html" class="waves-effect white-text">Wez sie do roboty<i class="material-icons white-text">chat</i></a></li>
+          <li><a href="#userInfoModal" class="waves-effect white-text modal-trigger">Numer Id<i class="material-icons white-text">fingerprint</i></a></li>
         </ul>
       </div>
     </li>
@@ -72,6 +71,17 @@
    <li><div class="divider grey"></div></li>
 </ul> 
 </header>
+
+<!--User Info Modal-->
+<div id="userInfoModal" class="modal">
+  <div id="userInfoContent" class="modal-content center-align">
+    
+    
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Zamknij</a>
+  </div>
+</div>
 
   <!--MAIN SECTION-->
  <main class="custom-margin-left">
@@ -271,7 +281,7 @@
  <!--Orders List-->
 <div id="orders-list-user" class="section container">
   <div class="row">
-    <div class="row valign-wrapper">
+    <div id="filter-orders" class="row valign-wrapper">
 
       <h5 class="col s8 m10">Twoje zlecenia</h5>
      
@@ -347,7 +357,8 @@
 <!--Order sent message-->
 <div id="order-sent" class="section container">
   <h4>Twoje zlecenie zostalo wyslane.</h4>
-  <p class="grey-text">Prosimy o dokonanie przelewu w ciagu jednego dnia roboczego</p>
+  <p class="grey-text">Prosimy o dokonanie przelewu w ciagu jednego dnia roboczego<br>
+  <a href="user.html">Kliknij</a> jesli nie nastapi przekierowanie do strony glownej w ciagu 5 sekund</p>
   </div>
 
 <!--Order details-->
