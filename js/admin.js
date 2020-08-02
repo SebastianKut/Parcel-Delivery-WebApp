@@ -56,7 +56,9 @@ function checkAdminRights(user) {
             document.querySelector('#admin-content').style.display = 'flex';
             //get snapshot of a database
             //then setup orders list and order details 
-            db.collection('orders').orderBy('dateCreated').get().then(function(snapshot) {
+            //Using get method instead of onSnapshot (realtime listener) to save read counts from firestore
+            //as well as making save changes button work properly (otherwise )
+            db.collection('orders').orderBy('dateCreated').onSnapshot(function(snapshot) {
                const ordersCollection = snapshot.docs;
                //setup html with orders dynamically from snapshot
               setupAdminOrders(ordersCollection, usersCollection);
@@ -96,6 +98,7 @@ let setupAdminOrders = function(ordersData, usersData) {
             let userIdFromUser = usersDoc.id;
             //when userId matches set up table row with correct sender and reciver etc
             if (userIdFromOrder === userIdFromUser) {
+                console.log('ids matched');
                 //setup table row with order
                 let tr =`
                 <tr id="${orderId}" class="order-wrapper">
@@ -176,6 +179,8 @@ let setupAdminOrders = function(ordersData, usersData) {
 
 
 
+            } else {
+                console.log ('cannot match IDs');
             }
         })
     //increment i to be used as href between order from the list and this order details    
@@ -310,58 +315,147 @@ saveChangesBtn.addEventListener('click', saveChangesToDatabase);
 function saveChangesToDatabase() {
     //create seperate batches of operations to be commited to database
     //so we do not try to add update and delete operation on the same order
-    let deleteBatch = db.batch();
+    //let deleteBatch = db.batch();
     let updateBatch = db.batch();
     let ordersRef = db.collection('orders');
+//-----------------------------------------------------USING ONSNAPSHOT AND PASSING UPDATE OPERATIONS BEFORE DELETE
+document.querySelectorAll('.status-change').forEach(selectElement => {
+    //get value of each order status from select element
+    let status = selectElement.options[selectElement.selectedIndex].value;
+    //get tracking number of an order that admin added
+    let trackingNumber = selectElement.parentElement.parentElement.nextElementSibling.firstElementChild;
+    //get id of an order to be updated that is stored as tabe row id for that order
+    let orderToBeUpdated = selectElement.parentElement.parentElement.parentElement.getAttribute('id');
+    //update order status
+    updateBatch.update(ordersRef.doc(orderToBeUpdated), {'status': status});
 
-    //check all checkboxes for orders to be seleted and add delete operations to deleteBatch
-    document.querySelectorAll('.delete-order-check').forEach(checkbox => {
-        if (checkbox.checked) {
-            let orderToBeDeleted = checkbox.parentElement.parentElement.parentElement.getAttribute('id');
-            //add order delete to the batch
-            deleteBatch.delete(ordersRef.doc(orderToBeDeleted));
-        }
-    }); 
+    //if status value is "oczekujace" tracking number has to be updated to empty string in the database
+    if (status === 'oczekujace') {
+        updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': ''});
+    }
 
-    //FIRST Commit delete batch to firestore database
-    deleteBatch.commit().then(function() {
-        console.log("Document(s) successfully deleted!");
-        //Because we have onSnapshot function changing DOM structure everytime theres a change to database
-        //theres no need for getting snapshot again to make sure deleted DOM elements are no longer checked for status change.
-        //Next check all orders statuses and add update operation to commit batch
-        document.querySelectorAll('.status-change').forEach(selectElement => {
-            //get value of each order status from select element
-            let status = selectElement.options[selectElement.selectedIndex].value;
-            //get tracking number of an order that admin added
-            let trackingNumber = selectElement.parentElement.parentElement.nextElementSibling.firstElementChild;
-            //get id of an order to be updated that is stored as tabe row id for that order
-            let orderToBeUpdated = selectElement.parentElement.parentElement.parentElement.getAttribute('id');
-            //update order status
-            updateBatch.update(ordersRef.doc(orderToBeUpdated), {'status': status});
+    
+    //only if tracking number is empty string update tracking number so that we do not overwrite existing numbers
+    if(trackingNumber.nextElementSibling.innerHTML =='') {
+        updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': trackingNumber.value}); 
+    }
 
-            //if status value is "oczekujace" tracking number has to be updated to empty string in the database
-            if (status === 'oczekujace') {
-                updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': ''});
-            }
+});
+
+ //check all checkboxes for orders to be seleted and add delete operations to deleteBatch
+ document.querySelectorAll('.delete-order-check').forEach(checkbox => {
+    if (checkbox.checked) {
+        let orderToBeDeleted = checkbox.parentElement.parentElement.parentElement.getAttribute('id');
+        //add order delete to the batch
+       updateBatch.delete(ordersRef.doc(orderToBeDeleted));
+    }
+}); 
+
+updateBatch.commit().then(function() {
+    console.log("Document(s) successfully updated!");
+    saveChangesBtn.style.display = 'none';
+    // if (confirm("Zmiany zapisane pomyslnie. Wcisnij \"OK\" aby odswiezyc okno przegladarki")){
+    //     window.location.reload();
+    // }
+}); 
+
+
+
+//-----------------------------------------------------CHANGE THE ORDER 
+// document.querySelectorAll('.status-change').forEach(selectElement => {
+//     //get value of each order status from select element
+//     let status = selectElement.options[selectElement.selectedIndex].value;
+//     //get tracking number of an order that admin added
+//     let trackingNumber = selectElement.parentElement.parentElement.nextElementSibling.firstElementChild;
+//     //get id of an order to be updated that is stored as tabe row id for that order
+//     let orderToBeUpdated = selectElement.parentElement.parentElement.parentElement.getAttribute('id');
+//     //update order status
+//     updateBatch.update(ordersRef.doc(orderToBeUpdated), {'status': status});
+
+//     //if status value is "oczekujace" tracking number has to be updated to empty string in the database
+//     if (status === 'oczekujace') {
+//         updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': ''});
+//     }
+
+    
+//     //only if tracking number is empty string update tracking number so that we do not overwrite existing numbers
+//     if(trackingNumber.nextElementSibling.innerHTML =='') {
+//         updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': trackingNumber.value}); 
+//     }
+
+// });
+
+// //SECOND Commit update batch to firestore
+// updateBatch.commit().then(function() {
+//     //check all checkboxes for orders to be seleted and add delete operations to deleteBatch
+//     document.querySelectorAll('.delete-order-check').forEach(checkbox => {
+//         if (checkbox.checked) {
+//             let orderToBeDeleted = checkbox.parentElement.parentElement.parentElement.getAttribute('id');
+//             //add order delete to the batch
+//             deleteBatch.delete(ordersRef.doc(orderToBeDeleted));
+//         }
+//     }); 
+//         //SECOND Commit update batch to firestore
+//                 deleteBatch.commit().then(function() {
+//                     console.log("Document(s) successfully updated!");
+//                     saveChangesBtn.style.display = 'none';
+//                     if (confirm("Zmiany zapisane pomyslnie. Wcisnij \"OK\" aby odswiezyc okno przegladarki")){
+//                         window.location.reload();
+//                     }
+//                 }); 
+
+// }); 
+
+
+//----------------------------------------------------------------ORIGINAL (resets next operation so changes dnt save properly)
+
+    // //check all checkboxes for orders to be seleted and add delete operations to deleteBatch
+    // document.querySelectorAll('.delete-order-check').forEach(checkbox => {
+    //     if (checkbox.checked) {
+    //         let orderToBeDeleted = checkbox.parentElement.parentElement.parentElement.getAttribute('id');
+    //         //add order delete to the batch
+    //         deleteBatch.delete(ordersRef.doc(orderToBeDeleted));
+    //     }
+    // }); 
+
+    // //FIRST Commit delete batch to firestore database
+    // deleteBatch.commit().then(function() {
+    //     console.log("Document(s) successfully deleted!");
+    //     //Because we have onSnapshot function changing DOM structure everytime theres a change to database
+    //     //theres no need for getting snapshot again to make sure deleted DOM elements are no longer checked for status change.
+    //     //Next check all orders statuses and add update operation to commit batch
+    //     document.querySelectorAll('.status-change').forEach(selectElement => {
+    //         //get value of each order status from select element
+    //         let status = selectElement.options[selectElement.selectedIndex].value;
+    //         //get tracking number of an order that admin added
+    //         let trackingNumber = selectElement.parentElement.parentElement.nextElementSibling.firstElementChild;
+    //         //get id of an order to be updated that is stored as tabe row id for that order
+    //         let orderToBeUpdated = selectElement.parentElement.parentElement.parentElement.getAttribute('id');
+    //         //update order status
+    //         updateBatch.update(ordersRef.doc(orderToBeUpdated), {'status': status});
+
+    //         //if status value is "oczekujace" tracking number has to be updated to empty string in the database
+    //         if (status === 'oczekujace') {
+    //             updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': ''});
+    //         }
 
             
-            //only if tracking number is empty string update tracking number so that we do not overwrite existing numbers
-            if(trackingNumber.nextElementSibling.innerHTML =='') {
-                updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': trackingNumber.value}); 
-            }
+    //         //only if tracking number is empty string update tracking number so that we do not overwrite existing numbers
+    //         if(trackingNumber.nextElementSibling.innerHTML =='') {
+    //             updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': trackingNumber.value}); 
+    //         }
 
-        })
+    //     })
 
-        //SECOND Commit update batch to firestore
-        updateBatch.commit().then(function() {
-            console.log("Document(s) successfully updated!");
-            saveChangesBtn.style.display = 'none';
-            if (confirm("Zmiany zapisane pomyslnie. Wcisnij \"OK\" aby odswiezyc okno przegladarki")){
-                window.location.reload();
-            }
-        })
-       
-    });   
+    //     //SECOND Commit update batch to firestore
+    //     updateBatch.commit().then(function() {
+    //         console.log("Document(s) successfully updated!");
+    //         saveChangesBtn.style.display = 'none';
+    //         if (confirm("Zmiany zapisane pomyslnie. Wcisnij \"OK\" aby odswiezyc okno przegladarki")){
+    //             window.location.reload();
+    //         }
+    //     }); 
+    // });   
 }
 
 //---------------------------------------------------------------------------------
