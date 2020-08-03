@@ -113,6 +113,7 @@ function setupUI(user) {
 if (user) {
 document.querySelectorAll(".logged-in").forEach(item => {item.style.display = 'block'});
 document.querySelectorAll(".logged-out").forEach(item => {item.style.display = 'none'});
+setupHrefForDashboard(user);
 } else {
   document.querySelectorAll(".logged-in").forEach(item => {item.style.display = 'none'});
   document.querySelectorAll(".logged-out").forEach(item => {item.style.display = 'block'});
@@ -144,6 +145,21 @@ document.querySelectorAll(".logged-out").forEach(item => {item.style.display = '
 //       })
 //   })
 // }
+
+//DIRECT TO CORRECT PAGE WHEN USER PANEL CLICKED IN THE NAV BAR
+function setupHrefForDashboard(user){
+let dashboardLink = document.getElementById('dashboard');
+//check if user admin without calling firestore to save READS - check specific ADMIN ID
+//this is for DEMO only and isnt safe to do on the frontEnd
+if (user.uid === 'iSgSsg8TatUsKPEVen8nBZK55hv1') {
+  dashboardLink.setAttribute('href', 'admin.html');
+} else {
+  dashboardLink.setAttribute('href', 'user.html');
+}
+
+};
+
+
 
 
 //DISABLE LOGIN MODAL AND GO STRAIGHT TO USERS PANEL WHEN USER IS LOGGED IN

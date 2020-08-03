@@ -38,7 +38,7 @@ auth.onAuthStateChanged(user => {
         //display user email address
         displayEmail(user);
         //get data snapashot of orders collection from database
-        db.collection('orders').orderBy('dateCreated').get().then(snapshot => {
+        db.collection('orders').orderBy('dateCreated').onSnapshot(snapshot => {
             //functions that has to run when data was fetched from DB otherwise JS will throw various errors
             setupOrders(snapshot.docs, user);
             manipulateOrders();
@@ -90,11 +90,11 @@ data.forEach(doc => {
 
     //create order details and append to the DOM
     let individualOrder =`
-    <div id="${i}" class="section container order-details">
-        <div class="row">
+    <div id="${i}" class="section container order-details z-depth-1">
+        <div class="row custom-row">
         <div class="row valign-wrapper">
             <h5 class="col s8 m10">Szczegoly zamowienia</h5>
-            <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">POWROT<i class="material-icons left">navigate_before</i> </button>
+            <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">WROC<i class="material-icons left">navigate_before</i> </button>
         </div>
         </div>
         <div class="row center-align">
@@ -216,9 +216,9 @@ function formSubmission(e){
         document.getElementById("send-parcel-form").style.display = "none";
         document.getElementById("orders-list-user").style.display = "none";
         document.getElementById("welcome-message").style.display = "none";
-        setTimeout(function(){
-            window.location.reload();
-        }, 5000)
+        // setTimeout(function(){
+        //     window.location.reload();
+        // }, 5000)
         };
 
 // Save order to firestore Orders Collection
