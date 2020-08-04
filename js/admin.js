@@ -255,9 +255,6 @@ enableSaveChangesBtn();
             document.getElementById("send-parcel-form").style.display = "none";
             document.getElementById("orders-list-admin").style.display = "none";
             document.getElementById("welcome-message").style.display = "none";
-            setTimeout(function(){
-                window.location.reload();
-            }, 5000)
             };
     
     // Save order to firestore Orders Collection

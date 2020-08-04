@@ -216,9 +216,6 @@ function formSubmission(e){
         document.getElementById("send-parcel-form").style.display = "none";
         document.getElementById("orders-list-user").style.display = "none";
         document.getElementById("welcome-message").style.display = "none";
-        // setTimeout(function(){
-        //     window.location.reload();
-        // }, 5000)
         };
 
 // Save order to firestore Orders Collection
@@ -370,8 +367,13 @@ let goBackButton = document.querySelectorAll(".go-back-btn");
 
 //DISPLAY USER EMAIL AND UNIQUE ID
 function displayEmail(user) {
+
+    db.collection('users').doc(user.uid).get().then(snapshot => {
+    let userData = snapshot.data();
     let userInfo = document.getElementById('user-info');
     let userInfoModal = document.getElementById('userInfoContent');
+    let userWelcomeMessage = document.getElementById('welcome-message');
+
     let userInfoHtml =`
     <li class="bold waves-effect"><i class="material-icons amber-text text-accent-2 medium">verified_user</i></li>
     <h5>WITAMY W GLOBAL</h5>
@@ -379,13 +381,24 @@ function displayEmail(user) {
     `;
     let userInfoModalHtml = `
     <div id="accountInfoTitle" class="row z-depth-1">
-    <h4 class="center-align">Informacje o koncie</h4>
+    <h4 class="center-align">Twoje dane</h4>
     </div>
+    <p class="teal-text"><span class="grey-text">Imie i nazwisko: </span><br>${userData.firstName} ${userData.lastName}</p>
     <p class="teal-text"><span class="grey-text">Zalogowany jako: </span><br>${user.email}</p>
     <p class="teal-text"><span class="grey-text">Unikalny nr ID: </span><br>${user.uid}</p>
     `;
+    let userWelcomeMessageHtml =`
+    <h4>Witaj ${userData.firstName},</h4>
+    <p class="grey-text">Kliknij w przycisk "NOWE ZLECENIE" aby wyslac paczke, nastepnie wypelnij wszystkie wymagane pola. 
+    <br>Uwaga! Nie realizujemy zlecen bez wczesniejszej zaplaty.</p>
+    `;
+
     userInfo.innerHTML = userInfoHtml;
-    userInfoModal.innerHTML = userInfoModalHtml
+    userInfoModal.innerHTML = userInfoModalHtml;
+    userWelcomeMessage.innerHTML = userWelcomeMessageHtml;
+    });
+
+    
 }
 
 

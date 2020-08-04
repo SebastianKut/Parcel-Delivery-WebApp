@@ -10,12 +10,10 @@ main{
   flex: 1 0 auto;
 }
  
-
 html{
   font-family: 'Catamaran', sans-serif;
   scroll-behavior: smooth;
 }
-
 
 /*CUSTOM CLASSES*/
 
@@ -198,8 +196,6 @@ footer.page-footer{
   font-family: 'Old Standard TT', serif;
 }
 
-
-
 .parallax-container.custom-full-screen{
   height: 100vh;
 }
@@ -215,8 +211,6 @@ footer.page-footer{
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button{
