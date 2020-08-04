@@ -1,510 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>Global - Logistyka E-commerce</title>
+    
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet">
+    <link href="css/vendors/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" 
+    integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+	</head>
+	<body id="admin-content">
 
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="robots" content="noindex, nofollow">
-  <title>Global - Logistyka E-commerce</title>
-
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet"> 
-  <link href="css/vendors/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
-</head>
-<body id="admin-content">
- <!--Navigation-->
-<header>
-
- <!--Navbar--> 
- <div class="navbar-fixed z-depth-1 ">
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper custom-margin-left black-text">
-      <a class="brand-logo center" href="index.html"><span><i class="small material-icons amber-text text-accent-2">language</i></span>Gl<span class="amber-text text-accent-2">o</span>bal</a>
-      <ul class="right hide-on-med-and-down "> 
-        <li><div class="nav-wrapper">
-          <form id="search-box">
-            <div class="input-field">
-              <input id="search-box-input" type="search" class="custom-placeholder" placeholder="Znajdz wg klienta">
-              <label class="label-icon" for="search-box"><i class="material-icons grey-text">search</i></label>
-              <i id="reset-search-box" class="material-icons">close</i>
+    <header>
+      <!--MAIN NAVBAR-->
+      <div class="navbar-fixed z-depth-1 ">
+        <nav class="white" role="navigation">
+          <div class="nav-wrapper custom-margin-left black-text">
+            <a class="brand-logo center" href="index.html"><span><i class="small material-icons amber-text text-accent-2">language</i></span>
+              Gl<span class="amber-text text-accent-2">o</span>bal</a>
+            <ul class="right hide-on-med-and-down ">
+              <li>
+                <div class="nav-wrapper">
+                  <form id="search-box">
+                    <div class="input-field">
+                      <input id="search-box-input" type="search" class="custom-placeholder" placeholder="Znajdz wg klienta">
+                        <label class="label-icon" for="search-box"><i class="material-icons grey-text">search</i></label>
+                        <i id="reset-search-box" class="material-icons">close</i>
+                    </div>
+                  </form>
+                </div>
+              </li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger">
+              <i class="material-icons black-text">menu</i>
+            </a>
+          </div>
+          <div class="progress-bar-container">
+            <div id="progress-bar"></div>
+          </div>
+        </nav>
+      </div>
+      <!--SIDEBAR FIXED ON FULL SCREEN/HIDDEN ON MOBILE-->
+      <ul id="nav-mobile" class="sidenav sidenav-fixed z-depth-2 page-footer blue-grey darken-4 user-nav">
+        <div id="user-info" class="center-align">
+          <li class="bold waves-effect"><i class="material-icons amber-text text-accent-2 medium">verified_user</i></li>
+          <li class="bold waves-effect"><a href="admin.html" class="collapsible-header amber-text text-accent-2"><h4>ADMIN</h4></a></li>
+        </div>
+        <li><div class="divider grey"></div></li>
+        <li class="bold waves-effect"><a id="logout-sidenav" href="#" class="collapsible-header white-text">WYLOGUJ<i class="white-text material-icons chevron">person</i></a></li>
+        <li><div class="divider grey"></div></li>
+        <ul class="collapsible collapsible-accordion ">
+          <li class="bold waves-effect"><a class="collapsible-header white-text">ZLECENIA<i class="white-text material-icons chevron">chevron_left</i></a>
+            <div class="collapsible-body transparent">
+              <ul>
+                <li><a id="new-order-menu-link" href="#!" class="waves-effect active white-text">Dodaj nowe zlecenie<i class="material-icons white-text">web</i></a></li>
+                <li><a id="show-all-orders-admin" href="#!" class="waves-effect white-text">Pokaz zlecenia<i class="material-icons white-text">list</i></a></li>
+              </ul>
             </div>
-          </form>
-        </div></li>
+          </li>
+        </ul>
+        <li><div class="divider grey"></div></li>
+        <ul class="collapsible collapsible-accordion ">
+          <li class="bold waves-effect"><a class="collapsible-header white-text">KONTO<i class="white-text material-icons chevron">chevron_left</i></a>
+            <div class="collapsible-body transparent">
+              <ul>
+                <li><a href="#" class="waves-effect active white-text">Zmien haslo<i class="material-icons white-text">web</i></a></li>
+                <li><a href="#" class="waves-effect white-text">Zmien email<i class="material-icons white-text">list</i></a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <li><div class="divider grey"></div></li>
       </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
-    </div>
-    <div class="progress-bar-container">
-      <div id="progress-bar"></div>
-    </div>
-  </nav>
-</div>
+    </header>
+  
+    <main class="custom-margin-left">
+      
+      <!--SHOW ALL ORDERS BUTTON-->
+      <section class="section center-align">
+        <div class="col l6 s12">
+          <a id="show-all-orders" href="#!" class="btn">
+            <i class="material-icons left">list</i>Pokaz zlecenia
+          </a>
+        </div>
+      </section>
 
-<!--Side nav/user panel-->
-<ul id="nav-mobile" class="sidenav sidenav-fixed z-depth-2 page-footer blue-grey darken-4 user-nav">
-  <div id="user-info" class="center-align">
-  <li class="bold waves-effect"><i class="material-icons left amber-text text-accent-2 medium">verified_user</i></li>
-  <li class="bold waves-effect"><a href="admin.html" class="collapsible-header amber-text text-accent-2"><h4>ADMIN</h4></a></li>
-  </div>
-  <li><div class="divider grey"></div></li>
-  <li class="bold waves-effect"><a id="logout-sidenav" href="#" class="collapsible-header white-text">WYLOGUJ<i class="white-text material-icons chevron">person</i></a></li>
-    <li><div class="divider grey"></div></li>
-   <ul class="collapsible collapsible-accordion ">
-    <li class="bold waves-effect"><a class="collapsible-header white-text">ZLECENIA<i class="white-text material-icons chevron">chevron_left</i></a>
-      <div class="collapsible-body transparent">
-        <ul>
-          <li><a id="new-order-menu-link" href="#!" class="waves-effect active white-text">Dodaj nowe zlecenie<i class="material-icons white-text">web</i></a></li>
-          <li><a id="show-all-orders-admin" href="#!" class="waves-effect white-text">Pokaz zlecenia<i class="material-icons white-text">list</i></a></li>
-        </ul>
-      </div>
-    </li>
-   </ul>
-   <li><div class="divider grey"></div></li>
-   <ul class="collapsible collapsible-accordion ">
-    <li class="bold waves-effect"><a class="collapsible-header white-text">KONTO<i class="white-text material-icons chevron">chevron_left</i></a>
-      <div class="collapsible-body transparent">
-        <ul>
-          <li><a href="#" class="waves-effect active white-text">Zmien haslo<i class="material-icons white-text">web</i></a></li>
-          <li><a href="#" class="waves-effect white-text">Zmien email<i class="material-icons white-text">list</i></a></li>
-        </ul>
-      </div>
-    </li>
-   </ul>
-   <li><div class="divider grey"></div></li>
-</ul> 
-</header>
-
-  <!--MAIN SECTION-->
- <main class="custom-margin-left">
-          
- <!--Show all orders button-->     
-  <div class="section center-align">
-              <div class="col l6 s12"><a id="show-all-orders" href="#!" class="btn"><i class="material-icons left">list</i>Pokaz zlecenia</a></div>
-  </div>
-
-
- <!--Add new order form--> 
-  <div id="send-parcel-form" class="section">         
+      <!--SUBMIT NEW ORDER FORM-->
+      <section id="send-parcel-form" class="section">
         <div class="card-content container">
-         
-      <form id="submitOrderForm" class="col s12">
+          <form id="submitOrderForm" class="col s12">
             <div class="row valign-wrapper">
               <h5 class="col s10 m11">Dodawanie nowego zlecenia dla uzytkownika</h5>
-              <a id="close-form" class="col s2 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
-          </div>
-          <div class="row">
-
-            <div class="col s12">
-              <p class="grey-text">W celu dodania zamowienia dla istniejacego uzytkownika wpisz jego email w polu ponizej. <br>
-              Chcac dodac nowe zamowienie dla uzytkownika nie posiadajacego konta Global wykonaj nastepujace kroki: <br>
-              1) Przejdz do sekcji <a href="register.html" target="_blank">Rejestracja</a>, aby stworzyc nowe konto dla uzytkownika, uzywajac jego adresu Email i domyslnego hasla "1234abcd". <br>
-              2) Dodaj nowe zamowienie z poziomu konta uzytkownika. <br>
-              3) Pamietaj o podaniu uzytkownikowi hasla uzytego do rejestracji jego konta oraz zalec jak najszybsza zmiane hasla po pierwszym zalogowaniu.</p>
+              <a id="close-form" class="col s2 m1 transparent valign-wrapper" href="#">
+                <i class="right-align material-icons black-text">close</i>
+              </a>
             </div>
-            
-          </div>
-          <div class="row valign-wrapper">
-            <h5 class="col s12">Nadawca</h5>
-        </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="sender-id" type="text" class="validate" maxlength="28" required>
-              <label for="sender-id">Id uzytkownika global <span class="asterix">*</span></label>
-              <span class="helper-text" data-error="Wprowadz numer ID nadawcy (klienta global)" data-success=""></span>
+            <div class="row">
+              <div class="col s12">
+                <p class="grey-text">W celu dodania zamowienia dla istniejacego uzytkownika wpisz jego email w polu ponizej. 
+                  <br>Chcac dodac nowe zamowienie dla uzytkownika nie posiadajacego konta Global wykonaj nastepujace kroki: 
+                  <br>1) Przejdz do sekcji <a href="register.html" target="_blank">Rejestracja</a>, 
+                  aby stworzyc nowe konto dla uzytkownika, uzywajac jego adresu Email i domyslnego hasla "1234abcd". 
+                  <br>2) Dodaj nowe zamowienie z poziomu konta uzytkownika.
+                  <br>3) Pamietaj o podaniu uzytkownikowi hasla uzytego do rejestracji jego konta oraz zalec jak najszybsza zmiane hasla po pierwszym zalogowaniu.
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="row valign-wrapper">
-            <h5 class="col s12">Dane odbiorcy</h5>
-          </div>
-                  
-                
-                      <div class="row">
-                        <div class="input-field col s12 l6">
-                          <input id="first-name" type="text" class="validate" required>
-                          <label for="first-name">Imie <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                        </div>
-                        <div class="input-field col s12 l6">
-                          <input id="last-name" type="text" class="validate" required>
-                          <label for="last-name">Nazwisko <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="tel" type="tel" class="validate" pattern="^(\+\d{1,3}[- ]?)?\d{9,10}$" title="country code with + and 9 or 10 digit number" required>
-                          <small>Format: +48 123456789</small>
-                          <label for="tel">Numer telefonu komorkowego <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wprowadz poprawny numer z kodem kraju poprzedzonym znakiem +" data-success=""></span>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="email" type="email" class="validate" required>
-                          <label for="email">Email <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wprowadz poprawny adres email" data-success=""></span>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <h5 class="col s12">Adres dostawy</h5>
-                    </div>
-                    <!--<div id="locationField" class="row">
-                      <div class="col s12">
-                        <label for="autocomplete">Wyszukaj adres<span class="asterix">*</span></label>
-                        <input id="autocomplete"
-                            placeholder="Wpisz adres"
-                             onFocus="geolocate()"
-                             type="text"
-                             required/>
-                      </div>
-                    </div>-->
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="route" type="text" class="validate" required>
-                          <label for="route">Ulica <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="street-number"  type="text" class="validate" required>
-                          <label for="street-number">Numer domu <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="apartment"  type="number" class="validate" >
-                          <label for="apartment">Numer mieszkania</label>
-                          <span class="helper-text" data-error="Wprowadz numer lub zostaw puste" data-success=""></span>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col m2 s4">
-                          <input id="postal-code"  type="text" class="validate" minlength="5" maxlength="7" required>
-                          <small>Wprowadz kod bez spacji</small>
-                          <label for="postal-code">Kod pocztowy <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wprowadz prawidlowy kod pocztowy kraju docelowego" data-success=""></span>
-                        </div>
-                      </div>  
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="locality"  type="text" class="validate" required>
-                          <label for="locality">Miasto <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="administrative-area-level-1" type="text" class="validate" required>
-                          <label for="administrative-area-level-1">Region <span class="asterix">*</span></label>
-                          <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12 m6">
-                          <select id="deliver-to-country" class="icons validate" required>
-                            <option value="" disabled selected>Wybierz kraj</option>
-                            <option value="germany" data-icon="img/germany.png">Niemcy</option>
-                            <option value="uk" data-icon="img/uk.png">Wielka Brytania</option>
-                            <option value="france" data-icon="img/france.png">Francja</option>
-                          </select>
-                          <label for="deliver-to-country">Kraj docelowy <span class="asterix">*</span></label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <h5 class="col s12">Dane przesylki</h5>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input id="description" type="text" class="validate">
-                        <label for="description">Opis paczki (opcjonalnie)</label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s12 l3">
-                        <select id="weight" class="icons validate" required>
-                          <option value="" disabled selected>Wybierz z listy</option>
-                          <option value="1">do 1 kg</option>
-                          <option value="2">do 2 kg</option>
-                          <option value="3">do 5 kg</option>
-                          <option value="3">do 10 kg</option>
-                          <option value="3">do 20 kg</option>
-                        </select>
-                        <label for="weight">Waga <span class="asterix">*</span></label>
-                        <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                      </div>
-                 
-                   
-                      <div class="range-field col s12 l3">
-                        <label for="height">Wysokosc (w cm) <span class="asterix">*</span></label>
-                        <input type="range" id="height" min="0" max="100" class="validate" required/>
-                        <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                      </div>
-                    
-                      <div class="range-field col s12 l3">
-                        <label for="depth">Glebokosc (w cm) <span class="asterix">*</span></label>
-                        <input type="range" id="depth" min="0" max="100" class="validate" required/>
-                        <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                      </div>
-                    
-                      <div class="range-field col s12 l3">
-                        <label for="length">Dlugosc (w cm) <span class="asterix">*</span></label>
-                        <input type="range" id="length" min="0" max="100" class="validate" required/>
-                        <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s12 l6">
-                        <input id="money-value" type="text" class="validate" required>
-                        <label for="money-value">Wartosc (PLN) <span class="asterix">*</span></label>
-                        <span class="helper-text" data-error="Wprowadz wartosc bez nazwy waluty" data-success=""></span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s12 l6">
-                        <input id="sku-number" type="text" class="validate" required>
-                        <label for="sku-number">Numer SKU <span class="asterix">*</span></label>
-                        <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <textarea id="comments" class="materialize-textarea"></textarea>
-                        <label for="comments">Uwagi</label>
-                      </div>
-                    </div>
-                      <p class="col s12">
-                        <label>
-                          <input id="accept-terms" type="checkbox" required/>
-                          <span>Zapoznalem sie z <a href="#">regulaminem </a><span class="asterix">*</span></span>
-                        </label>
-                      </p>
-                      <div class="section center-align">
-                        <button id="order-submit-button" class="btn amber accent-2 black-text waves-effect validate" type="submit">ZAMAWIAM</button>
-                      </div>           
-                </form>
+            <div class="row valign-wrapper">
+              <h5 class="col s12">Nadawca</h5>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="sender-id" type="text" class="validate" maxlength="28" required>
+                <label for="sender-id">Id uzytkownika global <span class="asterix">*</span></label>
+                <span class="helper-text" data-error="Wprowadz numer ID nadawcy (klienta global)" data-success=""></span>
+              </div>
+            </div>
+            <div class="row valign-wrapper">
+              <h5 class="col s12">Dane odbiorcy</h5>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 l6">
+                <input id="first-name" type="text" class="validate" required>
+                  <label for="first-name">Imie <span class="asterix">*</span></label>
+                  <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+              <div class="input-field col s12 l6">
+                  <input id="last-name" type="text" class="validate" required>
+                  <label for="last-name">Nazwisko <span class="asterix">*</span></label>
+                  <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="tel" type="tel" class="validate" pattern="^(\+\d{1,3}[- ]?)?\d{9,10}$" title="country code with + and 9 or 10 digit number" required>
+                  <small>Format: +48 123456789</small>
+                  <label for="tel">Numer telefonu komorkowego 
+                    <span class="asterix">*</span>
+                  </label>
+                  <span class="helper-text" data-error="Wprowadz poprawny numer z kodem kraju poprzedzonym znakiem +" data-success=""></span>
+                </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" type="email" class="validate" required>
+                  <label for="email">Email 
+                    <span class="asterix">*</span>
+                  </label>
+                  <span class="helper-text" data-error="Wprowadz poprawny adres email" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <h5 class="col s12">Adres dostawy</h5>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="route" type="text" class="validate" required>
+                  <label for="route">Ulica 
+                    <span class="asterix">*</span>
+                  </label>
+                  <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="street-number"  type="text" class="validate" required>
+                  <label for="street-number">Numer domu 
+                    <span class="asterix">*</span>
+                  </label>
+                  <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+             </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="apartment"  type="number" class="validate" >
+                  <label for="apartment">Numer mieszkania</label>
+                  <span class="helper-text" data-error="Wprowadz numer lub zostaw puste" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col m2 s4">
+                <input id="postal-code"  type="text" class="validate" minlength="5" maxlength="7" required>
+                  <small>Wprowadz kod bez spacji</small>
+                  <label for="postal-code">Kod pocztowy 
+                    <span class="asterix">*</span>
+                  </label>
+                  <span class="helper-text" data-error="Wprowadz prawidlowy kod pocztowy kraju docelowego" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="locality"  type="text" class="validate" required>
+                  <label for="locality">Miasto 
+                    <span class="asterix">*</span>
+                  </label>
+                  <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                  <input id="administrative-area-level-1" type="text" class="validate" required>
+                    <label for="administrative-area-level-1">Region 
+                      <span class="asterix">*</span>
+                    </label>
+                    <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <select id="deliver-to-country" class="icons validate" required>
+                  <option value="" disabled selected>Wybierz kraj</option>
+                  <option value="germany" data-icon="img/germany.png">Niemcy</option>
+                  <option value="uk" data-icon="img/uk.png">Wielka Brytania</option>
+                  <option value="france" data-icon="img/france.png">Francja</option>
+                </select>
+                <label for="deliver-to-country">Kraj docelowy 
+                  <span class="asterix">*</span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <h5 class="col s12">Dane przesylki</h5>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="description" type="text" class="validate">
+                <label for="description">Opis paczki (opcjonalnie)</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 l3">
+                <select id="weight" class="icons validate" required>
+                  <option value="" disabled selected>Wybierz z listy</option>
+                  <option value="1">do 1 kg</option>
+                  <option value="2">do 2 kg</option>
+                  <option value="3">do 5 kg</option>
+                  <option value="3">do 10 kg</option>
+                  <option value="3">do 20 kg</option>
+                </select>
+                <label for="weight">Waga 
+                  <span class="asterix">*</span>
+                </label>
+                <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+              <div class="range-field col s12 l3">
+                <label for="height">Wysokosc (w cm) 
+                  <span class="asterix">*</span>
+                </label>
+                <input type="range" id="height" min="0" max="100" class="validate" required/>
+                <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+              <div class="range-field col s12 l3">
+                <label for="depth">Glebokosc (w cm) 
+                  <span class="asterix">*</span>
+                </label>
+                <input type="range" id="depth" min="0" max="100" class="validate" required/>
+                <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+              <div class="range-field col s12 l3">
+                <label for="length">Dlugosc (w cm) 
+                  <span class="asterix">*</span>
+                </label>
+                <input type="range" id="length" min="0" max="100" class="validate" required/>
+                <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 l6">
+                <input id="money-value" type="text" class="validate" required>
+                  <label for="money-value">Wartosc (PLN) 
+                    <span class="asterix">*</span>
+                  </label>
+                  <span class="helper-text" data-error="Wprowadz wartosc bez nazwy waluty" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 l6">
+                <input id="sku-number" type="text" class="validate" required>
+                  <label for="sku-number">Numer SKU 
+                    <span class="asterix">*</span>
+                  </label>
+                  <span class="helper-text" data-error="Wypelnij wymagane pole" data-success=""></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="comments" class="materialize-textarea"></textarea>
+                <label for="comments">Uwagi</label>
+              </div>
+            </div>
+            <p class="col s12">
+              <label>
+                <input id="accept-terms" type="checkbox" required/>
+                <span>Zapoznalem sie z 
+                  <a href="#">regulaminem </a>
+                  <span class="asterix">*</span>
+                </span>
+              </label>
+            </p>
+            <div class="section center-align">
+              <button id="order-submit-button" class="btn amber accent-2 black-text waves-effect validate" type="submit">ZAMAWIAM</button>
+            </div>
+          </form>
         </div>
-  
- </div> 
- 
- <!--All Orders List-->
-<div id="orders-list-admin" class="section container">
+      </section>
 
-    <div id="filter-orders" class="row valign-wrapper">
+      <!--LIST OF ORDERS-->
+      <section id="orders-list-admin" class="section container">
+        <div id="filter-orders" class="row valign-wrapper">
+          <h5 class="col s5 m9 flow-text">Zlecenia klientow</h5>
+          <select id="sort-orders" class="icons input-field col s6 m2 ">
+            <option class="flow-text" value="" disabled selected>Sortuj zamowienia</option>
+            <option value="all">Pokaz wszystkie</option>
+            <option value="oczekujace">Pokaz oczekujace</option>
+            <option value="zrealizowane">Pokaz zrealizowane</option>
+          </select>
+          <a id="close-table-admin" class="col s1 m1 transparent valign-wrapper" href="#">
+            <i class="right-align material-icons black-text">close</i>
+          </a>
+        </div>
+        <div class="row">
+          <p class="grey-text s12">Zeby zobaczyc szczegoly zamowienia, kliknij w imie i nazwisko klienta.
+            <br>W celu wyswietlenia zlecen oczekujacych na wyslanie, wybierz "Pokaz oczekujace" z menu "Sortuj zamowienia".
+            <br>Mozesz zmienic status zamowienia w kolumnie "Zmien status".
+            <br>Zmiana statusu zamowienia na zrealizowane, automatycznie usunie dane zlecenie z raportu dostepnego dla uzytkownika, 
+            informujac go tym samym, ze jego zlecenie zostalo zrealizowane.
+          </p>
+        </div>
+        <table class="row highlight centered responsive-table">
+          <thead class="z-depth-1">
+            <tr>
+              <th>Klient</th>
+              <th>Numer SKU</th>
+              <th>Data zlozenia</th>
+              <th>Adres dostawy</th>
+              <th>Odbiorca</th>
+              <th>Status zlecenia</th>
+              <th>Zmien status</th>
+              <th>Nr tracking</th>
+              <th>Usun zlecenie</th>
+              <th>Szczegoly</th>
+            </tr>
+          </thead>
+          <tbody id="orders-table">
+          </tbody>
+        </table>
+        <div class="section center-align">
+          <div class="col l6 s12">
+            <button id="save-order-changes-admin" href="#" class="col s12 m2 btn-small">ZAPISZ ZMIANY
+              <i class="material-icons left">done</i>
+            </button>
+          </div>
+        </div>
+      </section>
 
-      <h5 class="col s5 m9 flow-text">Zlecenia klientow</h5>
-     
-      <select id="sort-orders" class="icons input-field col s6 m2 ">
-          <option class="flow-text" value="" disabled selected>Sortuj zamowienia</option>
-          <option value="all">Pokaz wszystkie</option>
-          <option value="oczekujace">Pokaz oczekujace</option>
-          <option value="zrealizowane">Pokaz zrealizowane</option>
-         <!-- <option value="sender">Wg Klienta</option>
-          <option value="receiver">Wg Odbiorcy</option> -->
-      </select>
-    
-        <a id="close-table-admin" class="col s1 m1 transparent valign-wrapper" href="#"><i class="right-align material-icons black-text">close</i></a>
-    
-    </div>
-    <div class="row">
-      <p class="grey-text s12">Zeby zobaczyc szczegoly zamowienia, kliknij w imie i nazwisko klienta.
-        <br>W celu wyswietlenia zlecen oczekujacych na wyslanie, wybierz "Pokaz oczekujace" z menu "Sortuj zamowienia".
-        <br>Mozesz zmienic status zamowienia w kolumnie "Zmien status". 
-        <br>Zmiana statusu zamowienia na zrealizowane, automatycznie usunie dane zlecenie z raportu dostepnego dla uzytkownika, informujac go tym samym, ze jego zlecenie zostalo zrealizowane
-      </p>
-    </div>
+      <!--ORDER SENT MESSAGE-->
+      <section id="order-sent" class="section container">
+        <h4>Twoje zlecenie zostalo wyslane.</h4>
+        <p class="grey-text">
+          <a href="admin.html">Kliknij</a> jesli nie nastapi przekierowanie do strony glownej w ciagu 5 sekund
+        </p>
+      </section>
 
-  <table class="row highlight centered responsive-table">
-    <thead class="z-depth-1">
-      <tr>
-          <th>Klient</th>
-          <th>Numer SKU</th>
-          <th>Data zlozenia</th>
-          <th>Adres dostawy</th>
-          <th>Odbiorca</th>
-          <th>Status zlecenia</th>
-          <th>Zmien status</th>
-          <th>Nr tracking</th>
-          <th>Usun zlecenie</th>
-          <th>Szczegoly</th>
-      </tr>
-    </thead>
+      <!--ORDER DETAILS SECTION-->
+      <section id="order-details-section" class="section container">
+      </section>
 
-    <tbody id="orders-table">
-      <!--
-      <tr class="order-wrapper">
-        <td><a href="#">Turbopala Alvin </a></td>
-        <td>045SKU8</td>
-        <td>12/03/2020</td>
-        <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
-        <td>Helmut Von Joungingen</td>
-        <td>Oczekujace</td>
-        <td><a href="#">Generuj</td>
-        <td><select class="status-change">
-          <option value="" disabled selected>Wybierz</option>
-          <option value="zrealizowane">Zrealizowane</option>
-          <option value="oczekujace">Oczekujace</option>
-        </select></td>
-        <td class="center-align"><label>
-          <input class="delete-order-check" type="checkbox" /><span></span>
-        </label></td>
+      <!--WELCOME MESSAGE-->
+      <section id="welcome-message" class="section container center-align">
+        <h4>Witaj w panelu Administratora,</h4>
+        <p class="grey-text">Kliknij w przycisk "POKAZ ZLECENIA" aby wyswietlic wszystkie zlecenia.</p>
+      </section>
       
-      </tr>
-      <tr class="order-wrapper">
-        <td><a href="#">Muzykant Jasko</a></td>
-        <td>045SKU8</td>
-        <td>12/03/2020</td>
-        <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
-        <td>Hildegart Von Schnizel</td>
-        <td>Oczekujace</td>
-        <td><a href="#">Generuj</td>
-        <td><select class="status-change"> 
-          <option value="" disabled selected>Wybierz</option>
-          <option value="zrealizowane">Zrealizowane</option>
-          <option value="oczekujace">Oczekujace</option>
-        </select></td>
-        <td class="center-align"><label>
-          <input class="delete-order-check" type="checkbox" /><span></span>
-        </label></td>
-        
-      </tr>
-        <tr class="order-wrapper">
-          <td><a href="#">Rozczochrana Stefa</a></td>
-          <td>045SKU8</td>
-        <td>12/03/2020</td>
-        <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
-        <td>Franz</td>
-        <td>Oczekujace</td>
-        <td><a href="#">Generuj</td>
-        <td><select class="status-change">
-          <option value="" disabled selected>Wybierz</option>
-          <option value="zrealizowane">Zrealizowane</option>
-          <option value="oczekujace">Oczekujace</option>
-        </select></td>
-        <td class="center-align"><label>
-          <input class="delete-order-check" type="checkbox" /><span></span>
-        </label></td>
-       
-        </tr>
-        <tr class="order-wrapper">
-          <td><a href="#">Cichodajka Marcelina</a></td>
-          <td>045SKU8</td>
-        <td>12/03/2020</td>
-        <td class="truncate custom-td-width">ul. Malopolska 24/7, 75-076 Germanydsdgsdgsdgsdgsdgsdgsdgsdgsdgsdgs</td>
-        <td>Adolf Hitler</td>
-        <td>Zrealizowane</td>
-        <td><a href="#">Generuj</td>
-        <td><select class="status-change">
-          <option value="" disabled selected>Wybierz</option>
-          <option value="zrealizowane">Zrealizowane</option>
-          <option value="oczekujace">Oczekujace</option>
-        </select></td>
-        <td class="center-align"><label>
-          <input class="delete-order-check" type="checkbox" /><span></span>
-        </label></td>
-        
-        </tr>
-      -->
-    </tbody>
-  </table>
-  <div class="section center-align">
-    <div class="col l6 s12"><button id="save-order-changes-admin" href="#" class="col s12 m2 btn-small">ZAPISZ ZMIANY<i class="material-icons left">done</i> </button></div>
-</div>
+    </main>
 
-</div>
-
-<!--Order sent message-->
-<div id="order-sent" class="section container">
-  <h4>Twoje zlecenie zostalo wyslane.</h4>
-  <p class="grey-text"><a href="admin.html">Kliknij</a> jesli nie nastapi przekierowanie do strony glownej w ciagu 5 sekund</p>
-  </div>
-
-<!--Order details-->
-<div id="order-details-section" class="section container">
-
-  <!-- <div id="1" class="section container order-details">
-  
-  
-  
-  <div class="row">
-    <div class="row valign-wrapper">
-      <h5 class="col s8 m10">Szczegoly zamowienia</h5>
-      <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">POWROT<i class="material-icons left">navigate_before</i> </button>
-    </div>
-  </div>
-  <div class="row">
-    <h6>Odbiorca</h6>
-    <p class="grey-text">Alwin Turbopala<br>
-    0048 654987123<br>
-    alwinturbopala@gmail.com<br>  
-    </p>
-  </div>
-  <div class="row">
-    <h6>Adres dostawy</h6>
-    <p class="grey-text">Ul. Walispodpachy 25/7<br>
-      75-076 Zadupie<br>
-      Niemcy
-    </p>
-  </div>
-  <div class="row">
-  <h6>Przesylka</h6>
-  <p class="grey-text">Kupa w pudelku<br>
-    Numer zlecenia 154523AS<br>
-  Numer SKU 045SKU8
-  </p>
-  </div>
-  <div class="row">
-  <h6>Uwagi</h6>
-  <p class="grey-text">Prosze ostroznie niemcom dowiezc te kupe<br>
-  gdyz chcialbym aby wywarla wrazenie<br>
-  A strone to maciue zajebista
-  </p>
-  </div>
-  <div class="row">
-    <h6>Status</h6>
-    <p class="grey-text">
-      Zlecenie Oczekujace
-    </p>
-    </div>
-  
-  
-  
-  
-  </div> -->
-  
-  </div>
-  
-  
-
-<!--Welcome message-->
-<div id="welcome-message" class="section container">
-  <h4>Witaj w panelu Administratora,</h4>
-  <p class="grey-text">Kliknij w przycisk "POKAZ ZLECENIA" aby wyswietlic wszystkie zlecenia. 
-  </p>
-</div>
-
-
-</main>
-
-  <!--  Scripts-->
-
-  <!--Firebase-->
-  
-<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
-
-
-<!---------------------------------------------------------------------------------->
-  
-  <script src="js/vendors/materialize.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/admin.js"></script>
-  
-
+    <!--SCRIPTS-->
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+    <!---------------------------------------------------------------------------------->
+    <script src="js/vendors/materialize.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
   </body>
 </html>

@@ -373,14 +373,16 @@ function displayEmail(user) {
     let userInfo = document.getElementById('user-info');
     let userInfoModal = document.getElementById('userInfoContent');
     let userInfoHtml =`
-    <li class="bold waves-effect"><i class="material-icons left amber-text text-accent-2 medium">verified_user</i></li>
+    <li class="bold waves-effect"><i class="material-icons amber-text text-accent-2 medium">verified_user</i></li>
     <h5>WITAMY W GLOBAL</h5>
     <li><p class="teal-text">${user.email}</p></li>
     `;
     let userInfoModalHtml = `
+    <div id="accountInfoTitle" class="row z-depth-1">
     <h4 class="center-align">Informacje o koncie</h4>
-    <p class="teal-text"><span class="grey-text">Zalogowany jako: </span>${user.email}</p>
-    <p class="teal-text"><span class="grey-text">Unikalne ID: </span>${user.uid}</p>
+    </div>
+    <p class="teal-text"><span class="grey-text">Zalogowany jako: </span><br>${user.email}</p>
+    <p class="teal-text"><span class="grey-text">Unikalny nr ID: </span><br>${user.uid}</p>
     `;
     userInfo.innerHTML = userInfoHtml;
     userInfoModal.innerHTML = userInfoModalHtml
