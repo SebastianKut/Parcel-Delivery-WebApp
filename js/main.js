@@ -1,9 +1,8 @@
-//JS SCRIPTS FOR ALL PAGES AND MATERIALIZE FUNCTIONS INITIALIZATION
+//COMMON JS CODE FOR ALL PAGES (MATERIALIZE UI ELEMENTS AND CUSTOM UI FUNCTIONS)
  
- //Materialize modules JS initialization
 document.addEventListener('DOMContentLoaded', function() {
 
-
+  //MATERIALIZE MODULES INITIALIZATION
   let sideNav = document.querySelectorAll('.sidenav');
   M.Sidenav.init(sideNav, {});
 
@@ -29,16 +28,15 @@ document.addEventListener('DOMContentLoaded', function() {
   let dropdownMenu = document.querySelectorAll('select');
   M.FormSelect.init(dropdownMenu, {});
 
-//Custom scripts shared 
-window.addEventListener('scroll', displayProgress);
+  //CUSTOM UI RELATED FUNCTIONS 
+  window.addEventListener('scroll', displayProgress);
 
-function displayProgress(){
-    let windowScroll = document.documentElement.scrollTop || document.body.scrollTop; 
-    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    let scrolledPercentage = (windowScroll / height) * 100;
-    document.getElementById('progress-bar').style.width = `${scrolledPercentage}%`;
-}
-
+  function displayProgress(){
+      let windowScroll = document.documentElement.scrollTop || document.body.scrollTop; 
+      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrolledPercentage = (windowScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = `${scrolledPercentage}%`;
+  }
 
 });
 
