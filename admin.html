@@ -107,8 +107,8 @@
                   <br>To add an order for a new Globex customer, follow the steps listed below: 
                   <br>1) Go to <a href="register.html" target="_blank">Register</a> section, 
                   to create account for a new customer, using his email address and any generic password (for example "1234abcd"). 
-                  <br>2) After creating new customer account you will be redirected to customers dashboard where you can add new order. 
-                  <br>3) Remeber to give your customer their password and advise to change it as soon as they login in for the first time.
+                  <br>2) After creating new customer account, you will be redirected to customers dashboard, where you can add new order. 
+                  <br>3) Remember to give your customer their password and advise them to change it as soon as they log in for the first time.
                 </p>
               </div>
             </div>
@@ -220,7 +220,7 @@
                   <option value="uk" data-icon="img/uk.png">United Kingdom</option>
                   <option value="france" data-icon="img/france.png">France</option>
                 </select>
-                <label for="deliver-to-country">Delivery country 
+                <label for="deliver-to-country">Country of delivery
                   <span class="asterix">*</span>
                 </label>
               </div>
@@ -240,9 +240,9 @@
                   <option value="" disabled selected>Select weight</option>
                   <option value="1">up to 1 kg</option>
                   <option value="2">up to 2 kg</option>
-                  <option value="3">up to 5 kg</option>
-                  <option value="3">up to 10 kg</option>
-                  <option value="3">up to 20 kg</option>
+                  <option value="5">up to 5 kg</option>
+                  <option value="10">up to 10 kg</option>
+                  <option value="20">up to 20 kg</option>
                 </select>
                 <label for="weight">Weight 
                   <span class="asterix">*</span>
@@ -250,21 +250,21 @@
                 <span class="helper-text" data-error="Fill in required field" data-success=""></span>
               </div>
               <div class="range-field col s12 l3">
-                <label for="height">Height (in cm) 
+                <label for="height">Height (cm) 
                   <span class="asterix">*</span>
                 </label>
                 <input type="range" id="height" min="0" max="100" class="validate" required/>
                 <span class="helper-text" data-error="Fill in required field" data-success=""></span>
               </div>
               <div class="range-field col s12 l3">
-                <label for="depth">Depth (in cm) 
+                <label for="depth">Depth (cm) 
                   <span class="asterix">*</span>
                 </label>
                 <input type="range" id="depth" min="0" max="100" class="validate" required/>
                 <span class="helper-text" data-error="Fill in required field" data-success=""></span>
               </div>
               <div class="range-field col s12 l3">
-                <label for="length">Length (in cm) 
+                <label for="length">Length (cm) 
                   <span class="asterix">*</span>
                 </label>
                 <input type="range" id="length" min="0" max="100" class="validate" required/>
@@ -277,7 +277,7 @@
                   <label for="money-value">Value (EUR) 
                     <span class="asterix">*</span>
                   </label>
-                  <span class="helper-text" data-error="Enter value number (without currency code)" data-success=""></span>
+                  <span class="helper-text" data-error="Enter monetary value (without currency code)" data-success=""></span>
               </div>
             </div>
             <div class="row">
@@ -316,10 +316,10 @@
         <div id="filter-orders" class="row valign-wrapper">
           <h5 class="col s5 m9 flow-text">All orders list</h5>
           <select id="sort-orders" class="icons input-field col s6 m2 ">
-            <option class="flow-text" value="" disabled selected>Sort orders</option>
+            <option class="flow-text" value="" disabled selected>Filter orders</option>
             <option value="all">All</option>
             <option value="awaiting">Awaiting</option>
-            <option value="completed">Processed</option>
+            <option value="processed">Processed</option>
           </select>
           <a id="close-table-admin" class="col s1 m1 transparent valign-wrapper" href="#">
             <i class="right-align material-icons black-text">close</i>
@@ -330,7 +330,7 @@
             <br>To see which orders are currently waiting to be processed you can select "Awaiting orders" from "Sort orders" drop-down menu.
             <br>To change order status go to "Change status" column, then select status form drop-down menu.
             <br>All status changes will be available for your cutomers to view in their accounts.
-            <br>After you processed the order and changed status to "Processed" you can add tracking number in the relevant column.
+            <br>After you have changed order status to "Processed" you can add tracking number in the relevant column.
           </p>
         </div>
         <table class="row highlight centered responsive-table">

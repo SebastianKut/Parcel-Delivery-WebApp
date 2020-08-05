@@ -90,12 +90,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${user.firstName} ${user.lastName}</td>
                         <td>${order.sku}</td>
                         <td>${order.dateCreated.toDate().toString().slice(4,15)}</td>
-                        <td class="truncate custom-td-width">ul.${order.street} ${order.streetNumber} / ${order.apartment}</td>
+                        <td class="truncate custom-td-width">${order.streetNumber} ${order.street}, apartment: ${order.apartment}</td>
                         <td>${order.firstName} ${order.lastName}</td>
                         <td>${order.status}</td>
                         <td class="custom-td"><select class="status-change">
                         <option value=${order.status} disabled selected>Select</option>
-                        <option value="completed">Completed</option>
+                        <option value="processed">Processed</option>
                         <option value="awaiting">Awaiting</option>
                         </select></td>
                         <td><input disabled type="text" placeholder="${order.trackingNumber}" ><span style="display: none;">${order.trackingNumber}</span></td>
@@ -134,7 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="row center-align">
                         <h6>Delivery Address</h6>
-                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Street:</span> ${order.street} ${order.streetNumber} / ${order.apartment}<br>
+                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Street:</span> ${order.streetNumber} ${order.street}<br>
+                        <span class="blue-grey-text text-darken-2">Apartment:</span> ${order.apartment}<br>
                         <span class="blue-grey-text text-darken-2">Postcode:</span> ${order.postCode}<br> 
                         <span class="blue-grey-text text-darken-2">Town:</span> ${order.town}<br>
                         <span class="blue-grey-text text-darken-2">Country:</span> ${order.deliveryCountry}
@@ -456,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             } 
             //filter by inprogress and completed
-            if (searchedOrder === 'awaiting' || searchedOrder === 'completed') {
+            if (searchedOrder === 'awaiting' || searchedOrder === 'processed') {
                 Array.from(allOrders).forEach(order => {
                 
                     if (order.children[5].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
@@ -479,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             } 
             //filter by inprogress and completed
-            if (searchedOrder === 'awaiting' || searchedOrder === 'completed') {
+            if (searchedOrder === 'awaiting' || searchedOrder === 'processed') {
                 Array.from(allOrders).forEach(order => {
                 
                     if (order.children[5].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {

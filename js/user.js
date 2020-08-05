@@ -98,7 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <div class="row center-align">
                             <h6>Delivery Address</h6>
-                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Street:</span> ${order.street} ${order.streetNumber} / ${order.apartment}<br>
+                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Street:</span> ${order.streetNumber} ${order.street}<br>
+                            <span class="blue-grey-text text-darken-2">Apartment:</span> ${order.apartment}<br>
                             <span class="blue-grey-text text-darken-2">Postcode:</span> ${order.postCode}<br> 
                             <span class="blue-grey-text text-darken-2">Town:</span> ${order.town}<br>
                             <span class="blue-grey-text text-darken-2">Country:</span> ${order.deliveryCountry}
@@ -358,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     order.style.display = 'table-row';
                 })
             } 
-            if (searchedOrder === 'awaiting' || searchedOrder === 'completed') {
+            if (searchedOrder === 'awaiting' || searchedOrder === 'processed') {
                 allOrders.forEach(order => {
                     if (order.children[4].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
                         order.style.display = 'table-row';
@@ -376,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     order.style.display = 'inline-block';
                 })
             } 
-            if (searchedOrder === 'awaiting' || searchedOrder === 'completed') {
+            if (searchedOrder === 'awaiting' || searchedOrder === 'processed') {
                 allOrders.forEach(order => {
                     if (order.children[4].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
                         order.style.display = 'inline-block';
