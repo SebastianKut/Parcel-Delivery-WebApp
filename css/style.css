@@ -1,72 +1,33 @@
 /* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
- body {
+
+body{
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
-main {
+main{
   flex: 1 0 auto;
 }
  
-
- html {
+html{
   font-family: 'Catamaran', sans-serif;
   scroll-behavior: smooth;
 }
 
-nav ul a,
-nav .brand-logo {
-  color: #444;
-}
-
-p {
-  line-height: 2rem;
-}
-
-.sidenav-trigger {
-  color: #26a69a;
-}
-
-.parallax-container {
-  min-height: 600px;
-  line-height: 0;
-  color: rgba(255,255,255,.9);
-}
-  .parallax-container .section {
-    width: 100%;
-  }
-
-.icon-block {
-  padding: 0 15px;
-}
-.icon-block .material-icons {
-  font-size: inherit;
-}
-
-footer.page-footer {
-  margin: 0;
-}
-
 /*CUSTOM CLASSES*/
 
-/*Colors     https://coolors.co/5c7aff-efcb68-e1efe6-aeb7b3-426b69 */
+/*Colors*/
 
-.custom-text-orange {
+.custom-text-orange{
   color: rgb(239, 203, 104);
 }
 
-.custom-orange {
+.custom-orange{
   background-color: rgb(239, 203, 104);
 }
 
-.custom-text-blue {
+.custom-text-blue{
   color: rgb(92, 122, 255);
 }
 
@@ -78,165 +39,198 @@ footer.page-footer {
   color: rgb(225, 239, 230);
 }
 
-.custom-honeydev {
+.custom-honeydev{
   background-color: rgb(225, 239, 230);
 }
 
-.custom-text-gray {
+.custom-text-gray{
   color: rgb(174, 183, 179);
 }
 
-.custom-gray {
+.custom-gray{
   background-color: rgb(174, 183, 179);
 }
 
-.custom-text-green {
+.custom-text-green{
   color: rgb(66, 107, 105);
 }
 
-.custom-green {
+.custom-green{
   background-color: rgb(66, 107, 105);
 }
 
+/*Other custom classes*/
 
-
-/*elements*/
-.carousel { 
-  min-height: 650px;
-  }
-.carousel-item {
-  min-height: 400px;
-  top: 50px;
+.custom-margin-left{
+margin-left: 300px;
 }
 
-.testimonial {
-  font-family: 'Old Standard TT', serif;
+.custom-td{
+  min-width: 100px;
 }
 
-#modal-login, #login-container, #register-container {
-max-width: 500px;
-
+.custom-row{
+  padding: 1rem;
+  border-bottom: solid 1px rgb(229, 229, 229);
 }
 
-#testimonial-section {
-background-image: url("../img/background-3\ copy.jpg");
-background-repeat: no-repeat;
-height: 650px;
-background-size: cover;
+.custom-td-width{
+  max-width: 125px;
 }
 
-.parallax-container.custom-full-screen {
-  height: 100vh;
+.custom-select-width{
+  max-width: 75px;
 }
 
-/* The progress bar (scroll indicator) */
+.custom-placeholder::placeholder{ /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(160, 160, 160);
+  opacity: 1 !important; /* Firefox */
+}
+  
+/*CUSTOM ELEMENTS*/
 
-.progress-bar-container {
+/*progress bar*/
+.progress-bar-container{
   width: 100%;
   height: 4px;
   background: transparent;
 }
 
-#progress-bar {
+#progress-bar{
   height: 100%;
   background: #ffd740;
   width: 0;
 }
 
-.sidenav.user-nav {
-    background-image: url("../img/background-5\ copy.jpg");
+/*other custom elements*/
+#modal-login, #login-container, #register-container{
+max-width: 500px;
+}
+
+#testimonial-section{
+background-image: url("../img/testimonial-background.jpg");
+background-repeat: no-repeat;
+height: 650px;
+background-size: cover;
+}
+
+#nav-mobile li{
+  display: block;
+}
+
+#logout-message{
+  margin-top: 100px;
+}
+
+#accountInfoTitle{
+border-bottom: solid 1px rgb(229, 229, 229);
+padding-top: 24px;
+}
+
+#userInfoContent{
+  padding: 0;
+}
+
+#userInfoModal{
+  max-width: 400px;
+}
+
+/*DOM MANIPULATION RELATED*/
+
+#send-parcel-form, #order-sent, 
+#orders-list-user, .order-details, 
+#save-order-changes-admin,
+#orders-list-admin, #register-confirmation, 
+#user-content, #admin-content, 
+.logged-in, .logged-out{
+  display: none; 
+}
+
+/*CUSTOMIZATION OF EXISTING MATERIALIZE CLASSESS*/
+
+nav ul a,
+nav .brand-logo{
+  color: #444;
+}
+
+p{
+  line-height: 2rem;
+}
+
+.sidenav-trigger{
+  color: #26a69a;
+}
+
+.parallax-container{
+  min-height: 600px;
+  line-height: 0;
+  color: rgba(255,255,255,.9);
+}
+
+.parallax-container .section{
+    width: 100%;
+}
+
+.icon-block{
+  padding: 0 15px;
+}
+
+.icon-block .material-icons{
+  font-size: inherit;
+}
+
+footer.page-footer{
+  margin: 0;
+}
+
+.carousel{ 
+  min-height: 650px;
+}
+
+.carousel-item{
+  min-height: 400px;
+  top: 50px;
+}
+
+.testimonial{
+  font-family: 'Old Standard TT', serif;
+}
+
+.parallax-container.custom-full-screen{
+  height: 100vh;
+}
+
+.sidenav.user-nav{
+    background-image: url("../img/third-banner.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.sidenav.side-nav-main {
-  background-image: url("../img/mobile-nav-03.jpg");
+.sidenav.side-nav-main{
+  background-image: url("../img/mobile-nav-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-
-
-.custom-margin-left {
-margin-left: 300px;
-}
-
-#send-parcel-form, #order-sent {
-  display: none; 
-}
-
-#logout-message {
-  margin-top: 100px;
-}
-
-#orders-list-user {
-  display: none;
-}
-
-.order-details {
-  display: none;
-}
-
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input::-webkit-inner-spin-button{
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type=number] {
+input[type=number]{
   -moz-appearance: textfield;
 }
 
-.asterix {
+.asterix{
  color: red !important;
 } 
 
-.custom-td-width {
-  max-width: 125px;
-}
-
-.custom-select-width {
-  max-width: 75px;
-}
-
-.custom-placeholder::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: rgb(160, 160, 160);
-  opacity: 1 !important; /* Firefox */
-}
-
-#save-order-changes-admin {
-display: none;
-}
-
-#orders-list-admin {
-display: none;
-}
-
-#register-confirmation {
-  display: none;
-}
-
-#user-content, #admin-content {
-  display: none;
-}
-
-.logged-in, .logged-out {
-  display: none;
-}
-
-.custom-td {
-  min-width: 100px;
-}
-
-.custom-row {
-  padding: 1rem;
-  border-bottom: solid 1px rgb(229, 229, 229);
-}
-
 /*MEDIA QUERRIES*/
-@media only screen and (max-width : 992px) {
 
-  #index-banner .section {
+@media only screen and (max-width : 992px){
+
+  #index-banner .section{
     top: 10%;
   }
 
@@ -245,11 +239,11 @@ display: none;
     width: 50%;
   }
 
-  .parallax-container {
+  .parallax-container{
     height: 500px;
   }
 
-  .custom-margin-left {
+  .custom-margin-left{
     margin-left: 0;
   }
 
@@ -257,25 +251,25 @@ display: none;
     margin-top: 0;
   }
 
-  td {
+  td{
     max-height: 51px;
     line-height: 2;
   }
 
-  th {
+  th{
     max-height: 51px;
     line-height: 2;
   }
 
 }
 
-@media only screen and (max-width : 600px) {
-  #index-banner .section {
+@media only screen and (max-width : 600px){
+  #index-banner .section{
     top: 0;
   }
 
-  .custom-login-form {
-margin: auto 0 auto 0;
-}
+  .custom-login-form{
+  margin: auto 0 auto 0;
+  }
 
 }

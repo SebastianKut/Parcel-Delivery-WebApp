@@ -1,119 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Global - Logistyka E-commerce</title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    
+    <title>Global - Logistyka E-commerce</title>
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet"> 
-  <link href="css/vendors/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
-</head>
-<body>
- <!--Navigation-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet"> 
+    <link href="css/vendors/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" 
+    integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+  </head>
+  <body>
+    <header>
+      <!--MAIN NAVIGATION-->
+      <div class="navbar-fixed z-depth-3">
+        <nav class="white" role="navigation">
+          <div class="nav-wrapper container black-text">
+            <a class="brand-logo" href="index.html"><span><i class="small material-icons amber-text text-accent-2">language</i></span>Gl<span class="amber-text text-accent-2">o</span>bal</a>
+            <ul class="right hide-on-med-and-down ">
+              <li><a href="#">Oferta</a></li>
+              <li><a href="#">O nas</a></li>
+              <li><a href="register.html">Rejestracja</a></li>
+              <li><a href="login.html" class=" modal-trigger"><i class="material-icons right">person</i>Logowanie</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
+          </div>
+          <div class="progress-bar-container">
+            <div id="progress-bar"></div>
+          </div>
+        </nav>
+      </div>
 
- <div class="navbar-fixed z-depth-3">
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper container black-text">
-      <a class="brand-logo" href="index.html"><span><i class="small material-icons amber-text text-accent-2">language</i></span>Gl<span class="amber-text text-accent-2">o</span>bal</a>
-      <ul class="right hide-on-med-and-down ">
-        <li><a href="#">Oferta</a></li>
-        <li><a href="#">O nas</a></li>
-        <li><a href="register.html">Rejestracja</a></li>
-        <li><a href="login.html" class=" modal-trigger"><i class="material-icons right">person</i>Logowanie</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
-    </div>
-    <div class="progress-bar-container">
-      <div id="progress-bar"></div>
-    </div>
-  </nav>
-</div>
+      <!--MOBILE SIDENAV-->
+      <ul id="nav-mobile" class="sidenav z-depth-2 page-footer side-nav-main"> 
+        <li class="bold waves-effect "><a href="#" class="collapsible-header white-text">OFERTA</a></li>
+        <li class="bold waves-effect"><a href="#" class="collapsible-header white-text">O NAS</a></li>
+        <li class="bold waves-effect"><a href="register.html" class="collapsible-header white-text">REJESTRACJA</a></li>
+        <li class="bold waves-effect"><a href="login.html" class="collapsible-header white-text">LOGOWANIE</a></li>
+      </ul>  
+    </header> 
 
-
-<!--Mobile sidenav-->
-<ul id="nav-mobile" class="sidenav z-depth-2 page-footer side-nav-main"> 
-  <li class="bold waves-effect"><a href="#" class="collapsible-header black-text">OFERTA</a></li>
-   
- 
-   <ul>
-    <li class="bold waves-effect"><a href="#" class="collapsible-header black-text">O NAS</a></li>
-   </ul>
-
-  
-   <ul>
-    <li class="bold waves-effect"><a href="register.html" class="collapsible-header black-text">REJESTRACJA</a></li>
-   </ul>
-
-   <ul">
-    <li class="bold waves-effect"><a href="login.html" class="collapsible-header black-text">LOGOWANIE</a></li>
-   </ul>
-
-</ul> 
-
-<main>
-
-    <div id="logout-message" class="section container">
+    <main>
+      <section id="logout-message" class="section container">
         <div class="center-align">
-        <h4>Jestes wylogowany.</h4>
-        <p class="grey-text">Dziekujemy za skorzystanie z usug Global i zapraszamy ponownie.<br>
-        <a href="index.html">Strona Glowna</a></p>
+        <h4>Jesteś wylogowany.</h4>
+        <p class="grey-text">Dziękujemy za skorzystanie z usług Global i zapraszamy ponownie.<br>
+        <a href="index.html">Strona Główna</a></p>
         </div>
-    </div>
-  
-</main>
+      </section>
+    </main>
 
-<div class="divider"></div>
-
-
-<footer class="page-footer teal darken-4">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text center-align">Dlaczego Global?</h5>
-          <p class="custom-text-gray center-align">Lorem ipsum dolor sit amet, ad equidem forensibus mediocritatem eam. Erroribus molestiae vulputate et duo, sit ex percipitur intellegebat. Ex honestatis liberavisse eum, et est utinam ocurreret. Ad wisi volumus per, te eam doming deterruisset. Vim quidam vidisse ut, brute ullum efficiendi eu sed. No solum platonem vix.
-          </p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text center-align">Menu</h5>
-          <ul class="center-align">
-            <li><a class="custom-text-gray" href="#!">Strona glowna</a></li>
-            <li><a class="custom-text-gray" href="#!">Logistyka e-commerce</a></li>
-            <li><a class="custom-text-gray" href="#!">Sprzedawaj w niemczech</a></li>
-            <li><a class="custom-text-gray" href="#!">Przesylki zagraniczne</a></li>
-            <li><a class="custom-text-gray" href="#!">Kontakt</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text center-align">Obserwuj nas</h5>
-          <ul class="center-align">
-            <li><a class="custom-text-gray" href="#!"><i class="fab fa-facebook center-align"></i> Facebook</a></li>
-            <li><a class="custom-text-gray" href="#!"><i class="fab fa-instagram"></i> Instagram</a></li>
-            <li><a class="custom-text-gray" href="#!"><i class="fab fa-twitter"></i> Twitter</a></li>
-          </ul>
+    <footer class="page-footer teal darken-4">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text center-align">Dlaczego Global?</h5>
+            <p class="custom-text-gray center-align">Lorem ipsum dolor sit amet, ad equidem forensibus mediocritatem eam. 
+              Erroribus molestiae vulputate et duo, sit ex percipitur intellegebat. Ex honestatis liberavisse eum,
+              et est utinam ocurreret. Ad wisi volumus per, te eam doming deterruisset. Vim quidam vidisse ut, 
+              brute ullum efficiendi eu sed. No solum platonem vix.</p>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text center-align">Menu</h5>
+            <ul class="center-align">
+              <li><a class="custom-text-gray" href="#!">Strona główna</a></li>
+              <li><a class="custom-text-gray" href="#!">Logistyka e-commerce</a></li>
+              <li><a class="custom-text-gray" href="#!">Sprzedawaj w niemczech</a></li>
+              <li><a class="custom-text-gray" href="#!">Przesyłki zagraniczne</a></li>
+              <li><a class="custom-text-gray" href="#!">Kontakt</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text center-align">Obserwuj nas</h5>
+            <ul class="center-align">
+              <li><a class="custom-text-gray" href="#!"><i class="fab fa-facebook center-align"></i> Facebook</a></li>
+              <li><a class="custom-text-gray" href="#!"><i class="fab fa-instagram"></i> Instagram</a></li>
+              <li><a class="custom-text-gray" href="#!"><i class="fab fa-twitter"></i> Twitter</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="footer-copyright container">
-      <div class="left-align">
-        &copy; Copyright 2020 Global Ltd.
+      <div class="footer-copyright container">
+        <div class="left-align">
+          &copy; 2020 Global Ltd.
+        </div>
+        <div class="right-align">
+          Made by Sebastian Kut
+        </div>
       </div>
-      <div class="right-align">
-        Made by iSleekDesign.com
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-
-  <!--  Scripts-->
-  <script src="js/vendors/materialize.min.js"></script>
-  <script src="js/main.js"></script>
+     <!--SCRIPTS-->
+    <script src="js/vendors/materialize.min.js"></script>
+    <script src="js/main.js"></script>
 
   </body>
 </html>
