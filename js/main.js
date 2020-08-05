@@ -29,9 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
   M.FormSelect.init(dropdownMenu, {});
 
   //CUSTOM UI RELATED FUNCTIONS 
-  window.addEventListener('scroll', displayProgress);
+  window.addEventListener('scroll', displayProgressBar);
 
-  function displayProgress(){
+  function displayProgressBar(){
+    //show horizontal progress bar
       let windowScroll = document.documentElement.scrollTop || document.body.scrollTop; 
       let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       let scrolledPercentage = (windowScroll / height) * 100;
