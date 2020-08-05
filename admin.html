@@ -103,7 +103,7 @@
             </div>
             <div class="row">
               <div class="col s12">
-                <p class="grey-text">To add new order for an existing customer, enter Customer's Unique ID Number then fill in rest of the form. 
+                <p class="grey-text">To add new order for an existing customer, select their name from drop-down list, then fill in rest of the form. 
                   <br>To add an order for a new Globex customer, follow the steps listed below: 
                   <br>1) Go to <a href="register.html" target="_blank">Register</a> section, 
                   to create account for a new customer, using his email address and any generic password (for example "1234abcd"). 
@@ -116,10 +116,11 @@
               <h5 class="col s12">Sender</h5>
             </div>
             <div class="row">
-              <div class="input-field col s12">
-                <input id="sender-id" type="text" class="validate" maxlength="28" required>
-                <label for="sender-id">Customer's ID number <span class="asterix">*</span></label>
-                <span class="helper-text" data-error="Enter customers unique ID number" data-success=""></span>
+              <div class="input-field col s12 l6">
+                <select id="users-dropdown" class="icons validate" required>
+                </select>
+                <label for="users-dropdown">Customer's name <span class="asterix">*</span></label>
+                <span class="helper-text" data-error="Select your customer" data-success=""></span>
               </div>
             </div>
             <div class="row valign-wrapper">
