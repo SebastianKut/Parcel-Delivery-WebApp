@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${order.sku}</td>
                 <td>${order.status}</td>
                 <td>${order.trackingNumber}</td>
-                <td><button class="indigo accent-2 btn-small order-details-button">Pokaż</button><a href="#${i}"></a></td>
+                <td><button class="indigo accent-2 btn-small order-details-button">Details</button><a href="#${i}"></a></td>
             </tr>
             `; 
             tableContent += tr;
@@ -85,40 +85,40 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="${i}" class="section container order-details z-depth-1">
                 <div class="row custom-row">
                     <div class="row valign-wrapper">
-                        <h5 class="col s8 m10">Szczegóły zamówienia</h5>
-                        <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">WRÓĆ<i class="material-icons left">navigate_before</i> </button>
+                        <h5 class="col s8 m10">Order details</h5>
+                        <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">BACK<i class="material-icons left">navigate_before</i> </button>
                     </div>
                 </div>
                 <div class="row center-align">
-                            <h6>Odbiorca</h6>
-                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Imię i Nazwisko:</span> ${order.firstName} ${order.lastName}<br>
-                            <span class="blue-grey-text text-darken-2">Numer tel:</span> ${order.tel}<br>
+                            <h6>Recipient</h6>
+                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Name:</span> ${order.firstName} ${order.lastName}<br>
+                            <span class="blue-grey-text text-darken-2">Telephone number:</span> ${order.tel}<br>
                             <span class="blue-grey-text text-darken-2">Email:</span> ${order.email}<br>  
                             </p>
                             </div>
                             <div class="row center-align">
-                            <h6>Adres dostawy</h6>
-                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Ulica:</span> ${order.street} ${order.streetNumber} / ${order.apartment}<br>
-                            <span class="blue-grey-text text-darken-2">Kod pocztowy:</span> ${order.postCode}<br> 
-                            <span class="blue-grey-text text-darken-2">Miasto:</span> ${order.town}<br>
-                            <span class="blue-grey-text text-darken-2">Kraj dostarczenia:</span> ${order.deliveryCountry}
+                            <h6>Delivery Address</h6>
+                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Street:</span> ${order.street} ${order.streetNumber} / ${order.apartment}<br>
+                            <span class="blue-grey-text text-darken-2">Postcode:</span> ${order.postCode}<br> 
+                            <span class="blue-grey-text text-darken-2">Town:</span> ${order.town}<br>
+                            <span class="blue-grey-text text-darken-2">Country:</span> ${order.deliveryCountry}
                             </p>
                             </div>
                             <div class="row center-align">
-                            <h6>Przesyłka</h6>
-                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Opis:</span> ${order.description}<br>
-                            <span class="blue-grey-text text-darken-2">Numer SKU:</span> ${order.sku}<br>
+                            <h6>Parcel details</h6>
+                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Description:</span> ${order.description}<br>
+                            <span class="blue-grey-text text-darken-2">SKU number:</span> ${order.sku}<br>
                             </p>
                             </div>
                             <div class="row center-align">
-                            <h6>Uwagi</h6>
+                            <h6>Comments</h6>
                             <p class="grey-text">${order.comments}</p>
                             </div>
                             <div class="row center-align">
-                            <h6>Zlecenie</h6>
+                            <h6>Order</h6>
                             <p class="grey-text">
                             <span class="blue-grey-text text-darken-2">Status:</span> ${order.status}<br>
-                            <span class="blue-grey-text text-darken-2">Numer do sledzenia przesyłki:</span> ${order.trackingNumber}    
+                            <span class="blue-grey-text text-darken-2">Tracking number:</span> ${order.trackingNumber}    
                             </p>
                             </div>
                 </div>
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             sku: sku,
                             comments: comments,
                             termsAccepted: termsAccepted,
-                            status: 'oczekujace',
+                            status: 'awaiting',
                             userId: userId,
                             dateCreated: dateCreated,
                             trackingNumber: ''
@@ -264,22 +264,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let userInfoHtml =`
             <li class="bold waves-effect"><i class="material-icons amber-text text-accent-2 medium">verified_user</i></li>
-            <h5>WITAMY W GLOBAL</h5>
+            <h5>WELCOME TO GLOBEX</h5>
             <li><p class="teal-text">${user.email}</p></li>
             `;
             let userInfoModalHtml = `
             <div id="accountInfoTitle" class="row z-depth-1">
-            <h4 class="center-align">Twoje dane</h4>
+            <h4 class="center-align">Your personal data</h4>
             </div>
-            <p class="teal-text"><span class="grey-text">Imię i nazwisko: </span><br>${userData.firstName} ${userData.lastName}</p>
-            <p class="teal-text"><span class="grey-text">Zalogowany jako: </span><br>${user.email}</p>
-            <p class="teal-text"><span class="grey-text">Unikalny nr ID: </span><br>${user.uid}</p>
+            <p class="teal-text"><span class="grey-text">Name: </span><br>${userData.firstName} ${userData.lastName}</p>
+            <p class="teal-text"><span class="grey-text">Logged in as: </span><br>${user.email}</p>
+            <p class="teal-text"><span class="grey-text">Unique ID: </span><br>${user.uid}</p>
             `;
             let userWelcomeMessageHtml =`
-            <h4>Witaj ${userData.firstName},</h4>
-            <p class="grey-text">Kliknij w przycisk "NOWE ZLECENIE" aby wysłać paczkę, następnie wypełnij wszystkie wymagane pola. 
-            <br>Uwaga! Nie realizujemy zleceń bez wczesniejszej zaplaty.
-            <br>Upewnij się, że dokonałeś przelewu w ciągu 24 godzin po złożeniu zamówienia.</p>
+            <h4>Greetings ${userData.firstName},</h4>
+            <p class="grey-text">To send a parcel click "NEW ORDER" button, then fill out the form. 
+            <br>Important! We are not able to proceed with your order, without receiving payment prior.
+            <br>Please make sure that you send the payment for your order, via bank transfer, within 24 hours.</p>
             `;
 
             userInfo.innerHTML = userInfoHtml;
@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     order.style.display = 'table-row';
                 })
             } 
-            if (searchedOrder === 'oczekujace' || searchedOrder === 'zrealizowane') {
+            if (searchedOrder === 'awaiting' || searchedOrder === 'completed') {
                 allOrders.forEach(order => {
                     if (order.children[4].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
                         order.style.display = 'table-row';
@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     order.style.display = 'inline-block';
                 })
             } 
-            if (searchedOrder === 'oczekujace' || searchedOrder === 'zrealizowane') {
+            if (searchedOrder === 'awaiting' || searchedOrder === 'completed') {
                 allOrders.forEach(order => {
                     if (order.children[4].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
                         order.style.display = 'inline-block';
