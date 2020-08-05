@@ -3,14 +3,13 @@
 
 //FIREBASE CONFIG SECTION---------------------------------------------   
 //Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyDIJQcRxb84MOyNIKVf7huKfabj5U_rlzQ",
-    authDomain: "global-trending-aefeb.firebaseapp.com",
-    databaseURL: "https://global-trending-aefeb.firebaseio.com",
-    projectId: "global-trending-aefeb",
-    appId: "1:745521956381:web:5bab28159b00bd9bb9a8f4",
-  };
-
+const firebaseConfig = {
+  apiKey: "AIzaSyB7KmHILZnBo-m_O-OR0P3zpcX9auRP85E",
+  authDomain: "parcel-delivery-demo.firebaseapp.com",
+  databaseURL: "https://parcel-delivery-demo.firebaseio.com",
+  projectId: "parcel-delivery-demo",
+  appId: "1:409330210051:web:882ddc11b09940612e4536",
+};
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -109,7 +108,7 @@ function setupHrefToDashboard(user){
   const mobileMenuDashboardLink = document.getElementById('dashboard-mobile');
   //check if user admin without calling firestore to save READS - check specific ADMIN ID
   //this is for DEMO only and isnt safe to do on the frontEnd
-  if (user.uid === 'iSgSsg8TatUsKPEVen8nBZK55hv1') {
+  if (user.uid === 'PporR5zB23N15mXm9an2RoIr9zX2') {
     dashboardLink.setAttribute('href', 'admin.html');
     mobileMenuDashboardLink.setAttribute('href', 'admin.html');
   } else {

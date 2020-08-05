@@ -2,17 +2,17 @@
 
 //FIREBASE CONFIG SECTION---------------------------------------------   
 // Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyDIJQcRxb84MOyNIKVf7huKfabj5U_rlzQ",
-    authDomain: "global-trending-aefeb.firebaseapp.com",
-    databaseURL: "https://global-trending-aefeb.firebaseio.com",
-    projectId: "global-trending-aefeb",
-    appId: "1:745521956381:web:5bab28159b00bd9bb9a8f4",
+const firebaseConfig = {
+  apiKey: "AIzaSyB7KmHILZnBo-m_O-OR0P3zpcX9auRP85E",
+  authDomain: "parcel-delivery-demo.firebaseapp.com",
+  databaseURL: "https://parcel-delivery-demo.firebaseio.com",
+  projectId: "parcel-delivery-demo",
+  appId: "1:409330210051:web:882ddc11b09940612e4536",
 };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-  //Initialize Firestore and Reference orders collection
+//Initialize Firestore and Reference orders collection
 const db = firebase.firestore();
 const usersRef = db.collection('users');
 //initialize firebase auth
