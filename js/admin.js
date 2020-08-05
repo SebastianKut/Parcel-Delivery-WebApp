@@ -96,13 +96,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td class="custom-td"><select class="status-change">
                         <option value=${order.status} disabled selected>Wybierz</option>
                         <option value="zrealizowane">Zrealizowane</option>
-                        <option value="oczekujace">Oczekujace</option>
+                        <option value="oczekujace">Oczekujące</option>
                         </select></td>
                         <td><input disabled type="text" placeholder="${order.trackingNumber}" ><span style="display: none;">${order.trackingNumber}</span></td>
                         <td class="center-align"><label>
                         <input class="delete-order-check" type="checkbox" /><span></span>
                         </label></td>
-                        <td><button class="indigo accent-2 btn-small order-details-button">Pokaz</button><a href="#${i}"></a></td>
+                        <td><button class="indigo accent-2 btn-small order-details-button">Pokaż</button><a href="#${i}"></a></td>
                     </tr>
                     `; 
                     tableContent += tr;
@@ -112,22 +112,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div id="${i}" class="section container order-details z-depth-1">
                         <div class="row custom-row">
                         <div class="row valign-wrapper">
-                            <h5 class="col s8 m10">Szczegoly zamowienia</h5>
+                            <h5 class="col s8 m10">Szczegóły zamówienia</h5>
                             <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">WROC<i class="material-icons left">navigate_before</i> </button>
                         </div>
                         </div>
                         <div class="row center-align">
                         <h6>Nadawca</h6>
-                        <p class="grey-text"><span class="blue-grey-text text-darken-2">Imie i Nazwisko:</span> ${user.firstName} ${user.lastName}<br>
-                        <span class="blue-grey-text text-darken-2">Numer Id:</span> ${user.userId}<br>
+                        <p class="grey-text"><span class="blue-grey-text text-darken-2">Imię i Nazwisko:</span> ${user.firstName} ${user.lastName}<br>
+                        <span class="blue-grey-text text-darken-2">Id nadawcy:</span> ${user.userId}<br>
                         <span class="blue-grey-text text-darken-2">Numer tel:</span> ${user.tel}<br>
                         <span class="blue-grey-text text-darken-2">Email:</span> ${user.email}<br>
-                        <span class="blue-grey-text text-darken-2">Data zlozenia:</span> ${order.dateCreated.toDate().toString().slice(0,24)} 
+                        <span class="blue-grey-text text-darken-2">Data złożenia:</span> ${order.dateCreated.toDate().toString().slice(0,24)} 
                         </p>
                         </div>
                         <div class="row center-align">
                         <h6>Odbiorca</h6>
-                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Imie i Nazwisko:</span> ${order.firstName} ${order.lastName}<br>
+                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Imię i Nazwisko:</span> ${order.firstName} ${order.lastName}<br>
                         <span class="blue-grey-text text-darken-2">Numer tel:</span> ${order.tel}<br>
                         <span class="blue-grey-text text-darken-2">Email:</span> ${order.email}<br>  
                         </p>
@@ -143,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="row center-align">
                         <h6>Przesylka</h6>
                         <p class="grey-text "><span class="blue-grey-text text-darken-2">Opis:</span> ${order.description}<br>
-                        <span class="blue-grey-text text-darken-2">Numer zlecenia:</span> <br>
                         <span class="blue-grey-text text-darken-2">Numer SKU:</span> ${order.sku}<br>
                         </p>
                         </div>
@@ -155,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h6>Zlecenie</h6>
                         <p class="grey-text">
                         <span class="blue-grey-text text-darken-2">Status:</span> ${order.status}<br>
-                        <span class="blue-grey-text text-darken-2">Numer do sledzenia przesylki:</span> ${order.trackingNumber}    
+                        <span class="blue-grey-text text-darken-2">Numer do śledzenia przesyłki:</span> ${order.trackingNumber}    
                         </p>
                         </div>
                     </div>

@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${order.sku}</td>
                 <td>${order.status}</td>
                 <td>${order.trackingNumber}</td>
-                <td><button class="indigo accent-2 btn-small order-details-button">Pokaz</button><a href="#${i}"></a></td>
+                <td><button class="indigo accent-2 btn-small order-details-button">Pokaż</button><a href="#${i}"></a></td>
             </tr>
             `; 
             tableContent += tr;
@@ -85,13 +85,13 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="${i}" class="section container order-details z-depth-1">
                 <div class="row custom-row">
                     <div class="row valign-wrapper">
-                        <h5 class="col s8 m10">Szczegoly zamowienia</h5>
-                        <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">WROC<i class="material-icons left">navigate_before</i> </button>
+                        <h5 class="col s8 m10">Szczegóły zamówienia</h5>
+                        <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">WRÓĆ<i class="material-icons left">navigate_before</i> </button>
                     </div>
                 </div>
                 <div class="row center-align">
                             <h6>Odbiorca</h6>
-                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Imie i Nazwisko:</span> ${order.firstName} ${order.lastName}<br>
+                            <p class="grey-text "><span class="blue-grey-text text-darken-2">Imię i Nazwisko:</span> ${order.firstName} ${order.lastName}<br>
                             <span class="blue-grey-text text-darken-2">Numer tel:</span> ${order.tel}<br>
                             <span class="blue-grey-text text-darken-2">Email:</span> ${order.email}<br>  
                             </p>
@@ -105,9 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             </p>
                             </div>
                             <div class="row center-align">
-                            <h6>Przesylka</h6>
+                            <h6>Przesyłka</h6>
                             <p class="grey-text "><span class="blue-grey-text text-darken-2">Opis:</span> ${order.description}<br>
-                            <span class="blue-grey-text text-darken-2">Numer zlecenia:</span> <br>
                             <span class="blue-grey-text text-darken-2">Numer SKU:</span> ${order.sku}<br>
                             </p>
                             </div>
@@ -119,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <h6>Zlecenie</h6>
                             <p class="grey-text">
                             <span class="blue-grey-text text-darken-2">Status:</span> ${order.status}<br>
-                            <span class="blue-grey-text text-darken-2">Numer do sledzenia przesylki:</span> ${order.trackingNumber}    
+                            <span class="blue-grey-text text-darken-2">Numer do sledzenia przesyłki:</span> ${order.trackingNumber}    
                             </p>
                             </div>
                 </div>
@@ -272,14 +271,15 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="accountInfoTitle" class="row z-depth-1">
             <h4 class="center-align">Twoje dane</h4>
             </div>
-            <p class="teal-text"><span class="grey-text">Imie i nazwisko: </span><br>${userData.firstName} ${userData.lastName}</p>
+            <p class="teal-text"><span class="grey-text">Imię i nazwisko: </span><br>${userData.firstName} ${userData.lastName}</p>
             <p class="teal-text"><span class="grey-text">Zalogowany jako: </span><br>${user.email}</p>
             <p class="teal-text"><span class="grey-text">Unikalny nr ID: </span><br>${user.uid}</p>
             `;
             let userWelcomeMessageHtml =`
             <h4>Witaj ${userData.firstName},</h4>
-            <p class="grey-text">Kliknij w przycisk "NOWE ZLECENIE" aby wyslac paczke, nastepnie wypelnij wszystkie wymagane pola. 
-            <br>Uwaga! Nie realizujemy zlecen bez wczesniejszej zaplaty.</p>
+            <p class="grey-text">Kliknij w przycisk "NOWE ZLECENIE" aby wysłać paczkę, następnie wypełnij wszystkie wymagane pola. 
+            <br>Uwaga! Nie realizujemy zleceń bez wczesniejszej zaplaty.
+            <br>Upewnij się, że dokonałeś przelewu w ciągu 24 godzin po złożeniu zamówienia.</p>
             `;
 
             userInfo.innerHTML = userInfoHtml;

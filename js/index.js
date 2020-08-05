@@ -106,12 +106,15 @@ function setupUI(user) {
 //DIRECT TO CORRECT PAGE WHEN USER PANEL CLICKED IN THE NAV BAR - EITHER ADMIN PANEL OR CLIENT(USER) PANEL
 function setupHrefToDashboard(user){
   const dashboardLink = document.getElementById('dashboard');
+  const mobileMenuDashboardLink = document.getElementById('dashboard-mobile');
   //check if user admin without calling firestore to save READS - check specific ADMIN ID
   //this is for DEMO only and isnt safe to do on the frontEnd
   if (user.uid === 'iSgSsg8TatUsKPEVen8nBZK55hv1') {
     dashboardLink.setAttribute('href', 'admin.html');
+    mobileMenuDashboardLink.setAttribute('href', 'admin.html');
   } else {
     dashboardLink.setAttribute('href', 'user.html');
+    mobileMenuDashboardLink.setAttribute('href', 'user.html');
   }
 };
 
