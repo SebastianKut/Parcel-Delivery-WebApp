@@ -69,9 +69,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let tableBody = document.getElementById('orders-table');
         let orderDetailsContent = document.getElementById('order-details-section');
-        let tableContent = "";
-        let orderContent = "";
+        let usersDropdownList = document.getElementById('users-dropdown');
+        let tableContent = '';
+        let orderContent = '';
+        let usersListContent = '<option value="" disabled selected>Select customer</option>';
         let i = 1;
+
+        //setup users dropdown list for Admin Order Form
+        usersData.forEach(usersDoc => {
+            let user = usersDoc.data();
+            //setup users dropdown list but skip Admin
+            if (!user.isAdmin){
+                let singleSelectOption =`
+                <option value=${user.userId}>${user.firstName} ${user.lastName}</option>
+                `;
+                usersListContent += singleSelectOption;
+            }
+        });
 
         //itterate through every order
         ordersData.forEach(ordersDoc => {
@@ -172,6 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
         //append order info to table body and order details content    
         tableBody.innerHTML = tableContent;    
         orderDetailsContent.innerHTML = orderContent;
+        //append user name and ID to Admin Order Form
+        usersDropdownList.innerHTML = usersListContent;
 
         //After dynamically creating DOM elements innitialize Materialize dropdown menu that I am using in the
         //orders table (it will not work otherwise)
@@ -216,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let comments = getInputVal('comments');
             let termsAccepted = getInputVal('accept-terms');
             //get user Id from the email address of the client to save the order as his    
-            let senderId = getInputVal('sender-id');
+            let senderId = getInputVal('users-dropdown');
             let dateCreated = firebase.firestore.FieldValue.serverTimestamp();
             
             // Save order to firestore
