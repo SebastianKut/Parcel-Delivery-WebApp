@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //FIREBASE CONFIG SECTION---------------------------------------------   
     // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyDIJQcRxb84MOyNIKVf7huKfabj5U_rlzQ",
-        authDomain: "global-trending-aefeb.firebaseapp.com",
-        databaseURL: "https://global-trending-aefeb.firebaseio.com",
-        projectId: "global-trending-aefeb",
-        appId: "1:745521956381:web:5bab28159b00bd9bb9a8f4",
-    };
+    const firebaseConfig = {
+        apiKey: "AIzaSyB7KmHILZnBo-m_O-OR0P3zpcX9auRP85E",
+        authDomain: "parcel-delivery-demo.firebaseapp.com",
+        databaseURL: "https://parcel-delivery-demo.firebaseio.com",
+        projectId: "parcel-delivery-demo",
+        appId: "1:409330210051:web:882ddc11b09940612e4536",
+      };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
@@ -90,19 +90,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${user.firstName} ${user.lastName}</td>
                         <td>${order.sku}</td>
                         <td>${order.dateCreated.toDate().toString().slice(4,15)}</td>
-                        <td class="truncate custom-td-width">ul.${order.street} ${order.streetNumber} / ${order.apartment}</td>
+                        <td class="truncate custom-td-width">${order.streetNumber} ${order.street}, apartment: ${order.apartment}</td>
                         <td>${order.firstName} ${order.lastName}</td>
                         <td>${order.status}</td>
                         <td class="custom-td"><select class="status-change">
-                        <option value=${order.status} disabled selected>Wybierz</option>
-                        <option value="zrealizowane">Zrealizowane</option>
-                        <option value="oczekujace">Oczekujące</option>
+                        <option value=${order.status} disabled selected>Select</option>
+                        <option value="processed">Processed</option>
+                        <option value="awaiting">Awaiting</option>
                         </select></td>
                         <td><input disabled type="text" placeholder="${order.trackingNumber}" ><span style="display: none;">${order.trackingNumber}</span></td>
                         <td class="center-align"><label>
                         <input class="delete-order-check" type="checkbox" /><span></span>
                         </label></td>
-                        <td><button class="indigo accent-2 btn-small order-details-button">Pokaż</button><a href="#${i}"></a></td>
+                        <td><button class="indigo accent-2 btn-small order-details-button">Details</button><a href="#${i}"></a></td>
                     </tr>
                     `; 
                     tableContent += tr;
@@ -112,49 +112,50 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div id="${i}" class="section container order-details z-depth-1">
                         <div class="row custom-row">
                         <div class="row valign-wrapper">
-                            <h5 class="col s8 m10">Szczegóły zamówienia</h5>
-                            <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">WROC<i class="material-icons left">navigate_before</i> </button>
+                            <h5 class="col s8 m10">Order details</h5>
+                            <button class="col s4 m2 btn-small indigo accent-2 go-back-btn">BACK<i class="material-icons left">navigate_before</i> </button>
                         </div>
                         </div>
                         <div class="row center-align">
-                        <h6>Nadawca</h6>
-                        <p class="grey-text"><span class="blue-grey-text text-darken-2">Imię i Nazwisko:</span> ${user.firstName} ${user.lastName}<br>
-                        <span class="blue-grey-text text-darken-2">Id nadawcy:</span> ${user.userId}<br>
-                        <span class="blue-grey-text text-darken-2">Numer tel:</span> ${user.tel}<br>
+                        <h6>Sender</h6>
+                        <p class="grey-text"><span class="blue-grey-text text-darken-2">Name:</span> ${user.firstName} ${user.lastName}<br>
+                        <span class="blue-grey-text text-darken-2">ID:</span> ${user.userId}<br>
+                        <span class="blue-grey-text text-darken-2">Telephone number:</span> ${user.tel}<br>
                         <span class="blue-grey-text text-darken-2">Email:</span> ${user.email}<br>
-                        <span class="blue-grey-text text-darken-2">Data złożenia:</span> ${order.dateCreated.toDate().toString().slice(0,24)} 
+                        <span class="blue-grey-text text-darken-2">Date created:</span> ${order.dateCreated.toDate().toString().slice(0,24)} 
                         </p>
                         </div>
                         <div class="row center-align">
-                        <h6>Odbiorca</h6>
-                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Imię i Nazwisko:</span> ${order.firstName} ${order.lastName}<br>
-                        <span class="blue-grey-text text-darken-2">Numer tel:</span> ${order.tel}<br>
+                        <h6>Recipient</h6>
+                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Name:</span> ${order.firstName} ${order.lastName}<br>
+                        <span class="blue-grey-text text-darken-2">Telephone number:</span> ${order.tel}<br>
                         <span class="blue-grey-text text-darken-2">Email:</span> ${order.email}<br>  
                         </p>
                         </div>
                         <div class="row center-align">
-                        <h6>Adres dostawy</h6>
-                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Ulica:</span> ${order.street} ${order.streetNumber} / ${order.apartment}<br>
-                        <span class="blue-grey-text text-darken-2">Kod pocztowy:</span> ${order.postCode}<br> 
-                        <span class="blue-grey-text text-darken-2">Miasto:</span> ${order.town}<br>
-                        <span class="blue-grey-text text-darken-2">Kraj dostarczenia:</span> ${order.deliveryCountry}
+                        <h6>Delivery Address</h6>
+                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Street:</span> ${order.streetNumber} ${order.street}<br>
+                        <span class="blue-grey-text text-darken-2">Apartment:</span> ${order.apartment}<br>
+                        <span class="blue-grey-text text-darken-2">Postcode:</span> ${order.postCode}<br> 
+                        <span class="blue-grey-text text-darken-2">Town:</span> ${order.town}<br>
+                        <span class="blue-grey-text text-darken-2">Country:</span> ${order.deliveryCountry}
                         </p>
                         </div>
                         <div class="row center-align">
-                        <h6>Przesylka</h6>
-                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Opis:</span> ${order.description}<br>
-                        <span class="blue-grey-text text-darken-2">Numer SKU:</span> ${order.sku}<br>
+                        <h6>Parcel details</h6>
+                        <p class="grey-text "><span class="blue-grey-text text-darken-2">Description:</span> ${order.description}<br>
+                        <span class="blue-grey-text text-darken-2">SKU number:</span> ${order.sku}<br>
                         </p>
                         </div>
                         <div class="row center-align">
-                        <h6>Uwagi</h6>
+                        <h6>Comments</h6>
                         <p class="grey-text">${order.comments}</p>
                         </div>
                         <div class="row center-align">
-                        <h6>Zlecenie</h6>
+                        <h6>Order</h6>
                         <p class="grey-text">
                         <span class="blue-grey-text text-darken-2">Status:</span> ${order.status}<br>
-                        <span class="blue-grey-text text-darken-2">Numer do śledzenia przesyłki:</span> ${order.trackingNumber}    
+                        <span class="blue-grey-text text-darken-2">Tracking number:</span> ${order.trackingNumber}    
                         </p>
                         </div>
                     </div>
@@ -263,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 sku: sku,
                 comments: comments,
                 termsAccepted: termsAccepted,
-                status: 'oczekujace',
+                status: 'awaiting',
                 userId: userId,
                 dateCreated: dateCreated,
                 trackingNumber: ''
@@ -305,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateBatch.update(ordersRef.doc(orderToBeUpdated), {'status': status});
                 
                 //if status value is "oczekujace" tracking number has to be updated to empty string in the database
-                if (status === 'oczekujace') {
+                if (status === 'awaiting') {
                     updateBatch.update(ordersRef.doc(orderToBeUpdated), {'trackingNumber': ''});
                 }
 
@@ -456,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             } 
             //filter by inprogress and completed
-            if (searchedOrder === 'oczekujace' || searchedOrder === 'zrealizowane') {
+            if (searchedOrder === 'awaiting' || searchedOrder === 'processed') {
                 Array.from(allOrders).forEach(order => {
                 
                     if (order.children[5].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
@@ -479,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             } 
             //filter by inprogress and completed
-            if (searchedOrder === 'oczekujace' || searchedOrder === 'zrealizowane') {
+            if (searchedOrder === 'awaiting' || searchedOrder === 'processed') {
                 Array.from(allOrders).forEach(order => {
                 
                     if (order.children[5].textContent.toLowerCase().includes(searchedOrder.toLowerCase())) {
