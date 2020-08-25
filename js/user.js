@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let userInfoHtml =`
             <li class="bold waves-effect"><i class="material-icons amber-text text-accent-2 medium">verified_user</i></li>
-            <h5>WELCOME TO GLOBEX</h5>
+            <h5>WELCOME TO WORLD COMMERCE</h5>
             <li><p class="teal-text">${user.email}</p></li>
             `;
             let userInfoModalHtml = `
