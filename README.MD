@@ -4,19 +4,19 @@
 
 <hr>
 To view the functionality of the page you can log in as customer or admin using the following credentials:
-
-CUSTOMER:
-username: user1@test.com 
-or 
-username: user2@test.com
-or 
-username: user3@test.com
-password: test1234
-
-ADMIN: 
-username: admin@test.com
-password: test1234
-
+<br>
+CUSTOMER:<br>
+username: user1@test.com <br>
+or <br>
+username: user2@test.com <br>
+or <br>
+username: user3@test.com <br>
+password: test1234 <br>
+<br>
+ADMIN: <br>
+username: admin@test.com <br>
+password: test1234 <br>
+<br>
 You may also sign up creating your own customer account. Sign up process do not require real email address and will not spam your inbox. 
 
 <hr>
