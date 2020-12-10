@@ -34,7 +34,7 @@ The project utilises following languages, frameworks and technologies:
 IMPORTANT NOTE!
 
 As this is non commercial project based on Firebase Spark (free) plan , it has certain security limitations and solutions that should never be implemented in the real life business web application, namely the use of Cloud Functions and Firebase Admin services or should I say, the lack of it.
-In real life scenario, user roles and security related functions should be implemented and stored on a server side, however due to the fact that Firebase functions and Node.js implementation in Firestore requires billing account and is currently (today is 6/08/20) no longer available for free, the solution for Admin and User role and all related logical procedures, have been implemented on a Client side, which for real life business application would be a big compromise in cyber security environment. 
+In real life scenario, user roles and security related functions should be implemented and stored on a server side, however due to the fact that Firebase functions and Node.js implementation in Firestore requires billing account, the solution for Admin and User role and all related logical procedures, have been implemented on a Client side, which for real life business application should be run on a server. 
 Reading my JS source code and comments hopefully expalins it further.
 
 This web app consist of landing home page as well as user and admin dashboards. It allows users to sign up by creating their own account and then submit orders (add information about the parcels they would like to send). The data they submit is stored in Cloud Firestore - non relational database used by Firebase.
